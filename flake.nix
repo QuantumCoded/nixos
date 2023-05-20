@@ -3,14 +3,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    # hm.url = "github:nix-community/home-manager";
+    hm.url = "github:nix-community/home-manager";
   };
 
   outputs = {
     self
     , nixpkgs
     , nixpkgs-unstable
-    # , hm
+    , hm
   }:
     let
       ## variables
@@ -23,15 +23,15 @@
       };
       ## -- end
     in {
-      # Nixos config for "flagship"
-      nixosConfigurations.flagship =
+      # NixOS config for "dell"
+      nixosConfigurations.dell =
         nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit self; };
-            modules = [
-              ./configuration.nix
-              ({config, pkgs, ...}: { nixpkgs.overlays = [ (overlay-unstable system) ]; })
-            ];
+          inherit system;
+          specialArgs = { inherit self; };
+          modules = [
+            ./configuration.nix
+            ({config, pkgs, ...}: { nixpkgs.overlays = [ (overlay-unstable system) ]; })
+          ];
         };
 
       # nixos configuration for Pi
