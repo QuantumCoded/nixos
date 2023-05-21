@@ -99,6 +99,9 @@
       # Enable nix LSP. 
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
+
+      # Put the sidebar on the right.
+      "workbench.sideBar.location" = "right";
     };
   };
 }
