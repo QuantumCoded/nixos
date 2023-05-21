@@ -1,6 +1,9 @@
 { config, pkgs, home, ... }:
 
 {
+  # Load the overlays.
+  imports = [ ./overlays.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "jeff";
@@ -67,4 +70,27 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Let Home Manager manager VSCode.
+  programs.vscode = {
+    enable = true;
+    package = pkgs.unstable.vscode;
+    extensions = with pkgs.vscode-extensions; [
+      jnoortheen.nix-ide
+      matklad.rust-analyzer
+      usernamehw.errorlens
+      eamodio.gitlens
+      serayuzgur.crates
+      tamasfe.even-better-toml
+      grapecity.gc-excelviewer
+      ms-vsliveshare.vsliveshare
+      pkief.material-icon-theme
+      ms-python.python
+      gruntfuggly.todo-tree
+
+      # Prettier TOML
+      # Rhai Language Support
+      # SQLite Viewer
+    ];
+  };
 }
