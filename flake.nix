@@ -32,7 +32,16 @@
           modules = [
             ./configuration.nix
             ./overlays.nix
-            ./home-manager.nix
+            
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jeff = import ./home-manager.nix;
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home-manager.nix
+            }
           ];
         };
       };
