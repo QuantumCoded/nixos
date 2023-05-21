@@ -111,6 +111,9 @@
 
       # Change the font size.
       "editor.fontSize" = 13;
+
+      # Disable workspace trust banner.
+      "security.workspace.trust.banner" = "never";
     };
   };
 }
