@@ -114,6 +114,9 @@
 
       # Disable workspace trust banner.
       "security.workspace.trust.banner" = "never";
+
+      # Disable bracket pair colorization.
+      "editor.bracketPairColorization.enabled" = false;
     };
   };
 }
