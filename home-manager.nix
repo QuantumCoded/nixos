@@ -96,7 +96,7 @@
       # Enable autosave.
       "files.autoSave" = "afterDelay";
 
-      # Enable 
+      # Enable nix LSP. 
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
     };
