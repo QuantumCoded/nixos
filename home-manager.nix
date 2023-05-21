@@ -92,5 +92,9 @@
       # Rhai Language Support
       # SQLite Viewer
     ];
+    userSettings = {
+      # Enable autosave.
+      "files.autoSave" = "afterDelay";
+    };
   };
 }
