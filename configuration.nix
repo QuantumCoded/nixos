@@ -10,6 +10,11 @@
       ./hardware-configuration.nix
     ];
 
+  # Enable insecure electron for vscodium
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-21.4.0"
+  ];
+
   # Enable Nix flake packages.
   nix.package = pkgs.nixFlakes;
 
