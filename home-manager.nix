@@ -95,6 +95,10 @@
     userSettings = {
       # Enable autosave.
       "files.autoSave" = "afterDelay";
+
+      # Enable 
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
     };
   };
 }
