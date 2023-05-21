@@ -96,10 +96,10 @@
     description = "Jeff";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      home-manager
       firefox
       kate
       thunderbird
-      unstable.vscodium
       unstable.discord
       sonixd
       libreoffice
