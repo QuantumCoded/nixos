@@ -32,6 +32,7 @@
           modules = [
             ./configuration.nix
             ./overlays.nix
+            ./home-manager.nix
           ];
         };
       };
