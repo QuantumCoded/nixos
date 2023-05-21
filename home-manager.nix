@@ -102,6 +102,15 @@
 
       # Put the sidebar on the right.
       "workbench.sideBar.location" = "right";
+
+      # Change the font.
+      "editor.fontFamily" = "FiraCode Nerd Font Mono";
+
+      # Enable font ligatures.
+      "editor.fontLigatures" = true;
+
+      # Change the font size.
+      "editor.fontSize" = 13;
     };
   };
 }

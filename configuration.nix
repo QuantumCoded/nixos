@@ -90,6 +90,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Custom fonts.
+  fonts.fonts = with pkgs; [
+    # Use FiraCode from nerdfonts.
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jeff = {
     isNormalUser = true;
@@ -116,7 +122,6 @@
       pavucontrol
       steam
       neofetch
-      rictydiminished-with-firacode
       tmux
       btop
       python3
