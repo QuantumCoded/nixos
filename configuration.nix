@@ -120,16 +120,13 @@
       flameshot
       font-manager
       # gdlauncher
-      git
       home-manager
       kate
-      kitty
       kitty
       libreoffice
       man-pages
       man-pages-posix
       mpv
-      neofetch
       nfs-utils
       nil
       nodejs
@@ -140,7 +137,6 @@
       sonixd
       steam
       thunderbird
-      tmux
       tree
       unstable.discord
       vlc
@@ -158,8 +154,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    git
+    tmux
+    vim
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
