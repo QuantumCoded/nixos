@@ -148,6 +148,7 @@
       vlc
       nil
       zsh-powerlevel10k
+      kitty
     ];
   };
 
