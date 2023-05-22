@@ -122,7 +122,6 @@
       # gdlauncher
       home-manager
       kate
-      kitty
       libreoffice
       man-pages
       man-pages-posix
