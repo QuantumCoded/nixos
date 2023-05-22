@@ -117,6 +117,9 @@
 
       # Disable bracket pair colorization.
       "editor.bracketPairColorization.enabled" = false;
+
+      # Change workbench icons to material icons.
+      "workbench.iconTheme" = "material-icon-theme";
     };
   };
 
