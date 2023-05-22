@@ -96,11 +96,21 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
+  # Source zsh for home manager.
+  programs.zsh.enable = true;
+
+  # Link zsh share for zsh completions.
+  environment.pathsToLink = [ "/share/zsh" ];
+
+  # Add zsh to the shells list.
+  environment.shells = with pkgs; [ zsh ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jeff = {
     isNormalUser = true;
     description = "Jeff";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       home-manager
       firefox
@@ -137,6 +147,7 @@
       mpv
       vlc
       nil
+      zsh-powerlevel10k
     ];
   };
 
