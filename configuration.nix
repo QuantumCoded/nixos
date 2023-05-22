@@ -112,43 +112,43 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      home-manager
-      firefox
-      kate
-      thunderbird
-      unstable.discord
-      sonixd
-      libreoffice
       anki
       # ankisyncd - for server
-      # gdlauncher
-      nodejs
-      flameshot
-      tree
-      file
-      kitty
-      xclip
-      git
-      pavucontrol
-      steam
-      neofetch
-      tmux
       btop
-      python3
-      vulnix
+      file
+      firefox
+      flameshot
       font-manager
-      wireguard-tools
-      obsidian
-      rustup
-      nfs-utils
+      # gdlauncher
+      git
+      home-manager
+      kate
+      kitty
+      kitty
+      libreoffice
       man-pages
       man-pages-posix
-      xwinwrap
       mpv
-      vlc
+      neofetch
+      nfs-utils
       nil
+      nodejs
+      obsidian
+      pavucontrol
+      python3
+      rustup
+      sonixd
+      steam
+      thunderbird
+      tmux
+      tree
+      unstable.discord
+      vlc
+      vulnix
+      wireguard-tools
+      xclip
+      xwinwrap
       zsh-powerlevel10k
-      kitty
     ];
   };
 
