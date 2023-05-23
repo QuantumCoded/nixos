@@ -1,5 +1,17 @@
-{ config, pkgs, home, lib, ... }:
+{ pkgs, lib, ... }:
+let
+  # Arguments to pass to program modules.
+  programArgs = { inherit pkgs; };
 
+  # Given a list of paths representing programs as nix modules load them in Home Manager.
+  # Also loads Home Manager.
+  loadPrograms =
+    paths: builtins.listToAttrs (builtins.map (path: {
+      name = builtins.head (builtins.split "\\." (builtins.baseNameOf path));
+      value = import path programArgs;
+    }) paths)
+    // { home-manager.enable = true; };
+in
 {
   # Load the overlays.
   imports = [ ../overlays.nix ];
@@ -68,111 +80,9 @@
     # EDITOR = "emacs";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  # Let Home Manager manager VSCode.
-  programs.vscode = {
-    enable = true;
-    package = pkgs.unstable.vscode;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      matklad.rust-analyzer
-      usernamehw.errorlens
-      eamodio.gitlens
-      serayuzgur.crates
-      tamasfe.even-better-toml
-      grapecity.gc-excelviewer
-      ms-vsliveshare.vsliveshare
-      pkief.material-icon-theme
-      ms-python.python
-      gruntfuggly.todo-tree
-
-      # Prettier TOML
-      # Rhai Language Support
-      # SQLite Viewer
-    ];
-    userSettings = {
-      # Enable autosave.
-      "files.autoSave" = "afterDelay";
-
-      # Enable nix LSP. 
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
-
-      # Put the sidebar on the right.
-      "workbench.sideBar.location" = "right";
-
-      # Change the font.
-      "editor.fontFamily" = "FiraCode Nerd Font Mono";
-
-      # Enable font ligatures.
-      "editor.fontLigatures" = true;
-
-      # Change the font size.
-      "editor.fontSize" = 13;
-
-      # Disable workspace trust banner.
-      "security.workspace.trust.banner" = "never";
-
-      # Disable bracket pair colorization.
-      "editor.bracketPairColorization.enabled" = false;
-
-      # Change workbench icons to material icons.
-      "workbench.iconTheme" = "material-icon-theme";
-
-      # Change the integrated terminal profile to zsh.
-      "terminal.integrated.defaultProfile.linux" = "zsh";
-    };
-  };
-
-  # Let Home Manager manager Zsh.
-  programs.zsh = {
-    # The powerlevel theme I'm using is distgusting in TTY, let's default
-    # to something else
-    # See https://github.com/romkatv/powerlevel10k/issues/325
-    # Instead of sourcing this file you could also add another plugin as
-    # this, and it will automatically load the file for us
-    # (but this way it is not possible to conditionally load a file)
-    # {
-    #   name = "powerlevel10k-config";
-    #   src = lib.cleanSource ./p10k-config;
-    #   file = "p10k.zsh";
-    # }
-    # if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
-    #   [[ ! -f ${configThemeNormal} ]] || source ${configThemeNormal}
-    # else
-    #   [[ ! -f ${configThemeTTY} ]] || source ${configThemeTTY}
-    # fi
-
-    enable = true;
-    enableAutosuggestions = true;
-    enableCompletion = true;
-    enableSyntaxHighlighting = true;
-    enableVteIntegration = true;
-    history.ignoreDups = true;
-    historySubstringSearch.enable = true;
-
-    plugins = with pkgs; [
-      {
-        file = "powerlevel10k.zsh-theme";
-        name = "powerlevel10k";
-        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ../p10k-config;
-        file = "p10k.zsh";
-      }
-    ];
-  };
-
-  # Let Home Manager manage kitty.
-  programs.kitty = {
-    enable = true;
-    settings = {
-      scrollback_lines = 10000;
-      enable_audio_bell = false;
-    };
-  };
+  programs = loadPrograms [
+    ./kitty.nix
+    ./vscode.nix
+    ./zsh.nix
+  ];
 }
