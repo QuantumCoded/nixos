@@ -1,20 +1,11 @@
 { pkgs, ... }:
-let
-  # Arguments to pass to program modules.
-  programArgs = { inherit pkgs; };
-
-  # Given a list of paths representing programs as nix modules load them in Home Manager.
-  # Also loads Home Manager.
-  loadPrograms =
-    paths: builtins.listToAttrs (builtins.map (path: {
-      name = builtins.head (builtins.split "\\." (builtins.baseNameOf path));
-      value = import path programArgs;
-    }) paths)
-    // { home-manager.enable = true; };
-in
 {
-  # Load the overlays.
-  imports = [ ../overlays.nix ];
+  imports = [
+    ../overlays.nix
+    ./kitty.nix
+    ./vscode.nix
+    ./zsh.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -80,9 +71,6 @@ in
     # EDITOR = "emacs";
   };
 
-  programs = loadPrograms [
-    ./kitty.nix
-    ./vscode.nix
-    ./zsh.nix
-  ];
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 }

@@ -17,24 +17,26 @@
   #   [[ ! -f ${configThemeTTY} ]] || source ${configThemeTTY}
   # fi
 
-  enable = true;
-  enableAutosuggestions = true;
-  enableCompletion = true;
-  enableSyntaxHighlighting = true;
-  enableVteIntegration = true;
-  history.ignoreDups = true;
-  historySubstringSearch.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    enableVteIntegration = true;
+    history.ignoreDups = true;
+    historySubstringSearch.enable = true;
 
-  plugins = with pkgs; [
-    {
-      file = "powerlevel10k.zsh-theme";
-      name = "powerlevel10k";
-      src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-    }
-    {
-      name = "powerlevel10k-config";
-      src = lib.cleanSource ../p10k-config;
-      file = "p10k.zsh";
-    }
-  ];
+    plugins = with pkgs; [
+      {
+        file = "powerlevel10k.zsh-theme";
+        name = "powerlevel10k";
+        src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = lib.cleanSource ../p10k-config;
+        file = "p10k.zsh";
+      }
+    ];
+  };
 }
