@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   # Arguments to pass to program modules.
   programArgs = { inherit pkgs; };
