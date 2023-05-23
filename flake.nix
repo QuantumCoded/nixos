@@ -37,7 +37,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.jeff = import ./home-manager.nix;
+              home-manager.users.jeff = import ./home;
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home-manager.nix

@@ -2,7 +2,7 @@
 
 {
   # Load the overlays.
-  imports = [ ./overlays.nix ];
+  imports = [ ../overlays.nix ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -161,7 +161,7 @@
       }
       {
         name = "powerlevel10k-config";
-        src = lib.cleanSource ./p10k-config;
+        src = lib.cleanSource ../p10k-config;
         file = "p10k.zsh";
       }
     ];
