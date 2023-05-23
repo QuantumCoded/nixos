@@ -52,5 +52,8 @@
 
     # Change the integrated terminal profile to zsh.
     "terminal.integrated.defaultProfile.linux" = "zsh";
+
+    # Disable prompting for confirmation when syncing git changes.
+    "git.confirmSync" = false;
   };
 }
