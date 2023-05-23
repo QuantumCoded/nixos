@@ -120,6 +120,9 @@
 
       # Change workbench icons to material icons.
       "workbench.iconTheme" = "material-icon-theme";
+
+      # Change the integrated terminal profile to zsh.
+      "terminal.integrated.defaultProfile.linux" = "zsh";
     };
   };
 
