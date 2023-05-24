@@ -1,4 +1,4 @@
-{ config, pkgs, system, nixpkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, system, nixpkgs, nixpkgs-unstable, nur, ... }:
   let
     overlay-unstable = final: prev: {
       unstable = import nixpkgs-unstable {
@@ -7,5 +7,5 @@
       };
     };
   in {
-    nixpkgs.overlays = [ overlay-unstable ];
+    nixpkgs.overlays = [ nur.overlay overlay-unstable ];
   }

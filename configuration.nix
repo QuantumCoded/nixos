@@ -116,7 +116,6 @@
       # ankisyncd - for server
       btop
       file
-      firefox
       flameshot
       font-manager
       # gdlauncher

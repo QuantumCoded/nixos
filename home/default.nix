@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ../overlays.nix
+    ./firefox.nix
     ./kitty.nix
     ./vscode.nix
     ./zsh.nix

@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = {
@@ -12,6 +13,7 @@
     , nixpkgs
     , nixpkgs-unstable
     , home-manager
+    , nur
   }:
     let
       system = "x86_64-linux";
@@ -25,14 +27,17 @@
               self
               system
               nixpkgs
-              nixpkgs-unstable;
+              nixpkgs-unstable
+              nur;
             home = home-manager;
             };
 
           modules = [
             ./configuration.nix
             ./overlays.nix
-            
+
+            nur.hmModules.nur
+
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
