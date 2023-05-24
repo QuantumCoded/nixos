@@ -17,6 +17,7 @@
       ms-python.python
       gruntfuggly.todo-tree
 
+      # TODO: Manually install these extensions
       # Prettier TOML
       # Rhai Language Support
       # SQLite Viewer
