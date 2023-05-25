@@ -63,6 +63,9 @@
 
       # Disable prompting for confirmation when deleting files.
       "explorer.confirmDelete" = false;
+
+      # Enable git auto fetch.
+      "git.autofetch" = true;
     };
   };
 }
