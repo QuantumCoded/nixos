@@ -2,8 +2,10 @@
 {
   imports = [
     ../overlays.nix
+    ./bspwm.nix
     ./firefox.nix
     ./kitty.nix
+    ./sxhkd.nix
     ./vscode.nix
     ./zsh.nix
   ];
