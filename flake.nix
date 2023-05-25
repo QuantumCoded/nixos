@@ -6,6 +6,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     nur.url = "github:nix-community/NUR";
+    stylix.url = "github:danth/stylix/release-22.11";
   };
 
   outputs = {
@@ -14,6 +15,7 @@
     , nixpkgs-unstable
     , home-manager
     , nur
+    , stylix
   }:
     let
       system = "x86_64-linux";
@@ -35,8 +37,10 @@
           modules = [
             ./configuration.nix
             ./overlays.nix
+            ./stylix.nix
 
             nur.hmModules.nur
+            stylix.nixosModules.stylix
 
             home-manager.nixosModules.home-manager
             {
