@@ -57,6 +57,9 @@
 
       # Disable prompting for confirmation when syncing git changes.
       "git.confirmSync" = false;
+
+      # Disable prompting for confirmation for drag and drop.
+      "explorer.confirmDragAndDrop" = false;
     };
   };
 }
