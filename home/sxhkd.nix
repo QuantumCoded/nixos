@@ -38,7 +38,7 @@
 			"super + alt + {q,r}" = "bspc {quit,wm -r}";
 
 			# close and kill
-			"super + {_,shift + }w" = "bspc node -{c,k}";
+			"super + {_,shift + }q" = "bspc node -{c,k}";
 
 			# alternate between the tiled and monocle layout
 			"super + m" = "bspc desktop -l next";
