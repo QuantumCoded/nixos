@@ -128,6 +128,7 @@
       man-pages
       man-pages-posix
       mpv
+      neofetch
       nfs-utils
       nil
       nodejs
