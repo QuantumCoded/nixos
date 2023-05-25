@@ -5,6 +5,7 @@
     ./bspwm.nix
     ./firefox.nix
     ./kitty.nix
+    ./rofi.nix
     ./sxhkd.nix
     ./vscode.nix
     ./zsh.nix

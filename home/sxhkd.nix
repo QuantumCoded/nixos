@@ -25,7 +25,7 @@
 			"super + Return" = "kitty";
 
 			# program launcher
-			"super + @space" = "rofi";
+			"super + @space" = "rofi -show run";
 
 			# make sxhkd reload its configuration files:
 			"super + Escape" = "pkill -USR1 -x sxhkd";
