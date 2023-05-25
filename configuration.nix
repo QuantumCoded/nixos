@@ -118,6 +118,7 @@
       anki
       # ankisyncd - for server
       btop
+      feh
       file
       flameshot
       font-manager
