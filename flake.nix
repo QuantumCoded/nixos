@@ -9,17 +9,18 @@
     base16.url = "github:SenchoPens/base16.nix";
   };
 
-  outputs = {
-    self
+  outputs =
+    { self
     , nixpkgs
     , nixpkgs-unstable
     , home-manager
     , nur
     , base16
-  }:
+    }:
     let
       system = "x86_64-linux";
-    in {
+    in
+    {
       nixosConfigurations = {
         dell = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -33,7 +34,7 @@
               nur
               base16;
             home = home-manager;
-            };
+          };
 
           modules = [
             ./configuration.nix
