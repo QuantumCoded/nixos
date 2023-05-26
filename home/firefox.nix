@@ -1,15 +1,16 @@
 { pkgs, lib, ... }:
 let
-  buildFirefoxXpiAddon = lib.makeOverridable ({ stdenv ? pkgs.stdenv
-                                              , fetchurl ? pkgs.fetchurl
-                                              , pname
-                                              , version
-                                              , addonId
-                                              , url
-                                              , sha256
-                                              , meta
-                                              , ...
-                                              }:
+  buildFirefoxXpiAddon = lib.makeOverridable (
+    { stdenv ? pkgs.stdenv
+    , fetchurl ? pkgs.fetchurl
+    , pname
+    , version
+    , addonId
+    , url
+    , sha256
+    , meta
+    , ...
+    }:
     stdenv.mkDerivation {
       name = "${pname}-${version}";
 
@@ -25,7 +26,8 @@ let
         mkdir -p "$dst"
         install -v -m644 "$src" "$dst/${addonId}.xpi"
       '';
-    });
+    }
+  );
 in
 {
   programs.firefox = {
