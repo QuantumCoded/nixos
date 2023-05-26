@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     nur.url = "github:nix-community/NUR";
-    stylix.url = "github:danth/stylix/release-22.11";
+    base16.url = "github:SenchoPens/base16.nix";
   };
 
   outputs = {
@@ -15,7 +15,7 @@
     , nixpkgs-unstable
     , home-manager
     , nur
-    , stylix
+    , base16
   }:
     let
       system = "x86_64-linux";
@@ -30,18 +30,19 @@
               system
               nixpkgs
               nixpkgs-unstable
-              nur;
+              nur
+              base16;
             home = home-manager;
             };
 
           modules = [
             ./configuration.nix
             ./overlays.nix
-            ./stylix.nix
 
             nur.hmModules.nur
-            stylix.nixosModules.stylix
+            base16.nixosModule
 
+            ./style
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
