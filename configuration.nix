@@ -132,6 +132,7 @@
       neofetch
       nfs-utils
       nil
+      nixpkgs-fmt
       nodejs
       obsidian
       pavucontrol

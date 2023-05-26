@@ -66,6 +66,10 @@
 
       # Enable git auto fetch.
       "git.autofetch" = true;
+
+      "nix.serverSettings" = {
+        nil.formatting.command = [ "nixpkgs-fmt" ];
+      };
     };
   };
 }
