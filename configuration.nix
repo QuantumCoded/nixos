@@ -11,6 +11,17 @@
       ./hardware-configuration.nix
     ];
 
+  # Enable Hydrogen NFS share
+  fileSystems."/nfs/hydrogen" = {
+    device = "docker.vmlan:/data";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
+
   # Enable insecure electron for vscodium
   nixpkgs.config.permittedInsecurePackages = [
     "electron-21.4.0"
