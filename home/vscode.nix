@@ -77,6 +77,9 @@
 
       # Enable custom title bar style.
       "window.titleBarStyle" = "custom";
+
+      # Add a vertical rule at 100 characters.
+      "editor.rulers" = [ 100 ];
     };
   };
 }
