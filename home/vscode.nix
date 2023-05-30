@@ -31,6 +31,11 @@
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
 
+      # Use nixpkgs-fmt with nil
+      "nix.serverSettings" = {
+        nil.formatting.command = [ "nixpkgs-fmt" ];
+      };
+
       # Put the sidebar on the right.
       "workbench.sideBar.location" = "right";
 
@@ -67,9 +72,8 @@
       # Enable git auto fetch.
       "git.autofetch" = true;
 
-      "nix.serverSettings" = {
-        nil.formatting.command = [ "nixpkgs-fmt" ];
-      };
+      # Disable compacting folders in the tree view.
+      "explorer.compactFolders" = false;
     };
   };
 }
