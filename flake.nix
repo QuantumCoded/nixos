@@ -37,7 +37,7 @@
           };
 
           modules = [
-            ./configuration.nix
+            ./hosts/odyssey/configuration.nix
             ./overlays.nix
 
             nur.hmModules.nur
