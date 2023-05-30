@@ -22,7 +22,7 @@
     in
     {
       nixosConfigurations = {
-        dell = nixpkgs.lib.nixosSystem {
+        odyssey = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = {
