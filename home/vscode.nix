@@ -49,7 +49,7 @@
       "editor.fontSize" = 13;
 
       # Disable workspace trust.
-      "security.workspace.trust.enabled" = true;
+      "security.workspace.trust.enabled" = false;
 
       # Disable bracket pair colorization.
       "editor.bracketPairColorization.enabled" = false;
