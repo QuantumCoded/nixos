@@ -22,6 +22,40 @@
     in
     {
       nixosConfigurations = {
+        quantum = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            inherit
+              self
+              system
+              nixpkgs
+              nixpkgs-unstable
+              nur
+              base16;
+            home = home-manager;
+          };
+
+          modules = [
+            ./hosts/quantum/configuration.nix
+            ./overlays.nix
+
+            nur.hmModules.nur
+            base16.nixosModule
+
+            ./style
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jeff = import ./home;
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to ./home/default.nix
+            }
+          ];
+        };
+
         odyssey = nixpkgs.lib.nixosSystem {
           inherit system;
 
