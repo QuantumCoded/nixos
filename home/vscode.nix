@@ -48,8 +48,8 @@
       # Change the font size.
       "editor.fontSize" = 13;
 
-      # Disable workspace trust banner.
-      "security.workspace.trust.banner" = "never";
+      # Disable workspace trust.
+      "security.workspace.trust.enabled" = true;
 
       # Disable bracket pair colorization.
       "editor.bracketPairColorization.enabled" = false;
