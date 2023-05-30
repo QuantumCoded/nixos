@@ -74,6 +74,9 @@
 
       # Disable compacting folders in the tree view.
       "explorer.compactFolders" = false;
+
+      # Enable custom title bar style.
+      "window.titleBarStyle" = "custom";
     };
   };
 }
