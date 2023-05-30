@@ -7,6 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     nur.url = "github:nix-community/NUR";
     base16.url = "github:SenchoPens/base16.nix";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -16,6 +17,7 @@
     , home-manager
     , nur
     , base16
+    , agenix
     }:
     let
       system = "x86_64-linux";
@@ -42,6 +44,7 @@
 
             nur.hmModules.nur
             base16.nixosModule
+            agenix.nixosModules.default
 
             ./style
             home-manager.nixosModules.home-manager
