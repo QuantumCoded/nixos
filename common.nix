@@ -104,21 +104,15 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
-  # Source zsh for home manager.
-  programs.zsh.enable = true;
-
-  # Link zsh share for zsh completions.
-  environment.pathsToLink = [ "/share/zsh" ];
-
-  # Add zsh to the shells list.
-  environment.shells = with pkgs; [ zsh ];
+  # Define the shells for user accounts.
+  environment.shells = with pkgs; [ fish ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jeff = {
     isNormalUser = true;
     description = "Jeff";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     packages = with pkgs; [
       anki
       # ankisyncd - for server
