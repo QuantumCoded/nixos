@@ -3,6 +3,7 @@
   imports = [
     ../overlays.nix
     ./fish
+    ./neofetch
     ./bspwm.nix
     ./firefox.nix
     ./kitty.nix
