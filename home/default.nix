@@ -2,9 +2,9 @@
 {
   imports = [
     ../overlays.nix
+    ./fish
     ./bspwm.nix
     ./firefox.nix
-    ./fish.nix
     ./kitty.nix
     ./rofi.nix
     ./sxhkd.nix
