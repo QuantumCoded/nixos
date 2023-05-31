@@ -58,7 +58,7 @@
       "workbench.iconTheme" = "material-icon-theme";
 
       # Change the integrated terminal profile to zsh.
-      "terminal.integrated.defaultProfile.linux" = "zsh";
+      "terminal.integrated.defaultProfile.linux" = "fish";
 
       # Disable prompting for confirmation when syncing git changes.
       "git.confirmSync" = false;
