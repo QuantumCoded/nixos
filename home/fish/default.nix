@@ -5,7 +5,9 @@
     plugins = [
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
     ];
-    interactiveShellInit = readFile ./uvars/fish.fish;
+    interactiveShellInit =
+      (readFile ./uvars/fish.fish) +
+      (readFile ./uvars/tide.fish);
   };
 
   # Load missing fish functions.
