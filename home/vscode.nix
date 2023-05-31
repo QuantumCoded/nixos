@@ -16,6 +16,7 @@
       pkief.material-icon-theme
       ms-python.python
       gruntfuggly.todo-tree
+      jock.svg
 
       # TODO: Manually install these extensions
       # Prettier TOML
