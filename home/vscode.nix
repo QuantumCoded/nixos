@@ -80,6 +80,9 @@
 
       # Add a vertical rule at 100 characters.
       "editor.rulers" = [ 100 ];
+
+      # Disable integrated terminal chords.
+      "terminal.integrated.allowChords" = false;
     };
   };
 }
