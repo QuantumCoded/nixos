@@ -13,4 +13,7 @@ let
 in
 {
   "email.age".publicKeys = everywhere;
+  "wifi_5g.age".publicKeys = everywhere;
+  "wifi.age".publicKeys = everywhere;
+  "wifi_password.age".publicKeys = everywhere;
 }  
