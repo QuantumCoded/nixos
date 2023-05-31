@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
-  programs.fish = {
+  programs.fish = with builtins; {
     enable = true;
     plugins = [
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
     ];
+    interactiveShellInit = readFile ./uvars/fish.fish;
   };
 
   # Load missing fish functions.
