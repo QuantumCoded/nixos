@@ -33,25 +33,27 @@ in
   programs.firefox = {
     enable = true;
     # TODO: Replace this with pkgs.firefox when home-manager is updated
-    package = pkgs.firefox-esr;
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      return-youtube-dislikes
-      web-scrobbler
-      sponsorblock
-      tree-style-tab
-      (buildFirefoxXpiAddon {
-        pname = "yomichan";
-        version = "20.5.22.1";
-        addonId = "alex@foosoft.net";
-        url = "https://addons.mozilla.org/firefox/downloads/file/3585060/yomichan-20.5.22.1.xpi";
-        sha256 = "sha256-/icvPD/nCJYS31owfYMD25QzFjsxAqapy/UAehhxsy8=";
-        meta = with lib; {
-          homepage = "https://foosoft.net/projects/yomichan/";
-          description = "Yomichan turns your browser into a tool for building Japanese language literacy by helping you to decipher texts which would be otherwise too difficult tackle. It features a robust dictionary with EPWING and flashcard creation support.";
-          platforms = platforms.all;
-        };
-      })
-    ];
+    package = pkgs.firefox;
+    profiles.default = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        return-youtube-dislikes
+        web-scrobbler
+        sponsorblock
+        tree-style-tab
+        (buildFirefoxXpiAddon {
+          pname = "yomichan";
+          version = "20.5.22.1";
+          addonId = "alex@foosoft.net";
+          url = "https://addons.mozilla.org/firefox/downloads/file/3585060/yomichan-20.5.22.1.xpi";
+          sha256 = "sha256-/icvPD/nCJYS31owfYMD25QzFjsxAqapy/UAehhxsy8=";
+          meta = with lib; {
+            homepage = "https://foosoft.net/projects/yomichan/";
+            description = "Yomichan turns your browser into a tool for building Japanese language literacy by helping you to decipher texts which would be otherwise too difficult tackle. It features a robust dictionary with EPWING and flashcard creation support.";
+            platforms = platforms.all;
+          };
+        })
+      ];
+    };
   };
 }
