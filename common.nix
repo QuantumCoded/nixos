@@ -5,6 +5,12 @@
 { pkgs, ... }:
 
 {
+  # Enable OpenGL for kitty terminal.
+  hardware.opengl = {
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
   # Get wireless network information from agenix.
   age.secrets = {
     wifi_5g = {
