@@ -7,6 +7,7 @@
     ];
     interactiveShellInit = concatMapStrings readFile [
       ./uvars/fish.fish
+      ./uvars/settings.fish
       ./uvars/tide.fish
     ];
   };
