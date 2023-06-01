@@ -4,14 +4,14 @@
   <defs id="defs4">
     <!-- Light Blue Gradient -->
     <linearGradient inkscape:collect="always" id="linearGradient5562">
-      <stop style="stop-color:#699ad7;stop-opacity:1" offset="0" id="stop5564"/>
+      <stop style="stop-color:#000000;stop-opacity:1" offset="0" id="stop5564"/>
       <stop id="stop5566" offset="0.24345198" style="stop-color:#7eb1dd;stop-opacity:1"/>
       <stop style="stop-color:#7ebae4;stop-opacity:1" offset="1" id="stop5568"/>
     </linearGradient>
 
     <!-- Dark Blue Gradient -->
     <linearGradient inkscape:collect="always" id="linearGradient5053">
-      <stop style="stop-color:#415e9a;stop-opacity:1" offset="0" id="stop5055"/>
+      <stop style="stop-color:#000000;stop-opacity:1" offset="0" id="stop5055"/>
       <stop id="stop5057" offset="0.23168644" style="stop-color:#4a6baf;stop-opacity:1"/>
       <stop style="stop-color:#5277c3;stop-opacity:1" offset="1" id="stop5059"/>
     </linearGradient>
