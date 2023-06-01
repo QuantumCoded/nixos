@@ -1,13 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  programs.fish = with builtins; {
+  programs.fish = with builtins // lib.strings; {
     enable = true;
     plugins = [
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
     ];
-    interactiveShellInit =
-      (readFile ./uvars/fish.fish) +
-      (readFile ./uvars/tide.fish);
+    interactiveShellInit = concatMapStrings readFile [
+      ./uvars/fish.fish
+      ./uvars/tide.fish
+    ];
   };
 
   # Load missing fish functions.
