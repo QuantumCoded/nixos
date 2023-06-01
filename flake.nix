@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-racoon.url = "github:nixos/nixpkgs/f7c1500e2eefa58f3c80dd046cba256e10440201";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     nur.url = "github:nix-community/NUR";
     base16.url = "github:SenchoPens/base16.nix";
@@ -14,6 +15,7 @@
     { self
     , nixpkgs
     , nixpkgs-unstable
+    , nixpkgs-racoon
     , home-manager
     , nur
     , base16
@@ -47,6 +49,7 @@
           system
           nixpkgs
           nixpkgs-unstable
+          nixpkgs-racoon
           nur
           base16;
         home = home-manager;

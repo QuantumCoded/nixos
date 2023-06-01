@@ -1,5 +1,19 @@
-{ config, pkgs, system, nixpkgs, nixpkgs-unstable, nur, ... }:
+{ config
+, pkgs
+, system
+, nixpkgs
+, nixpkgs-unstable
+, nixpkgs-racoon
+, nur
+, ...
+}:
 let
+  overlay-racoon = final: prev: {
+    racoon = import nixpkgs-racoon {
+      inherit system;
+    };
+  };
+
   overlay-unstable = final: prev: {
     unstable = import nixpkgs-unstable {
       inherit system;
@@ -8,5 +22,5 @@ let
   };
 in
 {
-  nixpkgs.overlays = [ nur.overlay overlay-unstable ];
+  nixpkgs.overlays = [ nur.overlay overlay-racoon overlay-unstable ];
 }
