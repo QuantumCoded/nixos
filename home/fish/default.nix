@@ -6,7 +6,7 @@
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
     ];
     interactiveShellInit = concatMapStrings readFile [
-      ./uvars/fish.fish
+      ./uvars/style.fish
       ./uvars/settings.fish
       ./uvars/tide.fish
     ];
