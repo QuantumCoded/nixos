@@ -25,6 +25,7 @@
       commonModules = [
         ./overlays.nix
         ./common.nix
+
         nur.hmModules.nur
         base16.nixosModule
         agenix.nixosModules.default

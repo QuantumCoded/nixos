@@ -2,9 +2,28 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  # Get wireless network information from agenix.
+  age.secrets = {
+    wifi_5g = {
+      file = ./secrets/wifi_5g.age;
+      path = "/etc/NetworkManager/system-connections/Home_5G.nmconnection";
+      mode = "400";
+      owner = "root";
+      group = "root";
+    };
+
+    wifi = {
+      file = ./secrets/wifi.age;
+      path = "/etc/NetworkManager/system-connections/Home.nmconnection";
+      mode = "400";
+      owner = "root";
+      group = "root";
+    };
+  };
+
   # Enable Hydrogen NFS share
   fileSystems."/nfs/hydrogen" = {
     device = "docker.vmlan:/data";
