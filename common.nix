@@ -104,6 +104,9 @@
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
+  # Enable fish shell.
+  programs.fish.enable = true;
+
   # Define the shells for user accounts.
   environment.shells = with pkgs; [ fish ];
 
