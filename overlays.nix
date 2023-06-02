@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, system
-, nixpkgs
+{ system
 , nixpkgs-unstable
 , nixpkgs-racoon
 , nur

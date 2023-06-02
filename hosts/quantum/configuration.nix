@@ -10,7 +10,8 @@
       ./hardware-configuration.nix
     ];
 
-  networking.hostName = "quantum"; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = "quantum";
 
   # Enable Nvidia drivers.
   services.xserver.videoDrivers = [ "nvidia" ];
