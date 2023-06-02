@@ -127,8 +127,8 @@
       },
       "original": {
         "owner": "nixos",
+        "ref": "nixos-22.11",
         "repo": "nixpkgs",
-        "rev": "f7c1500e2eefa58f3c80dd046cba256e10440201",
         "type": "github"
       }
     },
