@@ -126,7 +126,7 @@
   # Custom fonts.
   fonts.fonts = with pkgs; [
     # Use FiraCode from nerdfonts.
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "Meslo" ]; })
   ];
 
   # Enable fish shell.

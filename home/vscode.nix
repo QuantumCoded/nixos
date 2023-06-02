@@ -43,11 +43,14 @@
       # Change the font.
       "editor.fontFamily" = "FiraCode Nerd Font Mono";
 
+      # Change the terminal font.
+      "terminal.integrated.fontFamily" = "MesloLGS Nerd Font";
+
       # Enable font ligatures.
       "editor.fontLigatures" = true;
 
       # Change the font size.
-      "editor.fontSize" = 13;
+      "editor.fontSize" = 14;
 
       # Disable workspace trust.
       "security.workspace.trust.enabled" = false;
