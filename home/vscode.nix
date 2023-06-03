@@ -87,6 +87,9 @@
 
       # Disable integrated terminal chords.
       "terminal.integrated.allowChords" = false;
+
+      # Disable welcome message.
+      "workbench.startupEditor" = "none";
     };
   };
 }
