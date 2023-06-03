@@ -149,9 +149,6 @@
       feh
       file
       flameshot
-      font-manager
-      # gdlauncher
-      home-manager
       kate
       libreoffice
       man-pages
@@ -161,7 +158,6 @@
       nfs-utils
       nil
       nixpkgs-fmt
-      nodejs
       obsidian
       pavucontrol
       python3
@@ -176,7 +172,6 @@
       wireguard-tools
       xclip
       xwinwrap
-      zsh-powerlevel10k
     ];
   };
 
