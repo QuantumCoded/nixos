@@ -32,7 +32,6 @@ in
 {
   programs.firefox = {
     enable = true;
-    # TODO: Replace this with pkgs.firefox when home-manager is updated
     package = pkgs.firefox;
     profiles.default = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
