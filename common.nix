@@ -145,6 +145,7 @@
       anki
       # ankisyncd - for server
       btop
+      element-desktop
       feh
       file
       flameshot
