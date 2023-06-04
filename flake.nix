@@ -11,18 +11,12 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , nixpkgs-racoon
-    , home-manager
-    , nur
-    , base16
-    , agenix
-    }:
+  outputs = inputs:
+    with inputs;
     let
       system = "x86_64-linux";
+      
+      specialArgs = { inherit (inputs) self; };
 
       commonModules = [
         ./overlays.nix
@@ -37,24 +31,9 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.jeff = import ./home;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to ./home/default.nix
-          home-manager.extraSpecialArgs = { inherit agenix; };
+          home-manager.extraSpecialArgs = { inherit (inputs) self; };
         }
       ];
-
-      specialArgs = {
-        inherit
-          self
-          system
-          nixpkgs
-          nixpkgs-unstable
-          nixpkgs-racoon
-          nur
-          base16;
-        home = home-manager;
-      };
     in
     {
       nixosConfigurations = {
@@ -63,7 +42,8 @@
 
           modules = [
             ./hosts/quantum/configuration.nix
-          ] ++ commonModules;
+          ]
+          ++ commonModules;
         };
 
         odyssey = nixpkgs.lib.nixosSystem {
@@ -71,7 +51,8 @@
 
           modules = [
             ./hosts/odyssey/configuration.nix
-          ] ++ commonModules;
+          ]
+          ++ commonModules;
         };
       };
     };

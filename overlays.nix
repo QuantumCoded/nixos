@@ -1,10 +1,8 @@
-{ system
-, nixpkgs-unstable
-, nixpkgs-racoon
-, nur
-, ...
-}:
+{ pkgs, self, ... }:
+with self.inputs;
 let
+  system = pkgs.stdenv.hostPlatform.system;
+
   overlay-racoon = final: prev: {
     racoon = import nixpkgs-racoon {
       inherit system;

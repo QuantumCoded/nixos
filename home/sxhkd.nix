@@ -1,4 +1,5 @@
 { ... }:
+
 {
   services.sxhkd = {
     enable = true;
@@ -80,10 +81,10 @@
 
       # focus the older or newer node in the focus history
       "super + {o,i}" = ''
-        				bspc wm -h off;
-        				bspc node {older,newer} -f;
-        				bspc wm -h on
-        			'';
+        bspc wm -h off;
+        bspc node {older,newer} -f;
+        bspc wm -h on
+      '';
 
       # focus or send to the given desktop
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";

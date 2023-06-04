@@ -1,20 +1,23 @@
-{ agenix, ... }:
+{ self, ... }:
+with self.inputs;
+let
+  getModules =
+    { exclude ? [ ]
+    , path ? ./.
+    }:
+      with builtins;
+      map (name: path + "/${name}") (
+        filter
+          (name: !(elem name exclude))
+          (attrNames (readDir path))
+      );
+in
 {
   imports = [
     agenix.homeManagerModules.default
-
     ../overlays.nix
-
-    ./fish
-    ./neofetch
-    ./bspwm.nix
-    ./firefox.nix
-    ./git.nix
-    ./kitty.nix
-    ./rofi.nix
-    ./sxhkd.nix
-    ./vscode.nix
-  ];
+  ]
+  ++ getModules { exclude = [ "default.nix" ]; };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

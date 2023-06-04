@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 let
   userName = "QuantumCoded";
 in

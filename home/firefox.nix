@@ -1,4 +1,5 @@
 { pkgs, lib, ... }:
+
 let
   buildFirefoxXpiAddon = lib.makeOverridable (
     { stdenv ? pkgs.stdenv
