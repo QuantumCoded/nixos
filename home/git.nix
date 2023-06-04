@@ -1,10 +1,12 @@
-{ config, ... }: {
-  age.secrets.email.file = ../secrets/email.age;
-
+{ config, ... }:
+let
+  userName = "QuantumCoded";
+in
+{
   programs.git = {
+    inherit userName;
     enable = true;
-    userEmail = config.age.secrets.email.path;
-    userName = "QuantumCoded";
+    userEmail = "${userName}@users.noreply.github.com";
     extraConfig.pull.rebase = false;
   };
 }
