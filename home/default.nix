@@ -1,11 +1,15 @@
-{ ... }:
+{ agenix, ... }:
 {
   imports = [
+    agenix.homeManagerModules.default
+
     ../overlays.nix
+
     ./fish
     ./neofetch
     ./bspwm.nix
     ./firefox.nix
+    ./git.nix
     ./kitty.nix
     ./rofi.nix
     ./sxhkd.nix

@@ -40,6 +40,7 @@
 
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to ./home/default.nix
+          home-manager.extraSpecialArgs = { inherit agenix; };
         }
       ];
 
