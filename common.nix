@@ -4,7 +4,7 @@
 { pkgs, ... }:
 
 {
-  # Enable secrete service
+  # Enable secret service
   services.passSecretService.enable = true;
 
   # Enable OpenGL for kitty terminal.
