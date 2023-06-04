@@ -7,6 +7,8 @@
 {
   # Enable OpenGL for kitty terminal.
   hardware.opengl = {
+    # FIXME: Downgrade Mesa drivers to support kitty.
+    package = pkgs.racoon.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };
