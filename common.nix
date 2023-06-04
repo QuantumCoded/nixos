@@ -4,6 +4,9 @@
 { pkgs, ... }:
 
 {
+  # Enable secrete service
+  services.passSecretService.enable = true;
+
   # Enable OpenGL for kitty terminal.
   hardware.opengl = {
     # FIXME: Downgrade Mesa drivers to support kitty.
