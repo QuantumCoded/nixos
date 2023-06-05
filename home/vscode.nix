@@ -1,23 +1,5 @@
-{ self, pkgs, ... }:
-with self;
-let
-  system = pkgs.stdenv.hostPlatform.system;
+{ pkgs, ... }:
 
-  nixd = import inputs.nixd {
-    inherit (pkgs)
-      boost
-      cmake
-      gtest
-      lib
-      lit
-      llvmPackages_16
-      meson
-      ninja
-      nixUnstable
-      pkg-config
-      stdenv;
-  };
-in
 {
   programs.vscode = {
     enable = true;
@@ -36,7 +18,6 @@ in
       ms-python.python
       gruntfuggly.todo-tree
       jock.svg
-      b4dm4n.vscode-nixpkgs-fmt
 
       # TODO: Manually install these extensions
       # Prettier TOML
@@ -50,7 +31,12 @@ in
 
       # Enable nix LSP. 
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${nixd}/bin/nixd";
+      "nix.serverPath" = "nil";
+
+      # Use nixpkgs-fmt with nil
+      "nix.serverSettings" = {
+        nil.formatting.command = [ "nixpkgs-fmt" ];
+      };
 
       # Put the sidebar on the right.
       "workbench.sideBar.location" = "right";

@@ -9,14 +9,13 @@
     nur.url = "github:nix-community/NUR";
     base16.url = "github:SenchoPens/base16.nix";
     agenix.url = "github:ryantm/agenix";
-    nixd.url = "github:nix-community/nixd";
   };
 
   outputs = inputs:
     with inputs;
     let
       system = "x86_64-linux";
-
+      
       specialArgs = { inherit (inputs) self; };
 
       commonModules = [
