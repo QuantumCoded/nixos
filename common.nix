@@ -179,7 +179,6 @@ with self.inputs;
       vulnix
       wireguard-tools
       xclip
-      xwinwrap
     ];
   };
 
