@@ -3,7 +3,7 @@ let
   # fork of pkgs.xwinwrap with support for spanning multi monitors
   xwinwrap = pkgs.stdenv.mkDerivation {
     name = "xwinwrap";
-    
+
     src = pkgs.fetchFromGitHub {
       owner = "ujjwal96";
       repo = "xwinwrap";
