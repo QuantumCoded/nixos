@@ -6,6 +6,7 @@ let
   overlay-racoon = final: prev: {
     racoon = import nixpkgs-racoon {
       inherit system;
+      config.allowUnfree = true;
     };
   };
 

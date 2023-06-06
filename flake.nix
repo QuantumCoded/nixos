@@ -15,7 +15,7 @@
     with inputs;
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config.allowUnfreee = true; };
+      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       specialArgs = { inherit inputs self; };
       extraSpecialArgs = specialArgs;
 
@@ -31,7 +31,6 @@
           home-manager = { inherit extraSpecialArgs; };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.jeff.imports = [ ./overlays.nix ];
         }
       ];
     in
