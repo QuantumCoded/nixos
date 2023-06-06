@@ -86,9 +86,6 @@
         bspc wm -h on
       '';
 
-      # focus or send to the given desktop
-      "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
-
       #
       # preselect
       #
