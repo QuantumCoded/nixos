@@ -15,23 +15,23 @@
     with inputs;
     let
       system = "x86_64-linux";
-      
-      specialArgs = { inherit (inputs) self; };
+      pkgs = import nixpkgs { inherit system; config.allowUnfreee = true; };
+      specialArgs = { inherit inputs self; };
+      extraSpecialArgs = specialArgs;
 
       commonModules = [
         ./overlays.nix
         ./common.nix
 
-        nur.hmModules.nur
         base16.nixosModule
         agenix.nixosModules.default
 
         home-manager.nixosModules.home-manager
         {
+          home-manager = { inherit extraSpecialArgs; };
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.jeff = import ./home;
-          home-manager.extraSpecialArgs = { inherit (inputs) self; };
+          home-manager.users.jeff.imports = [ ./overlays.nix ];
         }
       ];
     in
@@ -42,6 +42,7 @@
 
           modules = [
             ./hosts/quantum/configuration.nix
+            { home-manager.users.jeff.imports = [ ./users/jeff ./users/hosts/quantum.nix ]; }
           ]
           ++ commonModules;
         };
@@ -51,8 +52,26 @@
 
           modules = [
             ./hosts/odyssey/configuration.nix
+            { home-manager.users.jeff.imports = [ ./users/jeff ./users/hosts/odyssey.nix ]; }
           ]
           ++ commonModules;
+        };
+      };
+
+      homeConfigurations = {
+        "jeff@quantum" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/jeff ./users/hosts/quantum.nix ];
+        };
+
+        "jeff@odyssey" = {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/jeff ./users/hosts/odyssey.nix ];
+        };
+
+        "jeff" = {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/jeff ];
         };
       };
     };

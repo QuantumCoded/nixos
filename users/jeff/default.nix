@@ -13,11 +13,7 @@ let
       );
 in
 {
-  imports = [
-    agenix.homeManagerModules.default
-    ../overlays.nix
-  ]
-  ++ getModules { exclude = [ "default.nix" ]; };
+  imports = getModules { exclude = [ "default.nix" ]; };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

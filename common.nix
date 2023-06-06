@@ -156,6 +156,7 @@ with self.inputs;
       feh
       file
       flameshot
+      home-manager
       kate
       libreoffice
       man-pages

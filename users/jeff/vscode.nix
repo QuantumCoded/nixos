@@ -50,9 +50,6 @@
       # Enable font ligatures.
       "editor.fontLigatures" = true;
 
-      # Change the font size.
-      "editor.fontSize" = 14;
-
       # Disable workspace trust.
       "security.workspace.trust.enabled" = false;
 

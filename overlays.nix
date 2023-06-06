@@ -1,5 +1,5 @@
-{ pkgs, self, ... }:
-with self.inputs;
+{ pkgs, inputs, ... }:
+with inputs;
 let
   system = pkgs.stdenv.hostPlatform.system;
 
