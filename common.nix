@@ -1,11 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ self, pkgs, ... }:
-with self.inputs;
+{ inputs, pkgs, ... }:
+
 {
   # Enable nixpkgs in nix repl.
-  nix.registry.nixpkgs.flake = nixpkgs;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.registry.raccoon.flake = inputs.nixpkgs-raccoon;
+  nix.registry.unstable.flake = inputs.nixpkgs-unstable;
 
   # Enable secret service.
   services.passSecretService.enable = true;
@@ -13,7 +15,7 @@ with self.inputs;
   # Enable OpenGL for kitty terminal.
   hardware.opengl = {
     # FIXME: Downgrade Mesa drivers to support kitty.
-    package = pkgs.racoon.mesa.drivers;
+    package = pkgs.raccoon.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };

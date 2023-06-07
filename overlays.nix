@@ -3,8 +3,8 @@ with inputs;
 let
   system = pkgs.stdenv.hostPlatform.system;
 
-  overlay-racoon = final: prev: {
-    racoon = import nixpkgs-racoon {
+  overlay-raccoon = final: prev: {
+    raccoon = import nixpkgs-raccoon {
       inherit system;
       config.allowUnfree = true;
     };
@@ -18,5 +18,5 @@ let
   };
 in
 {
-  nixpkgs.overlays = [ nur.overlay overlay-racoon overlay-unstable ];
+  nixpkgs.overlays = [ nur.overlay overlay-raccoon overlay-unstable ];
 }
