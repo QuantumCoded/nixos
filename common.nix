@@ -6,7 +6,7 @@
 {
   # Enable nixpkgs in nix repl.
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.registry.racoon.flake = inputs.nixpkgs-racoon;
+  nix.registry.raccoon.flake = inputs.nixpkgs-raccoon;
   nix.registry.unstable.flake = inputs.nixpkgs-unstable;
 
   # Enable secret service.
@@ -15,7 +15,7 @@
   # Enable OpenGL for kitty terminal.
   hardware.opengl = {
     # FIXME: Downgrade Mesa drivers to support kitty.
-    package = pkgs.racoon.mesa.drivers;
+    package = pkgs.raccoon.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };
