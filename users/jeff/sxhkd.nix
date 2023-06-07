@@ -31,6 +31,9 @@
       # make sxhkd reload its configuration files:
       "super + Escape" = "pkill -USR1 -x sxhkd";
 
+      # suspend the system
+      "super + shift + s" = "systemctl suspend";
+
       #
       # bspwm hotkeys
       #
