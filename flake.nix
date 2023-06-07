@@ -89,6 +89,11 @@
             [ ./users/jeff/home ./users/hosts/odyssey.nix ] ++ homeManagerCommonModules;
         };
 
+        "jeff@hydrogen" = {
+          inherit pkgs extraSpecialArgs;
+          modules = [ ./users/hosts/hydrogen.nix ];
+        };
+
         "jeff" = {
           inherit pkgs extraSpecialArgs;
           modules = [ ./users/jeff/home ] ++ homeManagerCommonModules;
