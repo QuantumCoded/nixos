@@ -1,19 +1,14 @@
-{ self, ... }:
-with self.inputs;
+{ ... }:
 let
-  getModules =
-    { exclude ? [ ]
-    , path ? ./.
-    }:
-      with builtins;
-      map (name: path + "/${name}") (
-        filter
-          (name: !(elem name exclude))
-          (attrNames (readDir path))
-      );
+  getModules = { exclude ? [ ], path ? ./. }:
+    map (name: path + "/${name}") (
+      builtins.filter
+        (name: !(builtins.elem name exclude))
+        (builtins.attrNames (builtins.readDir path))
+    );
 in
 {
-  imports = [ ../../overlays.nix ] ++ getModules { exclude = [ "default.nix" ]; };
+  imports = getModules { exclude = [ "default.nix" ]; };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

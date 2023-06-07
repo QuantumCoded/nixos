@@ -19,9 +19,10 @@
       specialArgs = { inherit inputs self; };
       extraSpecialArgs = specialArgs;
 
-      commonModules = [
+      nixosCommonModules = [
         ./overlays.nix
         ./common.nix
+        ./scheme.nix
 
         base16.nixosModule
         agenix.nixosModules.default
@@ -33,6 +34,13 @@
           home-manager.useUserPackages = true;
         }
       ];
+
+      homeManagerCommonModules = [
+        ./overlays.nix
+        ./scheme.nix
+
+        base16.homeManagerModule
+      ];
     in
     {
       nixosConfigurations = {
@@ -41,9 +49,9 @@
 
           modules = [
             ./hosts/quantum/configuration.nix
-            { home-manager.users.jeff.imports = [ ./users/jeff ./users/hosts/quantum.nix ]; }
+            { home-manager.users.jeff.imports = [ ./users/jeff/home ./users/hosts/quantum.nix ]; }
           ]
-          ++ commonModules;
+          ++ nixosCommonModules;
         };
 
         odyssey = nixpkgs.lib.nixosSystem {
@@ -51,26 +59,32 @@
 
           modules = [
             ./hosts/odyssey/configuration.nix
-            { home-manager.users.jeff.imports = [ ./users/jeff ./users/hosts/odyssey.nix ]; }
+            { home-manager.users.jeff.imports = [ ./users/jeff/home ./users/hosts/odyssey.nix ]; }
           ]
-          ++ commonModules;
+          ++ nixosCommonModules;
         };
       };
 
       homeConfigurations = {
         "jeff@quantum" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs extraSpecialArgs;
-          modules = [ ./users/jeff ./users/hosts/quantum.nix ];
+          modules =
+            [ ./users/jeff/home ./users/hosts/quantum.nix ]
+            ++ homeManagerCommonModules;
         };
 
         "jeff@odyssey" = {
           inherit pkgs extraSpecialArgs;
-          modules = [ ./users/jeff ./users/hosts/odyssey.nix ];
+          modules =
+            [ ./users/jeff/home ./users/hosts/odyssey.nix ]
+            ++ homeManagerCommonModules;
         };
 
         "jeff" = {
           inherit pkgs extraSpecialArgs;
-          modules = [ ./users/jeff ];
+          modules =
+            [ ./users/jeff/home ]
+            ++ homeManagerCommonModules;
         };
       };
     };
