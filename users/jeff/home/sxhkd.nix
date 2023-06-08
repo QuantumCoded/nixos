@@ -18,6 +18,9 @@
       # firefox
       "super + w" = "firefox";
 
+      # firefox private
+      "super + alt + w" = "firefox --private-window";
+
       #
       # wm independent hotkeys
       #
