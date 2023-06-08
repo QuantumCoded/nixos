@@ -28,6 +28,9 @@
       # wm independent hotkeys
       #
 
+      # screenshot
+      "Print" = "flameshot gui";
+
       # terminal emulator
       "super + Return" = "kitty";
 
