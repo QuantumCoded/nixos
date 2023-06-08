@@ -175,6 +175,7 @@
       neofetch
       nfs-utils
       nil
+      nix-index
       nixpkgs-fmt
       noisetorch
       obsidian
