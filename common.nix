@@ -4,6 +4,14 @@
 { inputs, pkgs, ... }:
 
 {
+  # Enable cap_sys_resource for noisetorch.
+  security.wrappers.noisetorch = {
+    owner = "root";
+    group = "root";
+    capabilities = "cap_sys_resource+ep";
+    source = "${pkgs.noisetorch}/bin/noisetorch";
+  };
+
   # Enable nixpkgs in nix repl.
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.registry.raccoon.flake = inputs.nixpkgs-raccoon;
@@ -168,6 +176,7 @@
       nfs-utils
       nil
       nixpkgs-fmt
+      noisetorch
       obsidian
       pavucontrol
       python3
