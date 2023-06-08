@@ -21,6 +21,9 @@
       # firefox private
       "super + alt + w" = "firefox --private-window";
 
+      # email client
+      "super + e" = "thunderbird";
+
       #
       # wm independent hotkeys
       #
