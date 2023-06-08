@@ -34,6 +34,9 @@
       # program launcher
       "super + @space" = "rofi -show run";
 
+      # window switcher
+      "super + Tab" = "rofi -show window";
+
       # make sxhkd reload its configuration files:
       "super + Escape" = "pkill -USR1 -x sxhkd";
 
@@ -86,7 +89,7 @@
       "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
 
       # focus the last node/desktop
-      "super + {grave,Tab}" = "bspc {node,desktop} -f last";
+      "super + {_,alt + }grave" = "bspc {node,desktop} -f last";
 
       # focus the older or newer node in the focus history
       "super + {o,i}" = ''
