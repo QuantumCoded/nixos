@@ -1,5 +1,7 @@
-{ ... }:
-
+{ pkgs, ... }:
+let
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+in
 {
   services.sxhkd = {
     enable = true;
@@ -23,6 +25,19 @@
 
       # email client
       "super + e" = "thunderbird";
+
+      #
+      # volume control hotkeys
+      #
+
+      # volume up
+      "XF86AudioRaiseVolume" = "${pactl} set-sink-volume 0 +5%;";
+
+      # volume down
+      "XF86AudioLowerVolume" = "${pactl} set-sink-volume 0 -5%;";
+
+      # mute
+      "XF86AudioToggle" = "${pactl} set-sink-mute 0 true";
 
       #
       # wm independent hotkeys
