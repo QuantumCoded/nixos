@@ -8,6 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     nur.url = "github:nix-community/NUR";
     agenix.url = "github:ryantm/agenix";
+    utils.url = "github:numtide/flake-utils";
 
     # base 
     base16.url = "github:SenchoPens/base16.nix";
@@ -50,6 +51,8 @@
       ];
     in
     {
+      inherit (import ./packages { inherit self inputs; }) packages;
+
       nixosConfigurations = {
         quantum = nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
