@@ -81,4 +81,9 @@
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.registry.raccoon.flake = inputs.nixpkgs-raccoon;
   nix.registry.unstable.flake = inputs.nixpkgs-unstable;
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 }
