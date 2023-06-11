@@ -74,6 +74,14 @@
             }
           ] ++ nixosCommonModules;
         };
+
+        hydrogen = nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
+
+          modules = [
+            ./hosts/hydrogen/configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
