@@ -30,6 +30,9 @@
     wget
   ];
 
+  # Enable fish shell.
+  programs.fish.enable = true;
+
   # Set the root shell to fish.
   users.users.root.shell = pkgs.fish;
 
