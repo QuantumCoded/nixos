@@ -78,17 +78,4 @@
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.registry.raccoon.flake = inputs.nixpkgs-raccoon;
   nix.registry.unstable.flake = inputs.nixpkgs-unstable;
-
-  # Use the latest compatible kernel for ZFS.
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
-  # Disable hibernation because ZFS does not support swapfiles.
-  boot.kernelParams = [ "nohibernate" ];
-
-  # Enable ZFS as a file system for the machine.
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
-  networking.hostId = "e79f9abc";
-
-  
 }
