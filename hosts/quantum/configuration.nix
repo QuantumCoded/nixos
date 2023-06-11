@@ -33,6 +33,6 @@
 
   # Add gdlauncher to jeff's packages on quantum.
   users.users.jeff.packages = [
-    (pkgs.callPackage ../../pkgs/gdlauncher.nix { })
+    (pkgs.callPackage ../../packages/gdlauncher.nix { })
   ];
 }
