@@ -55,7 +55,7 @@ inputs.nixpkgs.lib.nixosSystem {
         ];
 
         # Host Name
-        networking.hostName = "quantum";
+        networking.hostName = "hydrogen";
 
         # System State
         system.stateVersion = "23.05";
