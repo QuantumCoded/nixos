@@ -32,7 +32,7 @@
 
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
         inherit modules pkgs;
-        extraSpecialArgs = moduleArgs;
+        extraSpecialArgs = specialArgs;
       };
     in
     {
