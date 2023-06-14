@@ -32,7 +32,7 @@
 
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
         inherit modules pkgs;
-        extraSpecialArgs = moduleArgs;
+        extraSpecialArgs = specialArgs;
       };
     in
     {
@@ -46,9 +46,9 @@
       };
 
       homeConfigurations = {
-        "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) (import ./base/overlays.nix { }) ];
-        "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) (import ./base/overlays.nix { }) ];
-        "jeff@quantum" = mkHome [ (import ./home/jeff/quantum.nix moduleArgs) (import ./base/overlays.nix { }) ];
+        "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
+        "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
+        "jeff@quantum" = mkHome [ (import ./home/jeff/quantum.nix moduleArgs) ];
       };
     };
 }

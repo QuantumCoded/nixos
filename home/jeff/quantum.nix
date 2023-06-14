@@ -34,7 +34,7 @@ in
         (import ../../base/user/style/kitty.nix { })
         (import ../../base/user/style/scheme.nix { })
 
-        # FIXME: Overlays
+        # Overlays
         (import ../../base/overlays.nix { })
       ];
     })
