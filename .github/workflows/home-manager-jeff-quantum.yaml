@@ -14,4 +14,4 @@ jobs:
         nix_path: nixpkgs=channel:nixos-unstable
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     
-    - run: home-manager build --flake .#jeff@quantum --dry-run
+    - run: nix-shell -p home-manager --comamnd 'home-manager build --flake .#jeff@quantum --dry-run'
