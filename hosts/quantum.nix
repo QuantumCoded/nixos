@@ -21,11 +21,14 @@ inputs.nixpkgs.lib.nixosSystem {
           (import ../base/host/environment/system-packages.nix { })
 
           # Filesystems
+          (import ../base/host/filesystems/home.nix { })
           (import ../base/host/filesystems/host.nix { })
           (import ../base/host/filesystems/nfs.nix {
             device = "docker.vmlan:/data";
             mount = "/nfs/hydrogen";
           })
+          (import ../base/host/filesystems/nix-store.nix { })
+          (import ../base/host/filesystems/var.nix { })
 
           # Fonts
           (import ../base/host/fonts/nerdfonts.nix { })
