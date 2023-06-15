@@ -88,6 +88,9 @@
 
       # Disable welcome message.
       "workbench.startupEditor" = "none";
+
+      # Change git lens commit graph layout to be in the editior.
+      "gitlens.graph.layout" = "editor";
     };
   };
 }
