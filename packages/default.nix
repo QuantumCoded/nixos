@@ -6,4 +6,5 @@ let
 in
 {
   packages.gdlauncher = pkgs.callPackage ./gdlauncher.nix { };
+  packages.xwinwrap = pkgs.callPackage ./xwinwrap.nix { };
 })
