@@ -8,4 +8,5 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.${userName}.imports = modules;
+  # home.stateVersion = "23.05";
 }
