@@ -8,7 +8,7 @@
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/efi";
+    device = "/dev/disk/by-label/EFI";
     fsType = "vfat";
   };
 
