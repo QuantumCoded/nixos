@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-{ stdenv ? pkgs.stdenv
-, fetchurl ? pkgs.fetchurl
+{ fpkgs, ... }:
+{ stdenv ? fpkgs.stdenv
+, fetchurl ? fpkgs.fetchurl
 , pname
 , version
 , addonId

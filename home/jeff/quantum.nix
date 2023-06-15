@@ -1,6 +1,6 @@
-{ pkgs, self, ... }:
+{ fpkgs, self, ... }:
 let
-  system = pkgs.stdenv.hostPlatform.system;
+  system = fpkgs.stdenv.hostPlatform.system;
   xwinwrap = self.packages.${system}.xwinwrap;
 in
 {

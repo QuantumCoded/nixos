@@ -22,16 +22,17 @@
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
+      fpkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
 
       specialArgs = { inherit inputs self; };
-      moduleArgs = { inherit pkgs inputs self; };
+      moduleArgs = { inherit fpkgs inputs self; };
 
       mkHome = modules: home-manager.lib.homeManagerConfiguration {
-        inherit modules pkgs;
+        inherit modules;
+        pkgs = fpkgs;
         extraSpecialArgs = specialArgs;
       };
     in

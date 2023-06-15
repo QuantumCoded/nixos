@@ -1,4 +1,4 @@
-{ pkgs, inputs, self } @ libSpecialArgs:
+{ fpkgs, inputs, self } @ libSpecialArgs:
 
 {
   buildFirefoxXpiAddon = import ./build-firefox-xpi-addon.nix libSpecialArgs;
