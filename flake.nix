@@ -41,9 +41,9 @@
       lib = import ./libraries moduleArgs;
 
       nixosConfigurations = {
-        hydrogen = import ./hosts/hydrogen.nix specialArgs;
-        odyssey = import ./hosts/odyssey.nix specialArgs;
-        quantum = import ./hosts/quantum.nix specialArgs;
+        hydrogen = import ./hosts/hydrogen specialArgs;
+        odyssey = import ./hosts/odyssey specialArgs;
+        quantum = import ./hosts/quantum specialArgs;
       };
 
       homeConfigurations = {
