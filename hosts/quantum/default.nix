@@ -27,7 +27,7 @@ inputs.nixpkgs.lib.nixosSystem {
             device = "docker.vmlan:/data";
             mount = "/nfs/hydrogen";
           })
-          (import ../../base/host/filesystems/nix-store.nix { })
+          (import ../../base/host/filesystems/nix.nix { })
           (import ../../base/host/filesystems/var.nix { })
 
           # Fonts
