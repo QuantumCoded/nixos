@@ -1,11 +1,11 @@
-name: "HomeManager Build Check for Jeff on Hydrogen"
+name: "HomeManager Build Check for Jeff on Odyssey"
 on:
   push:
     branches: [ "*" ]
   pull_request: 
     branches: [ "*" ]
 jobs:
-  home-manager-jeff-hydrogen:
+  home-manager-jeff-odyssey:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

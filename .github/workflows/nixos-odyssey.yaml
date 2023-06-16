@@ -1,11 +1,11 @@
-name: "NixOS Build Check for Hydrogen"
+name: "NixOS Build Check for Odyssey"
 on:
   push:
     branches: [ "*" ]
   pull_request: 
     branches: [ "*" ]
 jobs:
-  hydrogen:
+  odyssey:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
