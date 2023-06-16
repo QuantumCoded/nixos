@@ -12,7 +12,7 @@ let
     ];
   baseString = builtins.substring 1 (length - 1) string;
 in
-  lib.concatStrings [
-    capitalFirstLetter
-    baseString
-  ]
+lib.concatStrings [
+  capitalFirstLetter
+  baseString
+]

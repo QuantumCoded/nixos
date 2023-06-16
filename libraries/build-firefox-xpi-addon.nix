@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation {
   inherit meta;
- 
+
   name = "${pname}-${version}";
   src = fetchurl { inherit url sha256; };
 
