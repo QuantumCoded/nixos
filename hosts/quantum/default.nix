@@ -64,6 +64,12 @@ inputs.nixpkgs.lib.nixosSystem {
           # Users
           (import ../../base/host/users/user.nix { inherit userName; })
 
+          # User Packages
+          (import ../../base/host/users/packages/flake-packages.nix {
+            inherit userName;
+            exclude = [ "xwinwrap" ];
+          })
+
           # Home Manager
           (import ../../base/host/home-manager.nix {
             inherit userName;
