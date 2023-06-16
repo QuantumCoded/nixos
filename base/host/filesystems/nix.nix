@@ -1,4 +1,4 @@
-{ device ? "/dev/disk/by-label/store", fsType ? "ext4" }:
+{ device ? "/dev/disk/by-label/nix", fsType ? "ext4" }:
 
 import ./generic.nix {
   inherit device fsType;
