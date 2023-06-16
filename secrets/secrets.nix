@@ -1,13 +1,14 @@
 let
   # Users
-  jeff = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmy0ao1cTPHV7J+CHOQk/+QxDHVXtcBqzNMnGHzpD3X";
+  jeff = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO0Z+jY49Owc0MeSyZLUgBdfct6PFEUWwvBfBmz0Cyzn";
 
   # Systems
-  quantum = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAzys7fCbrIfHZGYBu0jBOU/mdlMTPk7oZ26IBorBtt+";
-  odyssey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHnDCaJaBKHeaUW/VdH2CMVEpoRtKqnlg7+omBU7dvJg";
+  hydrogen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOibBFyzpvrT7Q1F1kywc2gIOsog8HdVSUl5IXa1aHQs";
+  odyssey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzbqF8beGqcGqfij9TVBxWZ4wT0t651UYqFKOjSSXr/";
+  quantum = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoCx1wXiAMb01U2JAM5xHmdLlPnd81EITSNn4FDkMvK";
 
   allUsers = [ jeff ];
-  allSystems = [ quantum odyssey ];
+  allSystems = [ hydrogen odyssey quantum ];
 
   everywhere = allUsers ++ allSystems;
 in
