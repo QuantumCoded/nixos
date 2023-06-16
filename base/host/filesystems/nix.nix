@@ -2,5 +2,5 @@
 
 import ./generic.nix {
   inherit device fsType;
-  mount = "/nix/store";
+  mount = "/nix";
 }
