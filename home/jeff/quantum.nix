@@ -23,8 +23,14 @@ in
           };
 
           extraConfig = ''
+            ${pkgs.dunst}/bin/dunst &
             ${pkgs.procps}/bin/pidof xwinwrap || ${xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../wallpapers/animated.mkv}
           '';
+        })
+        (import ../../base/user/home/dunst.nix {
+          monitor = 1;
+          notificationLimit = 3;
+          origin = "bottom-left";
         })
         (import ../../base/user/home/firefox.nix { })
         (import ../../base/user/home/git.nix { userName = "QuantumCoded"; })
