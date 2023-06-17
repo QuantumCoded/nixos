@@ -67,7 +67,7 @@ inputs.nixpkgs.lib.nixosSystem {
           # User Packages
           (import ../../base/host/users/packages/flake-packages.nix {
             inherit userName;
-            exclude = [ "xwinwrap" ];
+            include = [ "gdlauncher" ];
           })
 
           # Home Manager
