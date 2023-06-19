@@ -26,6 +26,7 @@
       packages = with pkgs; [
         anki
         btop
+        comma
         element-desktop
         feh
         file
