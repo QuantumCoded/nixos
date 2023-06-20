@@ -4,13 +4,11 @@
 }:
 { lib, pkgs, self, ... }:
 let
-  system = pkgs.stdenv.hostPlatform.system;
-  packages = self.packages.${system};
   included = self.lib.calculateIncluded {
     inherit exclude include;
-    default = builtins.attrNames packages;
+    default = builtins.attrNames pkgs.flake;
   };
 in
 {
-  users.users.${userName}.packages = map (name: packages.${name}) included;
+  users.users.${userName}.packages = map (name: pkgs.flake.${name}) included;
 }
