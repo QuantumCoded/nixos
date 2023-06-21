@@ -1,10 +1,13 @@
-{ enablePulse ? true, enableJack ? false }:
+{ enableAlsa ? true
+, enablePulse ? true
+, enableJack ? false
+}:
 { ... }:
 
 {
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = enableAlsa;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
