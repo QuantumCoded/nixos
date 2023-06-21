@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ fpkgs, ... }:
 let
-  lib = inputs.nixpkgs.lib;
+  lib = fpkgs.lib;
 in
 { exclude ? [ ], path ? ./. }: lib.pipe path [
   builtins.readDir
