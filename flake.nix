@@ -37,7 +37,7 @@
       };
     in
     {
-      inherit (import ./packages specialArgs) packages;
+      inherit (import ./packages moduleArgs) packages;
       lib = import ./libraries moduleArgs;
 
       nixosConfigurations = {
