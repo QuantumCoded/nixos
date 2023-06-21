@@ -1,5 +1,9 @@
-{ device, mount }:
-{ pkgs, ... }:
+{ device
+, mount
+, onDemand ? true
+, timeout ? 600
+}:
+{ lib, pkgs, ... }:
 
 {
   # Install NFS utils
@@ -9,14 +13,14 @@
       nfs-utils
     ];
 
-  # Enable Hydrogen NFS share
+  # Enable NFS
   fileSystems.${mount} = {
     inherit device;
     fsType = "nfs";
-    options = [
+    options = lib.mkIf onDemand [
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=600"
+      "x-systemd.idle-timeout=${timeout}"
     ];
   };
 }
