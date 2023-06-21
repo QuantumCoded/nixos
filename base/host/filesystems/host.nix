@@ -1,18 +1,31 @@
-{}:
-{ ... }:
+{ efiDevice ? "/dev/disk/by-label/EFI"
+, rootDevice ? "/dev/disk/by-label/root"
+, swapDevice ? "/dev/disk/by-label/swap"
+, rootFsType ? "ext4"
+, enableEfi ? true
+, enableRoot ? true
+, enableSwap ? true
+}:
+{ lib, ... }:
 
 {
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/root";
-    fsType = "ext4";
-  };
+  config = lib.mkMerge [
+    (lib.mkIf enableRoot {
+      fileSystems."/" = {
+        device = rootDevice;
+        fsType = rootFsType;
+      };
+    })
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/EFI";
-    fsType = "vfat";
-  };
+    (lib.mkIf enableEfi {
+      fileSystems."/boot/efi" = {
+        device = efiDevice;
+        fsType = "vfat";
+      };
+    })
 
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    (lib.mkIf enableSwap {
+      swapDevices = [{ device = swapDevice; }];
+    })
   ];
 }
