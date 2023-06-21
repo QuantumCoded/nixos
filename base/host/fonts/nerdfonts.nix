@@ -1,9 +1,11 @@
-{}:
+{ allFonts ? false, fonts ? [ ] }:
 { pkgs, ... }:
 
 {
   # Load patched nerdfonts.
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "Meslo" ]; })
+    (if allFonts
+    then nerdfonts
+    else (nerdfonts.override { inherit fonts; }))
   ];
 }
