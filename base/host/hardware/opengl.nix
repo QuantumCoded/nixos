@@ -1,12 +1,14 @@
-{ package ? null }:
+{ driSupport ? true
+, driSupport32 ? true
+, package ? null
+}:
 { lib, pkgs, ... }:
 
 {
   # Enable OpenGL for kitty terminal.
   hardware.opengl = lib.mkMerge [
     {
-      driSupport = true;
-      driSupport32Bit = true;
+      inherit driSupport driSupport32;
     }
 
     (lib.mkIf (package != null) { inherit package; })
