@@ -34,7 +34,7 @@ inputs.nixpkgs.lib.nixosSystem {
           (import ../../base/host/fonts/nerdfonts.nix { })
 
           # Hardware
-          (import ../../base/host/hardware/opengl.nix { package = pkgs.raccoon.kitty; })
+          (import ../../base/host/hardware/opengl.nix { package = pkgs.raccoon.mesa.drivers; })
 
           # Host Hardware
           ./hardware.nix
