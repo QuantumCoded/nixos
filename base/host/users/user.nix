@@ -44,9 +44,7 @@
         noisetorch
         obsidian
         pavucontrol
-        python3
         raccoon.kitty
-        rustup
         sonixd
         steam
         thunderbird

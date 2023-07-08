@@ -31,7 +31,7 @@ inputs.nixpkgs.lib.nixosSystem {
           (import ../../base/host/fonts/nerdfonts.nix { })
 
           # Hardware
-          (import ../../base/host/hardware/opengl.nix { package = pkgs.raccoon.kitty; })
+          (import ../../base/host/hardware/opengl.nix { package = pkgs.raccoon.mesa.drivers; })
 
           # Host Hardware
           ./hardware.nix
@@ -49,7 +49,6 @@ inputs.nixpkgs.lib.nixosSystem {
 
           # X11
           (import ../../base/host/services/xserver/bspwm.nix { })
-          (import ../../base/host/services/xserver/nvidia.nix { })
           (import ../../base/host/services/xserver/plasma.nix { })
           (import ../../base/host/services/xserver/x11.nix { })
 
@@ -64,7 +63,7 @@ inputs.nixpkgs.lib.nixosSystem {
           # Home Manager
           (import ../../base/host/home-manager.nix {
             inherit userName;
-            modules = [ ../../home/jeff/quantum.nix ];
+            modules = [ ../../home/jeff/odyssey.nix ];
           })
 
           # Locale
