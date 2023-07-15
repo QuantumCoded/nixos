@@ -4,13 +4,12 @@
   imports = [
     ../modules/boot.nix
     ../modules/flakes.nix
-    # ../modules/networkmanager.nix
-    # ../modules/overlays.nix
+    ../modules/networkmanager.nix
+    ../modules/overlays.nix
 
-    # inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
-/* 
   hardware.opengl = {
     # TODO: might need to downgrade for kitty if it's not fixed yet
     enable = true;
@@ -125,11 +124,13 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-*/
+
   nixpkgs.config = {
     allowUnfree = true;
   };
-/*
+
+  system.stateVersion = "23.05";
+
   # TODO: all of this needs to be moved to somewhere else that defines users
   home-manager.extraSpecialArgs = { inherit inputs self; };
   home-manager.useGlobalPkgs = true;
@@ -156,5 +157,4 @@
     base.sxhkd.enable = true;
     base.sxhkd.desktopOrder = "1,4,7,2,5,8,3,6,9,10";
   };
-*/
 }

@@ -1,9 +1,8 @@
 { config, inputs, lib, ... }:
 let
   inherit (lib)
-    mapAttrsToList
+    mapAttrs
     mkEnableOption
-    mkMerge
     mkOption
     types
     ;
@@ -11,13 +10,11 @@ let
   cfg = config.base.networkmanager;
 
   mkConnection = connection: secret: {
-    age.secrets.${connection} = {
-      file = secret;
-      path = "/etc/NetworkManager/system-connections/${connection}.nmconnection";
-      mode = "400";
-      owner = "root";
-      group = "root";
-    };
+    file = secret;
+    path = "/etc/NetworkManager/system-connections/${connection}.nmconnection";
+    mode = "400";
+    owner = "root";
+    group = "root";
   };
 in
 {
@@ -31,8 +28,8 @@ in
     };
   };
 
-  config = mkMerge [
-    { networking.networkmanager.enable = cfg.enable; }
-  ]
-  ++ (mapAttrsToList mkConnection cfg.connections);
+  config = {
+    networking.networkmanager.enable = cfg.enable;
+    age.secrets = mapAttrs mkConnection cfg.connections;
+  };
 }
