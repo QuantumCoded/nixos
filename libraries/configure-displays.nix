@@ -1,11 +1,10 @@
-{ fpkgs, ... }:
 { backend
-, outputSelector ? "--output"
+, fpkgs
 , layout
+, lib ? fpkgs.lib
+, outputSelector ? "--output"
 }:
 let
-  lib = fpkgs.lib;
-
   flattenSettings = settings: lib.concatStringsSep " "
     (lib.mapAttrsToList
       (arg: value: "--${arg} ${builtins.toString value}")

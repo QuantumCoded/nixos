@@ -1,12 +1,11 @@
-{ fpkgs, ... }:
-{ stdenv ? fpkgs.stdenv
-, fetchurl ? fpkgs.fetchurl
-, pname
-, version
-, addonId
-, url
-, sha256
+{ addonId
+, fetchurl
 , meta
+, pname
+, sha256
+, stdenv
+, url
+, version
 }:
 
 stdenv.mkDerivation {

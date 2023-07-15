@@ -41,15 +41,19 @@
       lib = import ./libraries moduleArgs;
 
       nixosConfigurations = {
-        hydrogen = import ./hosts/hydrogen specialArgs;
-        odyssey = import ./hosts/odyssey specialArgs;
-        quantum = import ./hosts/quantum specialArgs;
+        # hydrogen = import ./hosts/hydrogen specialArgs;
+        # odyssey = import ./hosts/odyssey specialArgs;
+        quantum = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
+          modules = [ ./hosts/quantum ];
+        };
       };
 
-      homeConfigurations = {
-        "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
-        "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
-        "jeff@quantum" = mkHome [ (import ./home/jeff/quantum.nix moduleArgs) ];
-      };
+      # homeConfigurations = {
+      #   "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
+      #   "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
+      #   "jeff@quantum" = mkHome [ (import ./home/jeff/quantum.nix moduleArgs) ];
+      # };
     };
 }
