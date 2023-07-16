@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../modules/boot.nix
+    ../modules/nixosboot.nix
     ../modules/flakes.nix
     ../modules/home-manager.nix
     ../modules/networkmanager.nix
