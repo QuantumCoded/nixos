@@ -1,25 +1,38 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 
+  cfg = config.base.git;
+in
 {
-  programs.git = rec {
-    enable = true;
+  options.base.git = {
+    enable = mkEnableOption "Git";
+  };
 
-    aliases = {
-      oops = "reset --soft HEAD~1";
-      trash = "reset --hard HEAD";
-    };
+  config = mkIf cfg.enable {
+    programs.git = rec {
+      enable = true;
 
-    userName = "QuantumCoded";
-    userEmail = "${userName}@users.noreply.github.com";
+      aliases = {
+        oops = "reset --soft HEAD~1";
+        trash = "reset --hard HEAD";
+      };
 
-    # TODO: this needs some logic to allow custom directories or fail an assert with a
-    # "you can set the homeDir" option in the wrapper attributes.
-    signing.key = config.home.homeDirectory + "/.ssh/id_ed25519";
-    signing.signByDefault = true;
+      userName = "QuantumCoded";
+      userEmail = "${userName}@users.noreply.github.com";
 
-    extraConfig = {
-      gpg.format = "ssh";
-      pull.rebase = false;
+      # TODO: this needs some logic to allow custom directories or fail an assert with a
+      # "you can set the homeDir" option in the wrapper attributes.
+      signing.key = config.home.homeDirectory + "/.ssh/id_ed25519";
+      signing.signByDefault = true;
+
+      extraConfig = {
+        gpg.format = "ssh";
+        pull.rebase = false;
+      };
     };
   };
 }

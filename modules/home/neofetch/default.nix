@@ -1,16 +1,27 @@
-{ pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 
+  cfg = config.base.neofetch;
+in
 {
-  # Link neofetch config to the nix store.
-  home.file.".config/neofetch/config.conf".source = ./config.conf;
+  options.base.neofetch = {
+    enable = mkEnableOption "Enable Neofetch";
+  };
 
-  # Link the neofetch logo to the nix store.
-  home.file.".config/neofetch/logo.svg" = {
-    source = ./logo.svg;
+  config = mkIf cfg.enable {
+    home.file = {
+      ".config/neofetch/config.conf".source = ./config.conf;
+      ".config/neofetch/logo.svg" = {
+        source = ./logo.svg;
 
-    # Clear neofetch thumbnail cache when the neofetch logo changes.
-    onChange = ''
-      ${pkgs.neofetch}/bin/neofetch --clean
-    '';
+        onChange = ''
+          ${pkgs.neofetch}/bin/neofetch --clean
+        '';
+      };
+    };
   };
 }

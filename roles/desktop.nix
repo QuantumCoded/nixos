@@ -1,16 +1,6 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    ../modules/nixosboot.nix
-    ../modules/flakes.nix
-    ../modules/home-manager.nix
-    ../modules/networkmanager.nix
-    ../modules/overlays.nix
-
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   hardware.opengl = {
     # TODO: might need to downgrade for kitty if it's not fixed yet
     enable = true;
@@ -48,12 +38,6 @@
   fonts.fonts = with pkgs; [
     nerdfonts
   ];
-
-  base.networkmanager.enable = true;
-  base.networkmanager.connections = {
-    wifi_5g = ../secrets/wifi_5g.age;
-    wifi = ../secrets/wifi.age;
-  };
 
   services.openssh.enable = true;
 
@@ -130,6 +114,15 @@
     allowUnfree = true;
   };
 
+  base.boot.enable = true;
+  base.flakes.enable = true;
+
+  base.networkmanager.enable = true;
+  base.networkmanager.connections = {
+    wifi_5g = ../secrets/wifi_5g.age;
+    wifi = ../secrets/wifi.age;
+  };
+  
   base.user.jeff.enable = true;
 
   system.stateVersion = "23.05";

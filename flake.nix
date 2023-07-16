@@ -30,10 +30,15 @@
       specialArgs = { inherit inputs self; };
       moduleArgs = { inherit fpkgs inputs self; };
 
-      mkHome = modules: home-manager.lib.homeManagerConfiguration {
-        inherit modules;
+      mkNixos = system: config: nixpkgs.lib.nixosSystem {
+        inherit specialArgs system;
+        modules = [ ./overlays.nix ./modules/nixos config ];
+      };
+
+      mkHome = config: home-manager.lib.homeManagerConfiguration {
         pkgs = fpkgs;
         extraSpecialArgs = specialArgs;
+        modules = [ ./overlays.nix ./modules/home config ];
       };
     in
     {
@@ -43,17 +48,13 @@
       nixosConfigurations = {
         # hydrogen = import ./hosts/hydrogen specialArgs;
         # odyssey = import ./hosts/odyssey specialArgs;
-        quantum = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [ ./hosts/quantum ./modules ];
-        };
+        quantum = mkNixos "x86_64-linux" ./hosts/quantum;
       };
 
-      # homeConfigurations = {
-      #   "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
-      #   "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
-      #   "jeff@quantum" = mkHome [ (import ./home/jeff/quantum.nix moduleArgs) ];
-      # };
+      homeConfigurations = {
+        # "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
+        # "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
+        "jeff@quantum" = mkHome ./home/jeff/quantum.nix;
+      };
     };
 }

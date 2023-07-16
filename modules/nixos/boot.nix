@@ -1,8 +1,21 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 
+  cfg = config.base.boot;
+in
 {
-  boot.loader.systemd-boot.enable = true;
+  options.base.boot = {
+    enable = mkEnableOption "Boot";
+  };
 
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  config = mkIf cfg.enable {
+    boot.loader.systemd-boot.enable = true;
+
+    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  };
 }

@@ -1,9 +1,18 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
 
+  cfg = config.base.fish;
+in
 {
-  options = { };
+  options.base.fish = {
+    enable = mkEnableOption "Enable Fish";
+  };
 
-  config = {
+  config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
 
