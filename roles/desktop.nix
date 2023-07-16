@@ -1,9 +1,10 @@
-{ inputs, pkgs, self, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     ../modules/boot.nix
     ../modules/flakes.nix
+    ../modules/home-manager.nix
     ../modules/networkmanager.nix
     ../modules/overlays.nix
 
@@ -129,32 +130,7 @@
     allowUnfree = true;
   };
 
+  base.user.jeff.enable = true;
+
   system.stateVersion = "23.05";
-
-  # TODO: all of this needs to be moved to somewhere else that defines users
-  home-manager.extraSpecialArgs = { inherit inputs self; };
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users."jeff" = {
-    imports = [
-      ../home/fish
-      ../home/neofetch
-      ../home/dunst.nix
-      ../home/kitty.nix
-      ../home/rofi.nix
-      ../home/sxhkd.nix
-    ];
-
-    home = rec {
-      username = "jeff";
-      homeDirectory = "/home/${username}";
-      stateVersion = "23.05";
-    };
-
-    programs.home-manager.enable = true;
-    xsession.windowManager.bspwm.enable = true;
-
-    base.sxhkd.enable = true;
-    base.sxhkd.desktopOrder = "1,4,7,2,5,8,3,6,9,10";
-  };
 }
