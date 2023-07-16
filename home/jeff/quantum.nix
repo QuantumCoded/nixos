@@ -22,6 +22,9 @@
   };
 
   base.dunst.enable = true;
+  base.dunst.origin = "bottom-left";
+  base.dunst.monitor = 1;
+
   base.firefox.enable = true;
   base.fish.enable = true;
   base.git.enable = true;
