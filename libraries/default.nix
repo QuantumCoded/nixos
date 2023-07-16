@@ -1,7 +1,7 @@
 { fpkgs, inputs, self } @ libSpecialArgs:
 
 {
-  buildFirefoxXpiAddon = import ./build-firefox-xpi-addon.nix libSpecialArgs;
+  buildFirefoxXpiAddon = fpkgs.callPackage ./build-firefox-xpi-addon.nix;
   calculateIncluded = import ./calculate-included.nix libSpecialArgs;
   capitalizeFirst = import ./capitalize-first.nix libSpecialArgs;
   configureDisplays = import ./configure-displays.nix libSpecialArgs;
