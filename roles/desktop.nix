@@ -47,6 +47,7 @@
   users.users.jeff = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
 
     # TODO: packages could be split into different roles, not sure to get the username
     # to carry across roles though, perhaps that should be defined in the system somehow?
