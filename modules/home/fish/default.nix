@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib)
     mkEnableOption
@@ -10,14 +10,15 @@ in
 {
   options.base.fish = {
     enable = mkEnableOption "Enable Fish";
+    tide.enable = mkEnableOption "Fish Tide Theme";
   };
 
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-
-      # TODO: tide and its configs need to be set as an option
-      # plugins = [];
+      plugins = mkIf cfg.tide.enable [
+        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      ];
     };
   };
 }

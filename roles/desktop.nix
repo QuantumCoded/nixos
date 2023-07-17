@@ -124,6 +124,9 @@
   };
   
   base.user.jeff.enable = true;
+  base.user.jeff.homeConfig = {
+    fish.tide.enable = true;
+  };
 
   system.stateVersion = "23.05";
 }
