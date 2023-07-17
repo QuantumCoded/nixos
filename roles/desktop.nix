@@ -58,7 +58,7 @@
       man-pages
       man-pages-posix
       # mpv
-      # neofetch
+      neofetch
       nix-index # TODO: see if nix-index can be ran automatically
       noisetorch
       raccoon.kitty # TODO: see if there is an update that fixed this yet
