@@ -9,12 +9,7 @@
 
   xsession.windowManager.bspwm = {
     enable = true;
-    monitors = {
-      DP-0 = [ "L1" "L2" "L3" ];
-      DP-2 = [ "M1" "M2" "M3" ];
-      DP-4 = [ "R1" "R2" "R3" ];
-      HDMI-0 = [ "P" ];
-    };
+
     extraConfig = ''
       ${pkgs.dunst}/bin/dunst &
       ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../wallpapers/animated.mkv}
