@@ -68,7 +68,7 @@
 
       # gaming
       steam
-      # TODO: gdlauncher
+      flake.gdlauncher
 
       # TODO: this goes in vscode
       nil
