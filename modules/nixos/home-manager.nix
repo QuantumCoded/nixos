@@ -4,6 +4,7 @@ let
     mkEnableOption
     mkIf
     mkOption
+    recursiveUpdate
     types
     ;
 
@@ -14,7 +15,11 @@ in
 
   options.base.user.jeff = {
     enable = mkEnableOption "Jeff User";
-    extraConfig = mkOption {
+    homeConfig = mkOption {
+      type = types.attrs;
+      default = { };
+    };
+    baseConfig = mkOption {
       type = types.attrs;
       default = { };
     };
@@ -24,7 +29,7 @@ in
     home-manager.extraSpecialArgs = { inherit inputs self; };
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
-    home-manager.users."jeff" = {
+    home-manager.users.jeff = recursiveUpdate cfg.homeConfig {
       imports = [
         ../home
         (../../home/jeff + "/${config.networking.hostName}.nix")
@@ -32,7 +37,7 @@ in
 
       programs.home-manager.enable = true;
 
-      base = cfg.homeConfig;
+      base = cfg.baseConfig;
     };
   };
 }

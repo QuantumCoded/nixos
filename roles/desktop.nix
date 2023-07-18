@@ -123,9 +123,9 @@
     wifi_5g = ../secrets/wifi_5g.age;
     wifi = ../secrets/wifi.age;
   };
-  
+
   base.user.jeff.enable = true;
-  base.user.jeff.homeConfig = {
+  base.user.jeff.baseConfig = {
     fish.tide.enable = true;
   };
 
