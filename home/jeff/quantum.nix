@@ -16,9 +16,11 @@
     '';
   };
 
-  base.dunst.enable = true;
-  base.dunst.origin = "bottom-left";
-  base.dunst.monitor = 1;
+  base.dunst = {
+    enable = true;
+    origin = "bottom-left";
+    monitor = 1;
+  };
 
   base.firefox.enable = true;
   base.fish.enable = true;
