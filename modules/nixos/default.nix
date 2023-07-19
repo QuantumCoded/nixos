@@ -1,8 +1,10 @@
-{ lib, self, ... }:
-
 {
-  imports = lib.pipe { path = ./.; exclude = [ "default.nix" ]; } [
-    self.lib.readDirFiltered
-    (map (name: ./. + "/${name}"))
+  imports = [
+    ./services/minecraft.nix
+
+    ./boot.nix
+    ./flakes.nix
+    ./home-manager.nix
+    ./networkmanager.nix
   ];
 }

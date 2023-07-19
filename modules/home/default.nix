@@ -1,8 +1,13 @@
-{ lib, self, ... }:
-
 {
-  imports = lib.pipe { path = ./.; exclude = [ "default.nix" ]; } [
-    self.lib.readDirFiltered
-    (map (name: ./. + "/${name}"))
+  imports = [
+    ./fish
+    ./neofetch
+    ./dunst.nix
+    ./firefox.nix
+    ./git.nix
+    ./kitty.nix
+    ./rofi.nix
+    ./sxhkd.nix
+    ./vscode.nix
   ];
 }
