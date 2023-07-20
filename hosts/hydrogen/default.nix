@@ -1,5 +1,5 @@
 {
-  import = [
+  imports = [
     ../../roles/server.nix
 
     ../odyssey/hardware.nix
