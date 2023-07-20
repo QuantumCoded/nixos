@@ -37,15 +37,15 @@ in
       let
         sanitize = string:
           replaceStrings
-            [ "'" "\n" "\t" ]
-            [ "\\'" "\\n" "\\t" ]
+            [ "'" "\n" "\t" "&"]
+            [ "\\'" "\\n" "\\t" "\&" ]
             string;
 
-        formatSites = acc: name: value: acc ++ [ "${name}\t${value}" ];
+        formatSites = acc: name: value: acc ++ [ "${name}|${value}" ];
         formattedSites = foldlAttrs formatSites [ ] cfg.websites.sites;
         rofiInput = sanitize (concatStringsSep "\n" formattedSites);
         command = ''
-          bash -c 'xdg-open `echo -e \'${rofiInput}\' | rofi -dmenu | grep -oP \'(?<=\t).*$\'`'
+          xdg-open `echo -e '${rofiInput}' | column -ts '|' | rofi -dmenu | grep -oP '\S+$'`
         '';
       in
       mkIf cfg.websites.enable {
@@ -53,5 +53,3 @@ in
       };
   };
 }
-
-# bash -c 'xdg-open `echo -e \'Github\thttps://github.com\nHome Manager Appendix A\thttps://nix-community.github.io/home-manager/options.html\nLast.FM\thttps://last.fm\nNix Builtins\thttps://nixos.org/manual/nix/stable/language/builtins.html\nNix Lib & Builtins\thttps://teu5us.github.io/nix-lib.html\nNixOS Appendix A\thttps://nixos.org/manual/nixos/unstable/options.html\nNixpkgs Github\thttps://github.com/NixOS/nixpkgs\nSearch NixOS Packages\thttps://search.nixos.org/packages\' | rofi -dmenu | grep -oP \'(?<=\t).*$\'`'
