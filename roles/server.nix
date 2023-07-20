@@ -14,6 +14,9 @@
 
   services.openssh.enable = true;
 
+  environment.shells = with pkgs; [ fish ];
+  programs.fish.enable = true;
+
   users.users.jeff = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
