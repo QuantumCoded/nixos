@@ -111,6 +111,8 @@ in
       };
     };
 
+  base.dmx-server.enable = true;
+
   # ankisyncd
   # ftp
   # gitea
