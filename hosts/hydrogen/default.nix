@@ -6,5 +6,5 @@
     ../odyssey/storage.nix
   ];
 
-  networking.hostName = "quantum";
+  networking.hostName = "hydrogen";
 }
