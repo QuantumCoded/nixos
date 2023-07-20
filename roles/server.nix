@@ -56,6 +56,13 @@
   base.boot.enable = true;
   base.flakes.enable = true;
 
+  # FIXME: this needs to be removed when moving to the server
+  base.networkmanager.enable = true;
+  base.networkmanager.connections = {
+    wifi_5g = ../secrets/wifi_5g.age;
+    wifi = ../secrets/wifi.age;
+  };
+
   base.user.jeff.enable = true;
 
   system.stateVersion = "23.05";
