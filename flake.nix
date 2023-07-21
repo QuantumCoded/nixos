@@ -8,7 +8,7 @@
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
 
     base16.url = "github:SenchoPens/base16.nix";
     base16-kitty = {
@@ -22,13 +22,16 @@
     let
       system = "x86_64-linux";
 
-      fpkgs = import nixpkgs {
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
 
       specialArgs = { inherit inputs self; };
-      moduleArgs = { inherit fpkgs inputs self; };
+      moduleArgs = {
+        inherit inputs self;
+        nixpkgs = pkgs;
+      };
 
       mkNixos = system: config: nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
@@ -36,7 +39,7 @@
       };
 
       mkHome = config: home-manager.lib.homeManagerConfiguration {
-        pkgs = fpkgs;
+        inherit pkgs;
         extraSpecialArgs = specialArgs;
         modules = [ ./overlays.nix ./modules/home config ];
       };
@@ -55,6 +58,12 @@
         # "jeff@hydrogen" = mkHome [ (import ./home/jeff/hydrogen.nix moduleArgs) ];
         # "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
         "jeff@quantum" = mkHome ./home/jeff/quantum.nix;
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = [
+          agenix.packages.${system}.default
+        ];
       };
     };
 }

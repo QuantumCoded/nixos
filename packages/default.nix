@@ -1,8 +1,6 @@
-{ fpkgs, inputs, ... }:
+{ nixpkgs, inputs, ... }:
 
-inputs.utils.lib.eachDefaultSystem (system:
-
-{
-  packages.gdlauncher = fpkgs.callPackage ./gdlauncher.nix { };
-  packages.xwinwrap = fpkgs.callPackage ./xwinwrap.nix { };
+inputs.flake-utils.lib.eachDefaultSystem (system: {
+  packages.gdlauncher = nixpkgs.callPackage ./gdlauncher.nix { };
+  packages.xwinwrap = nixpkgs.callPackage ./xwinwrap.nix { };
 })
