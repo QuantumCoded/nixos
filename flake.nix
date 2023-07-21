@@ -61,8 +61,9 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
-        packages = [
+        packages = with pkgs; [
           agenix.packages.${system}.default
+          git-lfs
         ];
       };
     };
