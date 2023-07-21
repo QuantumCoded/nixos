@@ -167,6 +167,9 @@ in
   };
 
   base.direnv.enable = true;
+  base.homeBaseConfig = {
+    fish.funcs.ide.enable = true;
+  };
 
   system.stateVersion = "23.05";
 }
