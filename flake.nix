@@ -35,7 +35,12 @@
 
       mkNixos = system: config: nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
-        modules = [ ./overlays.nix ./modules/nixos config ];
+        modules = [
+          inputs.agenix.nixosModules.default
+          ./overlays.nix
+          ./modules/nixos
+          config
+        ];
       };
 
       mkHome = config: home-manager.lib.homeManagerConfiguration {

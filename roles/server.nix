@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) concatStringsSep;
 in
@@ -132,6 +132,40 @@ in
   # jellyfin
   # searx
   # syncthing
+
+  services.postgresql = {
+    enable = true;
+    authentication = ''
+      local gitea all ident map=gitea-users
+    '';
+    identMap = ''
+      gitea-users gitea gitea
+    '';
+  };
+
+  age.secrets.gitea_db_password.file = ../secrets/gitea_db_password.age;
+
+  services.gitea = {
+    enable = true;
+    appName = "QuantumCoded Gitea server";
+    database = {
+      type = "postgres";
+      passwordFile = config.age.secrets.gitea_db_password.path;
+    };
+    settings.server = {
+      ROOT_URL = "https://gitea.hydrogen.lan/";
+      DOMAIN = "gitea.hydrogen.lan";
+      HTTP_PORT = 3000;
+    };
+  };
+
+  services.caddy = {
+    enable = true;
+    acmeCA = "https://acme-staging-v02.api.letsencrypt.org/directory";
+    virtualHosts = {
+      "gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
+    };
+  };
 
   system.stateVersion = "23.05";
 }

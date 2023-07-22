@@ -1,4 +1,4 @@
-{ config, inputs, lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib)
     mapAttrs
@@ -18,8 +18,6 @@ let
   };
 in
 {
-  imports = [ inputs.agenix.nixosModules.default ];
-
   options.base.networkmanager = {
     enable = mkEnableOption "NetworkManager";
     connections = mkOption {
