@@ -113,8 +113,19 @@ in
 
   base.dmx-server.enable = true;
 
+  services.vsftpd = {
+    enable = true;
+    localUsers = true;
+    userlist = [ "sender" ];
+    writeEnable = true;
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 20 21 ];
+    connectionTrackingModules = [ "ftp" ];
+  };
+
   # ankisyncd
-  # ftp
   # gitea
   # invidious
   # jellyfin
