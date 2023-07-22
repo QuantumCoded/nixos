@@ -146,7 +146,11 @@ in
     '';
   };
 
-  age.secrets.gitea_db_password.file = ../secrets/gitea_db_password.age;
+  age.secrets.gitea_db_password = {
+    file = ../secrets/gitea_db_password.age;
+    owner = "gitea";
+    group = "gitea";
+  };
 
   services.gitea = {
     enable = true;
