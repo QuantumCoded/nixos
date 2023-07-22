@@ -168,7 +168,7 @@ in
 
   services.caddy = {
     enable = true;
-    acmeCA = "https://acme-staging-v02.api.letsencrypt.org/directory";
+    acmeCA = "https://acme-v02.api.letsencrypt.org/directory";
     virtualHosts = {
       "gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
     };
