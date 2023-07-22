@@ -169,6 +169,7 @@ in
   services.caddy = {
     enable = true;
     virtualHosts = {
+      "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
       "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
     };
   };
