@@ -154,7 +154,7 @@ in
 
   services.gitea = {
     enable = true;
-    appName = "QuantumCoded Gitea server";
+    appName = "QuantumCoded Gitea Server";
     database = {
       type = "postgres";
       passwordFile = config.age.secrets.gitea_db_password.path;
