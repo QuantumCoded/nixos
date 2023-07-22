@@ -1,5 +1,5 @@
-{ fpkgs, inputs, self }:
+{ nixpkgs, ... }:
 
 {
-  buildFirefoxXpiAddon = fpkgs.callPackage ./build-firefox-xpi-addon.nix;
+  buildFirefoxXpiAddon = nixpkgs.callPackage ./build-firefox-xpi-addon.nix;
 }

@@ -27,7 +27,22 @@
   base.git.enable = true;
   base.kitty.enable = true;
   base.neofetch.enable = true;
-  base.rofi.enable = true;
+  base.rofi = {
+    enable = true;
+    websites = {
+      enable = true;
+      sites = {
+        "Search NixOS Packages" = "https://search.nixos.org/packages";
+        "Nix Builtins" = "https://nixos.org/manual/nix/stable/language/builtins.html";
+        "Nix Lib & Builtins" = "https://teu5us.github.io/nix-lib.html";
+        "Nixpkgs Github" = "https://github.com/NixOS/nixpkgs";
+        "NixOS Appendix A" = "https://nixos.org/manual/nixos/unstable/options.html";
+        "Home Manager Appendix A" = "https://nix-community.github.io/home-manager/options.html";
+        "Github" = "https://github.com";
+        "Last.FM" = "https://last.fm";
+      };
+    };
+  };
 
   base.sxhkd = {
     enable = true;
