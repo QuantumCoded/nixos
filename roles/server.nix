@@ -160,7 +160,7 @@ in
       passwordFile = config.age.secrets.gitea_db_password.path;
     };
     settings.server = {
-      ROOT_URL = "https://gitea.hydrogen.lan/";
+      ROOT_URL = "http://gitea.hydrogen.lan/";
       DOMAIN = "gitea.hydrogen.lan";
       HTTP_PORT = 3000;
     };
@@ -168,7 +168,7 @@ in
 
   services.caddy = {
     enable = true;
-    acmeCA = "https://acme-v02.api.letsencrypt.org/directory";
+    # acmeCA = "https://acme-v02.api.letsencrypt.org/directory";
     virtualHosts = {
       "gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
     };
