@@ -108,6 +108,7 @@ in
         inherit jvmOpts;
         port = 25565;
         restart = false;
+        jar = "paperclip.jar";
       };
     };
 
