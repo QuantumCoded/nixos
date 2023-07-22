@@ -56,6 +56,7 @@ in
 
         ide =
           let
+            # FIXME: this should not open the ide if rofi exits with anything other than 0
             script = writeText "rofi-ide.fish" ''
               ide (echo echo (rofi -dmenu -p 'path' -theme-str 'listview { enabled: false; }') | ${fish})
             '';
