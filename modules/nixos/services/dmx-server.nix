@@ -27,15 +27,20 @@ in
       group = "nogroup";
     };
 
-    systemd.services.serviceConfig = {
-      ExecStart = ''
-        ${pkgs.flake.dmx-server}/bin/dmx-server --port ${cfg.port}
-      '';
-      Restart = "always";
-      User = "dmx";
-      WorkingDirectory = "/var/lib/dmx";
-      StandardOutput = "journal";
-      StandardError = "journal";
+    systemd.services.dmx-server = {
+      description = "Nondescript Music Server :)";
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      serviceConfig = {
+        ExecStart = ''
+          ${pkgs.flake.dmx-server}/bin/dmx-server --port ${toString cfg.port}
+        '';
+        Restart = "always";
+        User = "dmx";
+        WorkingDirectory = "/var/lib/dmx";
+        StandardOutput = "journal";
+        StandardError = "journal";
+      };
     };
 
     networking.firewall.allowedTCPPorts = [ cfg.port ];
