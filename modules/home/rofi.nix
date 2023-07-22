@@ -45,7 +45,8 @@ in
         websites =
           let
             separator = "█";
-            websites = mapAttrsToList (name: value: "${name}${separator}${value}") cfg.websites.sites;
+            formatWebsite = name: value: "${name}${separator}${value}";
+            websites = mapAttrsToList formatWebsite cfg.websites.sites;
             websitesFile = writeText "rofi-websites" (concatStringsSep "\n" websites);
             script = writeText "rofi-websites.fish" ''
               xdg-open (cat ${websitesFile} | column -ts '${separator}' | rofi -dmenu | grep -oP '\S+$')
@@ -56,9 +57,10 @@ in
         ide =
           let
             script = writeText "rofi-ide.fish" ''
-              ide (rofi -dmenu -p 'path' -theme-str 'listview { enabled: false; }')
+              ide (echo echo (rofi -dmenu -p 'path' -theme-str 'listview { enabled: false; }') | ${fish})
             '';
           in
+          # FIXME: these don't print as bools, but 1 and ""
           assert (assertMsg (!(cfg.ide.enable && !config.base.fish.funcs.ide.enable)) ''
             Cannot enable Rofi IDE `base.rofi.ide` without enabling `base.fish.funcs.ide`
             base.rofi.ide.enable = ${toString cfg.ide.enable};
