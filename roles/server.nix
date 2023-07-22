@@ -170,7 +170,7 @@ in
     enable = true;
     # acmeCA = "https://acme-v02.api.letsencrypt.org/directory";
     virtualHosts = {
-      "gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
+      "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
     };
   };
 
