@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins) replaceStrings;
+  inherit (pkgs) writeText;
   inherit (lib)
     assertMsg
     concatStringsSep
-    foldlAttrs
+    mapAttrsToList
     mkEnableOption
     mkIf
     mkMerge
@@ -39,25 +39,23 @@ in
 
   config =
     let
+      fish = "${pkgs.fish}/bin/fish";
+
       command = {
         websites =
           let
-            sanitize = string:
-              replaceStrings
-                [ "'" "\n" "\t" "&" ]
-                [ "\\'" "\\n" "\\t" "\&" ]
-                string;
-            formatSites = acc: name: value: acc ++ [ "${name}|${value}" ];
-            formattedSites = foldlAttrs formatSites [ ] cfg.websites.sites;
-            rofiInput = sanitize (concatStringsSep "\n" formattedSites);
+            separator = "█";
+            websites = mapAttrsToList (name: value: "${name}${separator}${value}") cfg.websites.sites;
+            websitesFile = writeText "rofi-websites" (concatStringsSep "\n" websites);
+            script = writeText "rofi-websites.fish" ''
+              xdg-open (cat ${websitesFile} | column -ts '${separator}' | rofi -dmenu | grep -oP '\S+$')
+            '';
           in
-          ''
-            xdg-open `echo -e '${rofiInput}' | column -ts '|' | rofi -dmenu | grep -oP '\S+$'`
-          '';
+          "${fish} ${script}";
 
         ide =
           let
-            script = pkgs.writeText "rofi-ide.fish" ''
+            script = writeText "rofi-ide.fish" ''
               ide (rofi -dmenu -p 'path' -theme-str 'listview { enabled: false; }')
             '';
           in
@@ -66,9 +64,7 @@ in
             base.rofi.ide.enable = ${toString cfg.ide.enable};
             base.fish.funcs.ide.enable = ${toString config.base.fish.funcs.ide.enable};
           '');
-          ''
-            fish ${script}
-          '';
+          "${fish} ${script}";
       };
     in
     mkIf cfg.enable
