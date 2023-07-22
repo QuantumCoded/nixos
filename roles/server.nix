@@ -95,14 +95,14 @@ in
       ];
     in
     {
-      nomifactory = {
-        inherit jvmOpts;
-        port = 25566;
-        preStart = '''';
-        restart = false;
-        jar = "forge-1.12.2-14.23.5.2860.jar";
-        jre = pkgs.openjdk8;
-      };
+      # nomifactory = {
+      #   inherit jvmOpts;
+      #   port = 25566;
+      #   preStart = '''';
+      #   restart = false;
+      #   jar = "forge-1.12.2-14.23.5.2860.jar";
+      #   jre = pkgs.openjdk8;
+      # };
 
       vanilla = {
         inherit jvmOpts;
