@@ -11,7 +11,7 @@ let
 in
 {
   options.base.dmx-server = {
-    enabe = mkEnableOption "Nondescript Music Server";
+    enable = mkEnableOption "Nondescript Music Server";
     port = mkOption {
       type = types.port;
       default = 6595;
