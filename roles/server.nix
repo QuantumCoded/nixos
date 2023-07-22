@@ -122,7 +122,10 @@ in
   };
 
   networking.firewall = {
-    # allowedTCPPorts = [ 20 21 ];
+    allowedTCPPorts = [
+      # 20 21
+      80 443
+    ];
     # connectionTrackingModules = [ "ftp" ];
   };
 
