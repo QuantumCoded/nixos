@@ -181,7 +181,6 @@ in
     war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
   };
 
-  base.users.jeff.enable = true;
   base.homeBaseConfig.git.enable = true;
 
   system.stateVersion = "23.05";
