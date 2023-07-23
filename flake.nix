@@ -69,6 +69,7 @@
         packages = with pkgs; [
           agenix.packages.${system}.default
           git-lfs
+          just
         ];
       };
     };
