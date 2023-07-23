@@ -169,9 +169,16 @@ in
   services.caddy = {
     enable = true;
     virtualHosts = {
+      "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
       "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
       "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
     };
+  };
+
+  services.airsonic = {
+    jre = pkgs.openjdk11;
+    maxMemory = 2048;
+    war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
   };
 
   base.users.jeff.enable = true;
