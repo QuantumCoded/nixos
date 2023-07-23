@@ -176,6 +176,7 @@ in
   };
 
   services.airsonic = {
+    enable = true;
     jre = pkgs.openjdk11;
     maxMemory = 2048;
     war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
