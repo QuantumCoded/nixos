@@ -2,6 +2,7 @@
 let
   inherit (lib)
     mkEnableOption
+    mkIf
     mkOption
     types
     ;
@@ -18,9 +19,9 @@ in
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     services.sxhkd = {
-      inherit (cfg) enable;
+      enable = true;
 
       keybindings = {
         #

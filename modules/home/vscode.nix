@@ -2,6 +2,7 @@
 let
   inherit (lib)
     mkEnableOption
+    mkIf
     mkOption
     types
     ;
@@ -18,8 +19,8 @@ in
   };
 
   config = {
-    programs.vscode = {
-      inherit (cfg) enable;
+    programs.vscode = mkIf cfg.enable {
+      enable = true;
       package = pkgs.unstable.vscode;
 
       # TODO: there's marketplace extensions as well
