@@ -23,26 +23,29 @@ in
       enable = true;
       package = pkgs.unstable.vscode;
 
-      # TODO: there's marketplace extensions as well
-      extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        matklad.rust-analyzer
-        usernamehw.errorlens
-        eamodio.gitlens
-        serayuzgur.crates
-        tamasfe.even-better-toml
-        grapecity.gc-excelviewer
-        ms-vsliveshare.vsliveshare
-        pkief.material-icon-theme
-        ms-python.python
-        gruntfuggly.todo-tree
-        jock.svg
-
-        # TODO: Manually install these extensions
-        # Prettier TOML
-        # Rhai Language Support
-        # SQLite Viewer
-      ];
+      extensions =
+        with pkgs.vscode-extensions;
+        with pkgs.vscode-marketplace;
+        with pkgs.vscode-marketplace-release;
+        [
+          alefragnani.bookmarks
+          bodil.prettier-toml
+          eamodio.gitlens
+          grapecity.gc-excelviewer
+          gruntfuggly.todo-tree
+          jnoortheen.nix-ide
+          jock.svg
+          mkhl.direnv
+          ms-python.python
+          ms-vsliveshare.vsliveshare
+          pkief.material-icon-theme
+          qwtel.sqlite-viewer
+          rhaiscript.vscode-rhai
+          rust-lang.rust-analyzer
+          serayuzgur.crates
+          tamasfe.even-better-toml
+          usernamehw.errorlens
+        ];
 
       userSettings = {
         # Enable autosave.

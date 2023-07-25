@@ -43,7 +43,6 @@
         "Last.FM" = "https://last.fm";
       };
     };
-    ide.enable = true;
   };
 
   base.sxhkd = {
