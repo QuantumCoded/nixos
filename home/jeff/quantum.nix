@@ -11,9 +11,9 @@
     enable = true;
 
     extraConfig = ''
-      ${pkgs.procps}/bin/pkill sxhkd && sxhkd &
-      ${pkgs.dunst}/bin/dunst &
-      ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../wallpapers/animated.mkv}
+      ${pkgs.procps.outPath}/bin/pkill sxhkd && sxhkd &
+      ${pkgs.dunst.outPath}/bin/dunst &
+      ${pkgs.procps.outPath}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap.outPath}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv.outPath}/bin/mpv -wid WID --loop --no-audio ${../../wallpapers/animated.mkv}
     '';
   };
 

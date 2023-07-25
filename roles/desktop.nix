@@ -14,7 +14,7 @@ in
     owner = "root";
     group = "root";
     capabilities = "cap_sys_resource+ep";
-    source = "${pkgs.noisetorch}/bin/noisetorch";
+    source = "${pkgs.noisetorch.outPath}/bin/noisetorch";
   };
 
   services.xserver = {

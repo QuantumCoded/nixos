@@ -19,7 +19,7 @@ in
         source = ./logo.svg;
 
         onChange = ''
-          ${pkgs.neofetch}/bin/neofetch --clean
+          ${pkgs.neofetch.outPath}/bin/neofetch --clean
         '';
       };
     };

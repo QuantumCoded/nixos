@@ -33,7 +33,7 @@ in
       after = [ "network.target" ];
       serviceConfig = {
         ExecStart = ''
-          ${pkgs.flake.dmx-server}/bin/dmx-server --port ${toString cfg.port}
+          ${pkgs.flake.dmx-server.outPath}/bin/dmx-server --port ${toString cfg.port}
         '';
         Restart = "always";
         User = "dmx";

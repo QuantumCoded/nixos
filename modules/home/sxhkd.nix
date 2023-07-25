@@ -7,7 +7,7 @@ let
     types
     ;
 
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
+  pactl = "${pkgs.pulseaudio.outPath}/bin/pactl";
   cfg = config.base.sxhkd;
 in
 {

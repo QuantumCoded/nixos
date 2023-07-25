@@ -24,7 +24,7 @@ in
 
       functions = {
         ide = mkIf cfg.funcs.ide.enable ''
-          ${pkgs.direnv}/bin/direnv exec $argv[1] code $argv[1..]
+          ${pkgs.direnv.outPath}/bin/direnv exec $argv[1] code $argv[1..]
         '';
       };
     };
