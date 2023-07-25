@@ -116,6 +116,8 @@ in
 
         # Change git lens commit graph layout to be in the editior.
         "gitlens.graph.layout" = "editor";
+        "bookmarks.sideBar.countBadge" = "off";
+        "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
       };
     };
   };
