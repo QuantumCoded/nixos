@@ -52,4 +52,6 @@
 
   base.vscode.enable = true;
   base.vscode.fontSize = 15;
+
+  base.fish.tide.enable = true;
 }
