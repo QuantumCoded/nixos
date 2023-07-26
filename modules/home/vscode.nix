@@ -35,6 +35,7 @@ in
           gruntfuggly.todo-tree
           jnoortheen.nix-ide
           jock.svg
+          kokakiwi.vscode-just
           mkhl.direnv
           ms-python.python
           ms-vsliveshare.vsliveshare
