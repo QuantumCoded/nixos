@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   inherit (lib) concatStringsSep;
 in
@@ -65,8 +65,6 @@ in
 
   base.user.jeff.enable = true;
 
-  # invidious
-  # jellyfin
   # searx
   # syncthing
 
@@ -114,6 +112,8 @@ in
       enable = true;
       domain = "invidious.hydrogen.lan";
     };
+
+    jellyfin.enable = true;
 
     openssh.enable = true;
 
