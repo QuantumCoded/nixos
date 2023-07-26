@@ -118,7 +118,7 @@ in
 
     searx = {
       enable = true;
-
+      package = pkgs.searxng;
       # https://github.com/searx/searx/blob/master/searx/settings.yml
       settings = {
         server = {
