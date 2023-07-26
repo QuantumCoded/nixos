@@ -15,5 +15,4 @@ in
 {
   "wifi_5g.age".publicKeys = everywhere;
   "wifi.age".publicKeys = everywhere;
-  "gitea_db_password.age".publicKeys = [ jeff hydrogen ];
 }  

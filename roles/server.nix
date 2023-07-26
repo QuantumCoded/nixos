@@ -14,8 +14,6 @@ in
     jack.enable = false;
   };
 
-  services.openssh.enable = true;
-
   environment.shells = with pkgs; [ fish ];
   programs.fish.enable = true;
 
@@ -58,7 +56,7 @@ in
   base.boot.enable = true;
   base.flakes.enable = true;
 
-  # FIXME: this needs to be removed when moving to the server
+  # HACK: this needs to be removed when moving to the server
   base.networkmanager.enable = true;
   base.networkmanager.connections = {
     wifi_5g = ../secrets/wifi_5g.age;
@@ -67,119 +65,110 @@ in
 
   base.user.jeff.enable = true;
 
-  base.minecraft.enable = true;
-  base.minecraft.servers =
-    let
-      jvmOpts = concatStringsSep " " [
-        "-server"
-        "-Xms4G"
-        "-Xmx8G"
-        "-XX:+UseG1GC"
-        "-XX:+ParallelRefProcEnabled"
-        "-XX:MaxGCPauseMillis=200"
-        "-XX:+UnlockExperimentalVMOptions"
-        "-XX:+DisableExplicitGC"
-        "-XX:+AlwaysPreTouch"
-        "-XX:G1NewSizePercent=30"
-        "-XX:G1MaxNewSizePercent=40"
-        "-XX:G1HeapRegionSize=8M"
-        "-XX:G1ReservePercent=20"
-        "-XX:G1HeapWastePercent=5"
-        "-XX:G1MixedGCCountTarget=4"
-        "-XX:InitiatingHeapOccupancyPercent=15"
-        "-XX:G1MixedGCLiveThresholdPercent=90"
-        "-XX:G1RSetUpdatingPauseTimePercent=5"
-        "-XX:SurvivorRatio=32"
-        "-XX:+PerfDisableSharedMem"
-        "-XX:MaxTenuringThreshold=1"
-      ];
-    in
-    {
-      # nomifactory = {
-      #   inherit jvmOpts;
-      #   port = 25566;
-      #   preStart = '''';
-      #   restart = false;
-      #   jar = "forge-1.12.2-14.23.5.2860.jar";
-      #   jre = pkgs.openjdk8;
-      # };
-
-      vanilla = {
-        inherit jvmOpts;
-        port = 25565;
-        restart = false;
-        jar = "paperclip.jar";
-      };
-    };
-
-  base.dmx-server.enable = true;
-
-  services.vsftpd = {
-    # enable = true;
-    localUsers = true;
-    userlist = [ "sender" ];
-    writeEnable = true;
-  };
-
-  networking.firewall = {
-    allowedTCPPorts = [
-      # 20 21
-      80 443
-    ];
-    # connectionTrackingModules = [ "ftp" ];
-  };
-
   # ankisyncd
-  # gitea
   # invidious
   # jellyfin
   # searx
   # syncthing
 
-  services.postgresql = {
-    enable = true;
-    authentication = ''
-      local gitea all ident map=gitea-users
-    '';
-    identMap = ''
-      gitea-users gitea gitea
-    '';
+  networking.firewall = {
+    allowedTCPPorts = [
+      # 20 21
+      80
+      443
+    ];
+    # connectionTrackingModules = [ "ftp" ];
   };
 
-  age.secrets.gitea_db_password = {
-    file = ../secrets/gitea_db_password.age;
-    owner = "gitea";
-    group = "gitea";
-  };
-
-  services.gitea = {
-    enable = true;
-    appName = "QuantumCoded Gitea Server";
-    database = {
-      type = "postgres";
-      passwordFile = config.age.secrets.gitea_db_password.path;
+  services = {
+    airsonic = {
+      enable = true;
+      jre = pkgs.openjdk11;
+      maxMemory = 2048;
+      war = "${pkgs.flake.airsonic-advanced.outPath}/webapps/airsonic.war";
     };
-    settings.server = {
-      ROOT_URL = "http://gitea.hydrogen.lan/";
-      DOMAIN = "gitea.hydrogen.lan";
-      HTTP_PORT = 3000;
+
+    caddy = {
+      enable = true;
+      virtualHosts = {
+        "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
+        "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
+        "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
+      };
+    };
+
+    gitea = {
+      enable = true;
+      appName = "QuantumCoded Gitea Server";
+      database = {
+        type = "postgres";
+        passwordFile = config.age.secrets.gitea_db_password.path;
+      };
+      settings.server = {
+        ROOT_URL = "http://gitea.hydrogen.lan/";
+        DOMAIN = "gitea.hydrogen.lan";
+        HTTP_PORT = 3000;
+      };
+    };
+
+    openssh.enable = true;
+
+    vsftpd = {
+      # enable = true;
+      localUsers = true;
+      userlist = [ "sender" ];
+      writeEnable = true;
+      # set the passive ports range here and in firewall
     };
   };
 
-  services.caddy = {
-    enable = true;
-    virtualHosts = {
-      "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
-      "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
-      "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
-    };
-  };
+  base.dmx-server.enable = true;
 
-  services.airsonic = {
+  base.minecraft = {
     enable = true;
-    jre = pkgs.openjdk11;
-    maxMemory = 2048;
-    war = "${pkgs.flake.airsonic-advanced.outPath}/webapps/airsonic.war";
+    servers =
+      let
+        jvmOpts = concatStringsSep " " [
+          "-server"
+          "-Xms4G"
+          "-Xmx8G"
+          "-XX:+UseG1GC"
+          "-XX:+ParallelRefProcEnabled"
+          "-XX:MaxGCPauseMillis=200"
+          "-XX:+UnlockExperimentalVMOptions"
+          "-XX:+DisableExplicitGC"
+          "-XX:+AlwaysPreTouch"
+          "-XX:G1NewSizePercent=30"
+          "-XX:G1MaxNewSizePercent=40"
+          "-XX:G1HeapRegionSize=8M"
+          "-XX:G1ReservePercent=20"
+          "-XX:G1HeapWastePercent=5"
+          "-XX:G1MixedGCCountTarget=4"
+          "-XX:InitiatingHeapOccupancyPercent=15"
+          "-XX:G1MixedGCLiveThresholdPercent=90"
+          "-XX:G1RSetUpdatingPauseTimePercent=5"
+          "-XX:SurvivorRatio=32"
+          "-XX:+PerfDisableSharedMem"
+          "-XX:MaxTenuringThreshold=1"
+        ];
+      in
+      {
+        # nomifactory = {
+        #   inherit jvmOpts;
+        #   port = 25566;
+        #   preStart = '''';
+        #   restart = false;
+        #   jar = "forge-1.12.2-14.23.5.2860.jar";
+        #   jre = pkgs.openjdk8;
+        # };
+
+        vanilla = {
+          inherit jvmOpts;
+          port = 25565;
+          restart = false;
+          jar = "paperclip.jar";
+        };
+      };
   };
 
   base.homeBaseConfig.git.enable = true;
