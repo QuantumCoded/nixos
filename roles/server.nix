@@ -65,7 +65,6 @@ in
 
   base.user.jeff.enable = true;
 
-  # ankisyncd
   # invidious
   # jellyfin
   # searx
@@ -97,6 +96,7 @@ in
         "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
         "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
+        "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
       };
     };
 
@@ -108,6 +108,11 @@ in
         DOMAIN = "gitea.hydrogen.lan";
         HTTP_PORT = 3001;
       };
+    };
+
+    invidious = {
+      enable = true;
+      domain = "invidious.hydrogen.lan";
     };
 
     openssh.enable = true;
