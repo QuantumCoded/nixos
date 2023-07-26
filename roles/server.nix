@@ -65,9 +65,6 @@ in
 
   base.user.jeff.enable = true;
 
-  # searx
-  # syncthing
-
   networking.firewall = {
     allowedTCPPorts = [
       # 20 21
@@ -96,6 +93,7 @@ in
         "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
         "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
         "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
+        "http://syncthing.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8384";
       };
     };
 
@@ -115,6 +113,7 @@ in
     };
 
     jellyfin.enable = true;
+    openssh.enable = true;
 
     searx = {
       enable = true;
@@ -128,7 +127,10 @@ in
       };
     };
 
-    openssh.enable = true;
+    syncthing = {
+      enable = true;
+      # TODO: add devices
+    };
 
     vsftpd = {
       # enable = true;
