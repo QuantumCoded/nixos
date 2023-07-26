@@ -50,3 +50,11 @@ test-nixos host:
 # run build test for a specific Home Manager activation
 test-home-manager user host:
     nix build .#homeConfigurations.{{user}}@{{host}}.activationPackage --dry-run
+
+# rebuild and switch to new system
+switch:
+    sudo nixos-rebuild switch
+
+# rebuild and test new system without boot entry
+try:
+    sudo nixos-rebuild test
