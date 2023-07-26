@@ -95,6 +95,7 @@ in
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
         "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
         "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
+        "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
       };
     };
 
@@ -114,6 +115,18 @@ in
     };
 
     jellyfin.enable = true;
+
+    searx = {
+      enable = true;
+
+      # https://github.com/searx/searx/blob/master/searx/settings.yml
+      settings = {
+        server = {
+          base_url = "http://searx.hydrogen.lan/";
+          # TODO: secret_key = ...;
+        };
+      };
+    };
 
     openssh.enable = true;
 
