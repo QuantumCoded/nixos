@@ -92,6 +92,7 @@ in
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
         "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
         "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
+        "http://jellyfin.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8096";
         "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
         "http://syncthing.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8384";
       };
@@ -122,7 +123,9 @@ in
       settings = {
         server = {
           base_url = "http://searx.hydrogen.lan/";
-          # TODO: secret_key = ...;
+          # HACK: searx won't start without this being set
+          # a secure key should be used and encrypted, but i think that requires encrypting the yml
+          secret_key = "ca612e3566fdfd7cf7efe2b1c9349f461158d07cb78a3750e5c5be686aa8ebdc";
         };
       };
     };
