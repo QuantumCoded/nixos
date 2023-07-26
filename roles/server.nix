@@ -88,10 +88,13 @@ in
       war = "${pkgs.flake.airsonic-advanced.outPath}/webapps/airsonic.war";
     };
 
+    ankisyncd.enable = true;
+
     caddy = {
       enable = true;
       virtualHosts = {
         "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
+        "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
         "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
       };
