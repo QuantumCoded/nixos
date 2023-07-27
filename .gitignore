@@ -1,2 +1,4 @@
 .direnv
 result
+keys/*
+!keys/*.pub.*
