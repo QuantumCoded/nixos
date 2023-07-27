@@ -39,6 +39,7 @@
         inherit specialArgs system;
         modules = [
           inputs.agenix.nixosModules.default
+          ./common.nix
           ./overlays.nix
           ./modules/nixos
           config
@@ -48,7 +49,12 @@
       mkHome = config: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = specialArgs;
-        modules = [ ./overlays.nix ./modules/home config ];
+        modules = [
+          ./common.nix
+          ./overlays.nix
+          ./modules/home
+          config
+        ];
       };
     in
     {
@@ -70,6 +76,7 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           agenix.packages.${system}.default
+          colmena
           deploy-rs
           git-lfs
           just
@@ -87,8 +94,31 @@
             user = "root";
             sshUser = "jeff";
             sshOpts = [ "-t" ];
-            path = deploy-rs.lib.${system}.activate.nixos inputs.self.nixosConfigurations.quantum;
+            path = deploy-rs.lib.${system}.activate.nixos inputs.self.nixosConfigurations.hydrogen;
           };
+        };
+      };
+
+      colmena = {
+        meta = {
+          nixpkgs = pkgs;
+          inherit specialArgs;
+        };
+
+        hydrogen = {
+          deployment = {
+            targetHost = "hydrogen.lan";
+            buildOnTarget = true;
+          };
+
+          imports = [
+            agenix.nixosModules.default
+
+            ./common.nix
+            ./overlays.nix
+            ./modules/nixos
+            ./hosts/hydrogen
+          ];
         };
       };
     };
