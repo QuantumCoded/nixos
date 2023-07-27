@@ -141,8 +141,22 @@ in
       userlist = [ "sender" ];
       writeEnable = true;
       # set the passive ports range here and in firewall
+      # add a symlink in systemd tmpfiles
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/airsonic - airsonic airsonic - /data/services/airsonic"
+    "L+ /var/lib/ankisyncd - - - - /data/services/ankisyncd"
+    "L+ /var/lib/caddy - caddy caddy - /data/services/caddy"
+    "L+ /var/lib/dmx - dmx dmx - /data/services/deemix"
+    "L+ /var/lib/gitea - gitea gitea - /data/services/gitea"
+    "L+ /var/lib/jellyfin - jellyfin jellyfin - /data/services/jellyfin"
+    "L+ /var/lib/minecraft - minecraft minecraft - /data/services/minecraft"
+    # TODO: redis for searx
+    # TODO: postgres for invidious and friends
+    # TODO: symlink music dir into place
+  ];
 
   base.dmx-server.enable = true;
 
