@@ -3,6 +3,7 @@
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
+    deploy-rs.url = "github:serokell/deploy-rs";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -72,6 +73,22 @@
           git-lfs
           just
         ];
+
+        shellHook = ''
+          export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
+        '';
+      };
+
+      deploy.nodes = {
+        hydrogen = {
+          hostname = "hydrogen.lan";
+          profiles.system = {
+            user = "root";
+            sshUser = "jeff";
+            sshOpts = [ "-t" ];
+            path = deploy-rs.lib.${system}.activate.nixos inputs.self.nixosConfigurations.quantum;
+          };
+        };
       };
     };
 }
