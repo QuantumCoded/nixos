@@ -150,7 +150,8 @@ in
     "L+ /var/lib/ankisyncd - - - - /data/services/ankisyncd"
     "L+ /var/lib/caddy - caddy caddy - /data/services/caddy"
     "L+ /var/lib/dmx - dmx dmx - /data/services/deemix"
-    "L+ /var/lib/gitea - gitea gitea - /data/services/gitea"
+    # HACK: disable this to fix issue with "unsafe path transition"
+    # "L+ /var/lib/gitea - gitea gitea - /data/services/gitea"
     "L+ /var/lib/jellyfin - jellyfin jellyfin - /data/services/jellyfin"
     "L+ /var/lib/minecraft - minecraft minecraft - /data/services/minecraft"
     # TODO: redis for searx
