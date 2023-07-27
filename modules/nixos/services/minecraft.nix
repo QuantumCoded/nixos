@@ -41,12 +41,13 @@ in
 
   config = mkIf cfg.enable {
     # from https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/games/minecraft-server.nix
+    users.groups.minecraft = {};
     users.users.minecraft = {
       description = "Minecraft server service user";
       home = cfg.dataDir;
       createHome = true;
       isSystemUser = true;
-      group = "nogroup";
+      group = "minecraft";
     };
 
     systemd.sockets =

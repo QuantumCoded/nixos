@@ -19,12 +19,13 @@ in
   };
 
   config = mkIf cfg.enable {
+    users.groups.dmx = {};
     users.users.dmx = {
       description = "Nondescript Music Server Service User";
       home = "/var/lib/dmx";
       createHome = true;
       isSystemUser = true;
-      group = "nogroup";
+      group = "dmx";
     };
 
     systemd.services.dmx-server = {
