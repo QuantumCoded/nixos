@@ -23,4 +23,6 @@
       HDMI-0 = [ "P" ];
     };
   };
+
+  nix.settings.trusted-users = [ "jeff" ]; 
 }
