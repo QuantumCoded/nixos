@@ -70,6 +70,7 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           agenix.packages.${system}.default
+          deploy-rs
           git-lfs
           just
         ];
