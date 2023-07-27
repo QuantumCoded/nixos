@@ -146,14 +146,14 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "L+ /var/lib/airsonic - airsonic airsonic - /data/services/airsonic"
+    "L+ /var/lib/airsonic - - - - /data/services/airsonic"
     "L+ /var/lib/ankisyncd - - - - /data/services/ankisyncd"
-    "L+ /var/lib/caddy - caddy caddy - /data/services/caddy"
-    "L+ /var/lib/dmx - dmx dmx - /data/services/deemix"
+    "L+ /var/lib/caddy - - - - /data/services/caddy"
+    "L+ /var/lib/dmx - - - - /data/services/deemix"
     # HACK: disable this to fix issue with "unsafe path transition"
     # "L+ /var/lib/gitea - gitea gitea - /data/services/gitea"
-    "L+ /var/lib/jellyfin - jellyfin jellyfin - /data/services/jellyfin"
-    "L+ /var/lib/minecraft - minecraft minecraft - /data/services/minecraft"
+    "L+ /var/lib/jellyfin - - - - /data/services/jellyfin"
+    "L+ /var/lib/minecraft - - - - /data/services/minecraft"
     # TODO: redis for searx
     # TODO: postgres for invidious and friends
     # TODO: symlink music dir into place
