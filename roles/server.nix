@@ -82,7 +82,7 @@ in
       war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
 
-    ankisyncd.enable = true;
+    # ankisyncd.enable = true;
 
     caddy = {
       enable = true;
