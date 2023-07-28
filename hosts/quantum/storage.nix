@@ -26,14 +26,15 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt" = {
-    device = "/dev/disk/by-label/external";
-    fsType = "ext4";
-    options = [
-      "x-systemd.automount"
-      "noauto"
-    ];
-  };
+  # FIXME: things don't like it when this drive doesn't exist
+  # fileSystems."/mnt" = {
+  #   device = "/dev/disk/by-label/external";
+  #   fsType = "ext4";
+  #   options = [
+  #     "x-systemd.automount"
+  #     "noauto"
+  #   ];
+  # };
 
   fileSystems."/nfs/hydrogen" = {
     device = "docker.vmlan:/data";
