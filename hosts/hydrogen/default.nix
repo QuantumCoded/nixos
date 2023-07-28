@@ -2,20 +2,27 @@
   imports = [
     ../../roles/server.nix
 
-    ../odyssey/hardware.nix
-    ../odyssey/storage.nix
+    ./hardware.nix
+    ./storage.nix
   ];
 
-  networking.hostName = "hydrogen";
-
-  fileSystems."/data" = {
-    device = "docker.vmlan:/data";
-    fsType = "nfs";
-    options = [
-      "x-systemd.automount"
-      "noauto"
-    ];
-  };
+  networking =
+    let
+      addresses = [
+        { address = "10.0.0.2"; prefixLength = 16; }
+      ];
+    in
+    {
+      hostName = "hydrogen";
+      defaultGateway = "10.0.0.1";
+      nameservers = [ "10.0.0.1" ];
+      interfaces = {
+        eth1.ipv4 = { inherit addresses; };
+        eth2.ipv4 = { inherit addresses; };
+        eth3.ipv4 = { inherit addresses; };
+        eth4.ipv4 = { inherit addresses; };
+      };
+    };
 
   users.users.jeff.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO0Z+jY49Owc0MeSyZLUgBdfct6PFEUWwvBfBmz0Cyzn"
