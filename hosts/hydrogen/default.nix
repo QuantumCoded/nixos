@@ -7,11 +7,11 @@
   ];
 
   networking =
-    let
-      addresses = [
-        { address = "10.0.0.2"; prefixLength = 16; }
-      ];
-    in
+    # let
+    #   addresses = [
+    #     { address = "10.0.0.2"; prefixLength = 16; }
+    #   ];
+    # in
     {
       hostName = "hydrogen";
       useDHCP = false;
