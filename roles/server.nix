@@ -79,7 +79,7 @@ in
       enable = true;
       jre = pkgs.openjdk11;
       maxMemory = 2048;
-      war = "${pkgs.flake.airsonic-advanced.outPath}/webapps/airsonic.war";
+      war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
 
     ankisyncd.enable = true;
