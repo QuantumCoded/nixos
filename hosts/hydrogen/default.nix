@@ -17,12 +17,12 @@
       useDHCP = false;
       defaultGateway = "10.0.0.1";
       nameservers = [ "10.0.0.1" ];
-      interfaces = {
-        eth1.ipv4 = { inherit addresses; };
-        eth2.ipv4 = { inherit addresses; };
-        eth3.ipv4 = { inherit addresses; };
-        eth4.ipv4 = { inherit addresses; };
-      };
+      # interfaces = {
+      #   eth1.ipv4 = { address = "10.0.0.2"; prefixLength = 16; };
+      #   eth2.ipv4 = { address = "10.0.0.2"; prefixLength = 16; };
+      #   eth3.ipv4 = { address = "10.0.0.2"; prefixLength = 16; };
+      #   eth4.ipv4 = { address = "10.0.0.2"; prefixLength = 16; };
+      # };
     };
 
   users.users.jeff.openssh.authorizedKeys.keys = [
