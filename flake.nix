@@ -92,7 +92,7 @@
           hostname = "hydrogen.lan";
           profiles.system = {
             user = "root";
-            sshUser = "jeff";
+            sshUser = "root";
             sshOpts = [ "-t" ];
             path = deploy-rs.lib.${system}.activate.nixos inputs.self.nixosConfigurations.hydrogen;
           };
