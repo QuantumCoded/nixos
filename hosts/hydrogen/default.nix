@@ -14,6 +14,7 @@
     in
     {
       hostName = "hydrogen";
+      useDHCP = false;
       defaultGateway = "10.0.0.1";
       nameservers = [ "10.0.0.1" ];
       interfaces = {
