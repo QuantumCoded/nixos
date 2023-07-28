@@ -67,6 +67,7 @@ in
       443
       25565
       25566
+      19132
     ];
     # connectionTrackingModules = [ "ftp" ];
   };
