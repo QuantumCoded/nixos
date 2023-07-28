@@ -3,6 +3,7 @@ let
   inherit (lib)
     mapAttrs
     mkEnableOption
+    mkIf
     mkOption
     types
     ;
@@ -26,8 +27,8 @@ in
     };
   };
 
-  config = {
-    networking.networkmanager.enable = cfg.enable;
+  config = mkIf cfg.enable {
+    networking.networkmanager.enable = true;
     age.secrets = mapAttrs mkConnection cfg.connections;
   };
 }
