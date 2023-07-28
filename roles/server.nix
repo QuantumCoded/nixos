@@ -56,12 +56,7 @@ in
   base.boot.enable = true;
   base.flakes.enable = true;
 
-  # HACK: this needs to be removed when moving to the server
-  base.networkmanager.enable = true;
-  base.networkmanager.connections = {
-    wifi_5g = ../secrets/wifi_5g.age;
-    wifi = ../secrets/wifi.age;
-  };
+  networking.networkmanager.enable = true;
 
   base.user.jeff.enable = true;
 
