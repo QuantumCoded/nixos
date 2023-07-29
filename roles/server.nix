@@ -69,6 +69,8 @@ in
       25566
       19132
     ];
+
+    allowedUDPPorts = [ 19132 ];
     # connectionTrackingModules = [ "ftp" ];
   };
 
