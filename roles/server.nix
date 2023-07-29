@@ -186,14 +186,12 @@ in
         ];
       in
       {
-        # nomifactory = {
-        #   inherit jvmOpts;
-        #   port = 25566;
-        #   preStart = '''';
-        #   restart = false;
-        #   jar = "forge-1.12.2-14.23.5.2860.jar";
-        #   jre = pkgs.openjdk8;
-        # };
+        nomifactory = {
+          inherit jvmOpts;
+          port = 25566;
+          jar = "forge-1.12.2-14.23.5.2860.jar";
+          jre = pkgs.openjdk8;
+        };
 
         vanilla = {
           inherit jvmOpts;
@@ -201,6 +199,31 @@ in
           jar = "paperclip.jar";
         };
       };
+  };
+
+  networking.firewall.interfaces.luni.allowedTCPPorts = [ 25566 ];
+  networking.wireguard.interfaces.luni = {
+    ips = [
+      "fd01:1:a1:69::1"
+      "10.51.0.16"
+      # "10.51.12.0/24" -- later
+    ];
+
+    privateKeyFile = "/var/lib/wireguard/privatekey";
+    listenPort = 51820;
+    peers = [{
+        publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
+        allowedIPs = ["fd01:1:a1::/48" "10.51.0.0/24"];
+        endpoint = "unallocatedspace.dev:51820";
+    }];
+    postSetup = ''
+      ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
+      ${pkgs.iproute2}/bin/ip route add 10.51.0.0/24 dev luni
+    '';
+    postShutdown = ''
+      ${pkgs.iproute2}/bin/ip route del fd01:1:a1::/48 dev luni
+      ${pkgs.iproute2}/bin/ip route del 10.51.0.0/24 dev luni
+    '';
   };
 
   base.homeBaseConfig.git.enable = true;
