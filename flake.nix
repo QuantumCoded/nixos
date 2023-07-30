@@ -38,7 +38,7 @@
       mkNixos = system: config: nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
         modules = [
-          inputs.agenix.nixosModules.default
+          agenix.nixosModules.default
           ./common.nix
           ./overlays.nix
           ./modules/nixos
@@ -94,7 +94,7 @@
             user = "root";
             sshUser = "root";
             sshOpts = [ "-t" ];
-            path = deploy-rs.lib.${system}.activate.nixos inputs.self.nixosConfigurations.hydrogen;
+            path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.hydrogen;
           };
         };
       };
