@@ -1,0 +1,40 @@
+--- a/bin/nixos-rebuild	1970-01-01 01:00:01.000000000 +0100
++++ b/bin/nomos-rebuild	1970-01-01 01:00:01.000000000 +0100
+@@ -254,10 +255,10 @@
+     logVerbose "Building in flake mode."
+     if [[ -z "$buildHost" && -z "$targetHost" && "$action" != switch && "$action" != boot && "$action" != test && "$action" != dry-activate ]]
+     then
+-        runCmd nix "${flakeFlags[@]}" build "$@"
++        runCmd nom build "${flakeFlags[@]}" "$@"
+         readlink -f ./result
+     elif [ -z "$buildHost" ]; then
+-        runCmd nix "${flakeFlags[@]}" build "$@" --out-link "${tmpDir}/result"
++        runCmd nom build "${flakeFlags[@]}" "$@" --out-link "${tmpDir}/result"
+         readlink -f "${tmpDir}/result"
+     else
+         local attr="$1"
+@@ -389,12 +389,12 @@
+ # Re-execute nixos-rebuild from the Nixpkgs tree.
+ if [[ -z $_NIXOS_REBUILD_REEXEC && -n $canRun && -z $fast ]]; then
+     if [[ -z $flake ]]; then
+-        if p=$(runCmd nix-build --no-out-link --expr 'with import <nixpkgs/nixos> {}; config.system.build.nixos-rebuild' "${extraBuildFlags[@]}"); then
++        if p=$(runCmd nix-build --no-out-link --expr 'with import <nixpkgs/nixos> {}; pkgs.nomos-rebuild' "${extraBuildFlags[@]}"); then
+             SHOULD_REEXEC=1
+         fi
+     else
+-        runCmd nix "${flakeFlags[@]}" build --out-link "${tmpDir}/nixos-rebuild" "$flake#$flakeAttr.config.system.build.nixos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
+-        if p=$(readlink -e "${tmpDir}/nixos-rebuild"); then
++        runCmd nom build "${flakeFlags[@]}" --out-link "${tmpDir}/nomos-rebuild" "$flake#$flakeAttr.pkgs.nomos-rebuild" "${extraBuildFlags[@]}" "${lockFlags[@]}"
++        if p=$(readlink -e "${tmpDir}/nomos-rebuild"); then
+             SHOULD_REEXEC=1
+         fi
+     fi
+@@ -400,7 +401,7 @@
+         export _NIXOS_REBUILD_REEXEC=1
+         # Manually call cleanup as the EXIT trap is not triggered when using exec
+         cleanup
+-        runCmd exec "$p/bin/nixos-rebuild" "${origArgs[@]}"
++        runCmd exec "$p/bin/nomos-rebuild" "${origArgs[@]}"
+         exit 1
+     fi
+ fi
