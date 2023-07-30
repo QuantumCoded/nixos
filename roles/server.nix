@@ -113,7 +113,11 @@ in
       domain = "invidious.hydrogen.lan";
     };
 
-    jellyfin.enable = true;
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
+
     openssh.enable = true;
 
     searx = {
