@@ -18,8 +18,8 @@ in
     };
   };
 
-  config = {
-    programs.vscode = mkIf cfg.enable {
+  config = mkIf cfg.enable {
+    programs.vscode = {
       enable = true;
       package = pkgs.unstable.vscode;
 
