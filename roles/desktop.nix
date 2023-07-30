@@ -114,9 +114,7 @@
     };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   base.boot.enable = true;
   base.flakes.enable = true;
@@ -131,6 +129,8 @@
   base.user.jeff.baseConfig = {
     fish.tide.enable = true;
   };
+
+  base.waybar.enable = true;
 
   base.direnv.enable = true;
 
