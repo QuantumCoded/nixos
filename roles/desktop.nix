@@ -130,8 +130,6 @@
     fish.tide.enable = true;
   };
 
-  base.waybar.enable = true;
-
   base.direnv.enable = true;
 
   system.stateVersion = "23.05";
