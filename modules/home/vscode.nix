@@ -21,7 +21,7 @@ in
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = pkgs.unstable.vscode;
+      package = pkgs.unstable.vscodium;
 
       extensions =
         with pkgs.vscode-extensions;
