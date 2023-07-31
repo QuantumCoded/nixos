@@ -1,4 +1,9 @@
 {
+  documentation.nixos = {
+    includeAllModules = true;
+    options.warningsAreErrors = false;
+  };
+
   programs.ssh.knownHosts = {
     hydrogen = {
       extraHostNames = [ "hydrogen.lan" ];
