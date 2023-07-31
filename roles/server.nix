@@ -65,6 +65,7 @@ in
       # 20 21
       80
       443
+      2049
       25565
       25566
       19132
@@ -116,6 +117,13 @@ in
     jellyfin = {
       enable = true;
       openFirewall = true;
+    };
+
+    nfs.server = {
+      enable = true;
+      exports = ''
+        /data    10.0.0.0/16(insecure,rw,sync,no_subtree_check)
+      '';
     };
 
     openssh.enable = true;
@@ -216,9 +224,9 @@ in
     privateKeyFile = "/var/lib/wireguard/privatekey";
     listenPort = 51820;
     peers = [{
-        publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
-        allowedIPs = ["fd01:1:a1::/48" "10.51.0.0/24"];
-        endpoint = "unallocatedspace.dev:51820";
+      publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
+      allowedIPs = [ "fd01:1:a1::/48" "10.51.0.0/24" ];
+      endpoint = "unallocatedspace.dev:51820";
     }];
     postSetup = ''
       ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
