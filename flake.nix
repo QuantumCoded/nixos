@@ -63,13 +63,13 @@
 
       nixosConfigurations = {
         hydrogen = mkNixos "x86_64-linux" ./hosts/hydrogen;
-        # odyssey = import ./hosts/odyssey specialArgs;
+        odyssey = mkNixos "x86_64-linux" ./hosts/odyssey;
         quantum = mkNixos "x86_64-linux" ./hosts/quantum;
       };
 
       homeConfigurations = {
         "jeff@hydrogen" = mkHome ./home/jeff/hydrogen.nix;
-        # "jeff@odyssey" = mkHome [ (import ./home/jeff/odyssey.nix moduleArgs) ];
+        "jeff@odyssey" = mkHome ./home/jeff/odyssey.nix;
         "jeff@quantum" = mkHome ./home/jeff/quantum.nix;
       };
 

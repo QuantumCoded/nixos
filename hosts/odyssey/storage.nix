@@ -11,17 +11,15 @@
     fsType = "vfat";
   };
 
-  /*FIXME: enable this again later
-    fileSystems."/nfs/hydrogen" = {
-      device = "docker.vmlan:/data";
-      fsType = "nfs";
-      options = [
-        "x-systemd.automount"
-        "noauto"
-        "x-systemd.idle-timeout=600"
-      ];
-    };
-  */
+  fileSystems."/nfs/hydrogen" = {
+    device = "hydrogen.lan:/data";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600"
+    ];
+  };
 
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
