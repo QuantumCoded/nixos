@@ -50,7 +50,6 @@
         inherit pkgs;
         extraSpecialArgs = specialArgs;
         modules = [
-          ./common.nix
           ./overlays.nix
           ./modules/home
           config
