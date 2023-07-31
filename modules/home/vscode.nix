@@ -119,6 +119,7 @@ in
         "gitlens.graph.layout" = "editor";
         "bookmarks.sideBar.countBadge" = "off";
         "terminal.integrated.shellIntegration.enabled" = false;
+        "files.exclude"."**/.git" = false;
       };
     };
   };
