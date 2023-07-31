@@ -37,7 +37,7 @@
   # };
 
   fileSystems."/nfs/hydrogen" = {
-    device = "docker.vmlan:/data";
+    device = "hydrogen.lan:/data";
     fsType = "nfs";
     options = [
       "x-systemd.automount"
