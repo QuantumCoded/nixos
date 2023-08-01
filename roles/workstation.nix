@@ -114,6 +114,13 @@
       LC_TELEPHONE = defaultLocale;
       LC_TIME = defaultLocale;
     };
+    inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
