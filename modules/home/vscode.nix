@@ -44,6 +44,7 @@ in
           rhaiscript.vscode-rhai
           rust-lang.rust-analyzer
           serayuzgur.crates
+          takumii.markdowntable
           tamasfe.even-better-toml
           usernamehw.errorlens
         ];
