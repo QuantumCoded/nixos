@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib)
     mkEnableOption
@@ -15,6 +15,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
+      package = pkgs.raccoon.kitty; # HACK: this needs to be updated when fixed
       # TODO: maybe font should go somewhere else, no promise Nerdfonts are installed in this module
       font.name = "MesloLG Nerd Font";
       settings = {
