@@ -2,8 +2,8 @@
 
 {
   hardware.opengl = {
-    # TODO: might need to downgrade for kitty if it's not fixed yet
     enable = true;
+    package = pkgs.raccoon.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };
