@@ -24,5 +24,5 @@
     };
   };
 
-  nix.settings.trusted-users = [ "jeff" ]; 
+  nix.settings.trusted-users = [ "jeff" ];
 }
