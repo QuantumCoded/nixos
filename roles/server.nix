@@ -161,13 +161,13 @@ in
     "/var/lib/airsonic" = { device = "/data/services/airsonic"; options = [ "bind" ]; };
     "/var/lib/ankisyncd" = { device = "/data/services/ankisyncd"; options = [ "bind" ]; };
     "/var/lib/caddy" = { device = "/data/services/caddy"; options = [ "bind" ]; };
-    "/var/lib/dmx" = { device = "/data/services/deemix"; options = [ "bind" ]; };
+    "/var/lib/deemix" = { device = "/data/services/deemix"; options = [ "bind" ]; };
     "/var/lib/gitea" = { device = "/data/services/gitea"; options = [ "bind" ]; };
     "/var/lib/jellyfin" = { device = "/data/services/jellyfin"; options = [ "bind" ]; };
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
   };
 
-  base.dmx-server.enable = true;
+  base.deemix-server.enable = true;
 
   base.minecraft = {
     enable = true;

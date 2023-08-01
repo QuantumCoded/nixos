@@ -7,11 +7,11 @@ let
     mkIf
     ;
 
-  cfg = config.base.dmx-server;
+  cfg = config.base.deemix-server;
 in
 {
-  options.base.dmx-server = {
-    enable = mkEnableOption "Nondescript Music Server";
+  options.base.deemix-server = {
+    enable = mkEnableOption "Deemix Server";
     port = mkOption {
       type = types.port;
       default = 6595;
@@ -19,26 +19,26 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.groups.dmx = { };
-    users.users.dmx = {
-      description = "Nondescript Music Server Service User";
-      home = "/var/lib/dmx";
+    users.groups.deemix = { };
+    users.users.deemix = {
+      description = "Deemix Server User";
+      home = "/var/lib/deemix";
       createHome = true;
       isSystemUser = true;
-      group = "dmx";
+      group = "deemix";
     };
 
-    systemd.services.dmx-server = {
-      description = "Nondescript Music Server :)";
+    systemd.services.deemix-server = {
+      description = "Deemix Server";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       serviceConfig = {
         ExecStart = ''
-          ${pkgs.flake.dmx-server}/bin/dmx-server --port ${toString cfg.port}
+          ${pkgs.flake.deemix-server}/bin/deemix-server --port ${toString cfg.port}
         '';
         Restart = "always";
-        User = "dmx";
-        WorkingDirectory = "/var/lib/dmx";
+        User = "deemix";
+        WorkingDirectory = "/var/lib/deemix";
         StandardOutput = "journal";
         StandardError = "journal";
       };

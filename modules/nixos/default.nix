@@ -1,6 +1,6 @@
 {
   imports = [
-    ./services/dmx-server.nix
+    ./services/deemix-server.nix
     ./services/minecraft.nix
 
     ./boot.nix
