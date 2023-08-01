@@ -32,7 +32,7 @@ in
         "super + d" = "discord";
 
         # vscode
-        "super + v" = "code";
+        "super + v" = "codium";
 
         # firefox
         "super + w" = "firefox";
