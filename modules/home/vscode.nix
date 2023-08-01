@@ -121,6 +121,8 @@ in
         "bookmarks.sideBar.countBadge" = "off";
         "terminal.integrated.shellIntegration.enabled" = false;
         "files.exclude"."**/.git" = false;
+        "gitlens.showWelcomeOnInstall" = false;
+        "gitlens.showWhatsNewAfterUpgrades" = false;
       };
     };
   };
