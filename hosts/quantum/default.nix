@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../roles/desktop.nix
+    ../../roles/workstation.nix
 
     ./hardware.nix
     ./nvidia.nix
