@@ -79,7 +79,7 @@ in
     airsonic = {
       enable = true;
       jre = pkgs.openjdk11;
-      maxMemory = 2048;
+      maxMemory = 8192;
       war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
 
