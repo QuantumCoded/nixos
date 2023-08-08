@@ -24,5 +24,7 @@
     };
   };
 
+  hardware.bluetooth.enable = true;
+
   nix.settings.trusted-users = [ "jeff" ];
 }
