@@ -49,6 +49,8 @@
   environment.shells = with pkgs; [ fish ];
   programs.fish.enable = true;
 
+  virtualisation.waydroid.enable = true;
+
   users.users.jeff = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
