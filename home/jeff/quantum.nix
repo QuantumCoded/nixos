@@ -16,9 +16,6 @@
       ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../wallpapers/animated.mkv}
     '';
   };
-
-  services.pass-secret-service.enable = true;
-
   base.dunst = {
     enable = true;
     origin = "bottom-left";
