@@ -171,6 +171,7 @@ in
     syncthing = {
       enable = true;
       # TODO: add devices
+      extraOptions.gui.insecureSkipHostcheck = true;
     };
 
     vsftpd = {
