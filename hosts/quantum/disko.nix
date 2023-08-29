@@ -1,9 +1,9 @@
 {
   disko.devices = {
     disk = {
-      maindisk = {
+      bootdisk = {
         type = "disk";
-        device = "/dev/disk/by-id/ata-ST6000VN0041-2EL11C_ZA1GHB1C";
+        device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_500GB_S598NE0M833873M";
         content = {
           type = "gpt";
           partitions = {
@@ -26,6 +26,16 @@
                 resumeDevice = true; # resume from hiberation from this device
               };
             };
+          };
+        };
+      };
+
+      maindisk = {
+        type = "disk";
+        device = "/dev/disk/by-id/ata-ST6000VN0041-2EL11C_ZA1GHB1C";
+        content = {
+          type = "gpt";
+          partitions = {
             root = {
               size = "100%";
               content = {
