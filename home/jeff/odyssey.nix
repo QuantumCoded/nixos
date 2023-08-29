@@ -16,6 +16,8 @@
     '';
   };
 
+  services.pass-secret-service.enable = true;
+
   base = {
     dunst.enable = true;
     firefox.enable = true;
