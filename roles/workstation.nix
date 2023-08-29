@@ -21,6 +21,7 @@
   };
 
   services.xserver.windowManager.bspwm.enable = true;
+  services.xserver.windowManager.twm.enable = true;
 
   services.printing = {
     enable = true;
@@ -139,21 +140,26 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  base.boot.enable = true;
-  base.flakes.enable = true;
+  base = {
+    boot.enable = true;
+    direnv.enable = true;
+    flakes.enable = true;
 
-  base.networkmanager.enable = true;
-  base.networkmanager.connections = {
-    wifi_5g = ../secrets/wifi_5g.age;
-    wifi = ../secrets/wifi.age;
+    networkmanager = {
+      enable = true;
+      connections = {
+        wifi_5g = ../secrets/wifi_5g.age;
+        wifi = ../secrets/wifi.age;
+      };
+    };
+
+    # tuigreet.enable = true;
+
+    user.jeff = {
+      enable = true;
+      baseConfig.fish.tide.enable = true;
+    };
   };
-
-  base.user.jeff.enable = true;
-  base.user.jeff.baseConfig = {
-    fish.tide.enable = true;
-  };
-
-  base.direnv.enable = true;
 
   system.stateVersion = "23.05";
 }
