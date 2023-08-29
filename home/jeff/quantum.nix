@@ -17,6 +17,8 @@
     '';
   };
 
+  services.pass-secret-service.enable = true;
+
   base.dunst = {
     enable = true;
     origin = "bottom-left";
