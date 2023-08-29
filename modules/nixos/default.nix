@@ -8,5 +8,6 @@
     ./flakes.nix
     ./home-manager.nix
     ./networkmanager.nix
+    ./tuigreet.nix
   ];
 }
