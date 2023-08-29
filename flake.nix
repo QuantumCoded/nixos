@@ -4,6 +4,7 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     deploy-rs.url = "github:serokell/deploy-rs";
+    disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -39,6 +40,7 @@
         inherit specialArgs system;
         modules = [
           agenix.nixosModules.default
+          disko.nixosModules.disko
           ./common.nix
           ./overlays.nix
           ./modules/nixos

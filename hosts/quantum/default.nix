@@ -4,6 +4,7 @@
   imports = [
     ../../roles/workstation.nix
 
+    ./disko.nix
     ./hardware.nix
     ./nvidia.nix
     ./storage.nix
