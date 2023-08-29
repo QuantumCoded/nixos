@@ -71,7 +71,11 @@ in
       19132
     ];
 
-    allowedUDPPorts = [ 19132 ];
+    allowedUDPPorts = [
+      1900
+      4041
+      19132
+    ];
     # connectionTrackingModules = [ "ftp" ];
   };
 
