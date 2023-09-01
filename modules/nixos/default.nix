@@ -1,5 +1,6 @@
 {
   imports = [
+    ./nvidia
     ./services/deemix-server.nix
     ./services/minecraft.nix
 
