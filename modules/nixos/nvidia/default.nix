@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib)
+    filter
     mkEnableOption
     mkIf
     mkOption
     pipe
     types
     zipLists
-    filter
     ;
 
   patchNvenc = import ./nvenc-unlock.nix;
