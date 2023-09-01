@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   inherit (lib)
     filter
@@ -10,18 +10,20 @@ let
     zipLists
     ;
 
-  patchNvenc = import ./nvenc-unlock.nix;
-  patchNvfbc = import ./nvfbc-unlock.nix;
+  inherit (self.outputs.lib)
+    nvencUnlock
+    nvfbcUnlock
+    ;
 
   cfg = config.base.nvidia;
 
-  patchBools = [ cfg.patchNvenc cfg.patchNvfbc ];
-  patchFuncs = [ patchNvenc patchNvfbc ];
+  patchBools = with cfg; [ patchNvenc patchNvfbc ];
+  patchFuncs = [ nvencUnlock nvfbcUnlock ];
 
-  enabledPatches = map (zipped: zipped.snd)
-    (filter
-      (zipped: zipped.fst)
-      (zipLists patchBools patchFuncs));
+  enabledPatches = pipe (zipLists patchBools patchFuncs) [
+    (filter (zipped: zipped.fst))
+    (map (zipped: zipped.snd))
+  ];
 
   patchDriver = driver: pipe driver enabledPatches;
 in
