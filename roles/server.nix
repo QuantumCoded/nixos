@@ -240,29 +240,38 @@ in
       };
   };
 
-  networking.firewall.interfaces.luni.allowedTCPPorts = [ 25566 ];
-  networking.wireguard.interfaces.luni = {
-    ips = [
-      "fd01:1:a1:69::1"
-      "10.51.0.16"
-      # "10.51.12.0/24" -- later
+  networking = {
+    interfaces.eno1.ipv4.addresses = [
+      { address = "10.0.0.2"; prefixLength = 16; }
     ];
 
-    privateKeyFile = "/var/lib/wireguard/privatekey";
-    listenPort = 51820;
-    peers = [{
-      publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
-      allowedIPs = [ "fd01:1:a1::/48" "10.51.0.0/24" ];
-      endpoint = "unallocatedspace.dev:51820";
-    }];
-    postSetup = ''
-      ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
-      ${pkgs.iproute2}/bin/ip route add 10.51.0.0/24 dev luni
-    '';
-    postShutdown = ''
-      ${pkgs.iproute2}/bin/ip route del fd01:1:a1::/48 dev luni
-      ${pkgs.iproute2}/bin/ip route del 10.51.0.0/24 dev luni
-    '';
+    defaultGateway = "10.0.0.1";
+    nameservers = [ "10.0.0.1" ];
+
+    firewall.interfaces.luni.allowedTCPPorts = [ 25566 ];
+    wireguard.interfaces.luni = {
+      ips = [
+        "fd01:1:a1:69::1"
+        "10.51.0.16"
+        # "10.51.12.0/24" -- later
+      ];
+
+      privateKeyFile = "/var/lib/wireguard/privatekey";
+      listenPort = 51820;
+      peers = [{
+        publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
+        allowedIPs = [ "fd01:1:a1::/48" "10.51.0.0/24" ];
+        endpoint = "unallocatedspace.dev:51820";
+      }];
+      postSetup = ''
+        ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
+        ${pkgs.iproute2}/bin/ip route add 10.51.0.0/24 dev luni
+      '';
+      postShutdown = ''
+        ${pkgs.iproute2}/bin/ip route del fd01:1:a1::/48 dev luni
+        ${pkgs.iproute2}/bin/ip route del 10.51.0.0/24 dev luni
+      '';
+    };
   };
 
   base.homeBaseConfig.git.enable = true;
