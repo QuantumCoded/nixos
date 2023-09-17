@@ -76,6 +76,8 @@ in
       4041
       19132
     ];
+
+    interfaces.luni.allowedTCPPorts = [ 25566 ];
     # connectionTrackingModules = [ "ftp" ];
   };
 
@@ -248,7 +250,6 @@ in
     defaultGateway = "10.0.0.1";
     nameservers = [ "10.0.0.1" ];
 
-    firewall.interfaces.luni.allowedTCPPorts = [ 25566 ];
     wireguard.interfaces.luni = {
       ips = [
         "fd01:1:a1:69::1"
