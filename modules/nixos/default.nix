@@ -1,6 +1,5 @@
 {
   imports = [
-    ./nvidia.nix
     ./services/deemix-server.nix
     ./services/minecraft.nix
 
@@ -9,6 +8,7 @@
     ./flakes.nix
     ./home-manager.nix
     ./networkmanager.nix
+    ./nvidia.nix
     ./tuigreet.nix
   ];
 }
