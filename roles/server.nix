@@ -116,6 +116,7 @@ in
     caddy = {
       enable = true;
       virtualHosts = {
+        "http://hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8082";
         "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
         "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
@@ -186,6 +187,7 @@ in
     };
   };
 
+  # TODO: possibly use a function to clean this up a bit
   fileSystems = {
     "/var/lib/airsonic" = { device = "/data/services/airsonic"; options = [ "bind" ]; };
     "/var/lib/ankisyncd" = { device = "/data/services/ankisyncd"; options = [ "bind" ]; };
@@ -194,6 +196,12 @@ in
     "/var/lib/gitea" = { device = "/data/services/gitea"; options = [ "bind" ]; };
     "/var/lib/jellyfin" = { device = "/data/services/jellyfin"; options = [ "bind" ]; };
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
+    "/var/lib/homepage-dashboard" = { device = "/data/services/homepage-dashboard"; options = [ "bind" ]; };
+  };
+
+  base.homepage-dashboard = {
+    enable = true;
+    openFirewall = true;
   };
 
   base.deemix-server.enable = true;
