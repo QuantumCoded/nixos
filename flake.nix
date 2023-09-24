@@ -31,10 +31,7 @@
       };
 
       specialArgs = { inherit inputs self; };
-      moduleArgs = {
-        inherit inputs self;
-        nixpkgs = pkgs;
-      };
+      moduleArgs = specialArgs // { nixpkgs = pkgs; };
 
       mkNixos = system: config: nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
