@@ -10,7 +10,6 @@
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    flake-utils.url = "github:numtide/flake-utils";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     base16.url = "github:SenchoPens/base16.nix";
