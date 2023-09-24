@@ -28,6 +28,9 @@ in
         # application hotkeys
         #
 
+        # obsidian
+        "super + o" = "obsidian";
+
         # discord
         "super + d" = "discord";
 
