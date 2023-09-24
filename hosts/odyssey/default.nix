@@ -1,5 +1,6 @@
 {
   imports = [
+    ../../roles/laptop.nix
     ../../roles/workstation.nix
 
     ./hardware.nix

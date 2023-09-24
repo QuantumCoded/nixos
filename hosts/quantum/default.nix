@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../roles/desktop.nix
     ../../roles/workstation.nix
 
     ./disko.nix
