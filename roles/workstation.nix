@@ -77,6 +77,7 @@
       wireguard-tools
 
       # gaming
+      dwarf-fortress
       steam
       flake.gdlauncher
 
