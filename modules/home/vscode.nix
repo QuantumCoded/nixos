@@ -48,6 +48,7 @@ in
           tamasfe.even-better-toml
           tomoki1207.pdf
           usernamehw.errorlens
+          vscodevim.vim
         ];
 
       userSettings = {
@@ -124,6 +125,9 @@ in
         "files.exclude"."**/.git" = false;
         "gitlens.showWelcomeOnInstall" = false;
         "gitlens.showWhatsNewAfterUpgrades" = false;
+
+        # Change line numbers to relatie line numbers.
+        "editor.lineNumbers" = "relative";
       };
     };
   };
