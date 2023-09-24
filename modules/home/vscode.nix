@@ -46,6 +46,7 @@ in
           serayuzgur.crates
           takumii.markdowntable
           tamasfe.even-better-toml
+          tomoki1207.pdf
           usernamehw.errorlens
         ];
 
