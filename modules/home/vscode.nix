@@ -128,6 +128,9 @@ in
 
         # Change line numbers to relatie line numbers.
         "editor.lineNumbers" = "relative";
+
+        # Allow vim to use the system clipboard.
+        "vim.useSystemClipboard" = true;
       };
     };
   };
