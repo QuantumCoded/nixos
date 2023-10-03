@@ -9,6 +9,7 @@
     ./direnv.nix
     ./flakes.nix
     ./home-manager.nix
+    ./neovim.nix
     ./networkmanager.nix
     ./nvidia.nix
     ./tuigreet.nix
