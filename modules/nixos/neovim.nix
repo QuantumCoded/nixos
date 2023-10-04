@@ -5,6 +5,14 @@ let
     mkIf
     ;
 
+  inherit (pkgs)
+    fetchFromGitHub
+    ;
+
+  inherit (pkgs.neovimUtils)
+    buildNeovimPluginFrom2Nix
+    ;
+
   cfg = config.base.nixvim;
 in
 {
@@ -23,23 +31,38 @@ in
           # folding = true;
         };
 
-
+        lualine.enable = true;
       };
 
       extraPlugins = with pkgs.vimPlugins; [
         # LSP and friends
         coc-nvim
-        coc-rls
+        coc-rust-analyzer
         lsp-zero-nvim
         nvim-cmp
         cmp-nvim-lsp
         nvim-lspconfig
+
+        # Direnv
+        direnv-vim
 
         # Languages
         vim-nix
 
         # Theme
         vim-code-dark
+
+        # Tetris
+        (pkgs.vimUtils.buildVimPluginFrom2Nix {
+          pname = "nvim-tetris";
+          version = "2021-06-28";
+          src = fetchFromGitHub {
+            owner = "alec-gibson";
+            repo = "nvim-tetris";
+            rev = "d17c99fb527ada98ffb0212ffc87ccda6fd4f7d9";
+            hash = "sha256-+69Fq5aMMzg9nV05rZxlLTFwQmDyN5/5HmuL2SGu9xQ=";
+          };
+        })
       ];
 
       extraConfigLua = ''
