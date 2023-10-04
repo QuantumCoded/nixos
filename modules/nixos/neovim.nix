@@ -9,7 +9,7 @@ let
     fetchFromGitHub
     ;
 
-  inherit (pkgs.neovimUtils)
+  inherit (pkgs.vimUtils)
     buildNeovimPluginFrom2Nix
     ;
 
@@ -53,7 +53,7 @@ in
         vim-code-dark
 
         # Tetris
-        (pkgs.vimUtils.buildVimPluginFrom2Nix {
+        (buildVimPluginFrom2Nix {
           pname = "nvim-tetris";
           version = "2021-06-28";
           src = fetchFromGitHub {
