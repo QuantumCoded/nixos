@@ -10,7 +10,7 @@ let
     ;
 
   inherit (pkgs.vimUtils)
-    buildNeovimPluginFrom2Nix
+    buildVimPluginFrom2Nix
     ;
 
   cfg = config.base.nixvim;
