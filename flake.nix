@@ -42,6 +42,7 @@
           ./common.nix
           ./overlays.nix
           ./modules/nixos
+          ./modules/nixvim
           config
         ];
       };

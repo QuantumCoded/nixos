@@ -42,6 +42,7 @@ in
         nvim-cmp
         cmp-nvim-lsp
         nvim-lspconfig
+        comment-nvim
 
         # Direnv
         direnv-vim
@@ -57,7 +58,7 @@ in
           pname = "nvim-tetris";
           version = "2021-06-28";
           src = fetchFromGitHub {
-            owner = "alec-gibson";
+            owner = "alerc-gibson";
             repo = "nvim-tetris";
             rev = "d17c99fb527ada98ffb0212ffc87ccda6fd4f7d9";
             hash = "sha256-+69Fq5aMMzg9nV05rZxlLTFwQmDyN5/5HmuL2SGu9xQ=";
@@ -71,6 +72,7 @@ in
         vim.wo.relativenumber = true
 
         require('lspconfig').rust_analyzer.setup{}
+        -- require('lspconfig').nil.setup{}
       '';
 
       extraConfigVim = ''

@@ -147,7 +147,10 @@
     boot.enable = true;
     direnv.enable = true;
     flakes.enable = true;
-    nixvim.enable = true;
+    nixvim = {
+      enable = true;
+      toggleterm.enable = true;
+    };
 
     networkmanager = {
       enable = true;
