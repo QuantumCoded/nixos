@@ -30,8 +30,6 @@
     ];
   };
 
-  services.gnome.gnome-keyring.enable = true;
-
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -95,6 +93,11 @@
       element-desktop
       unstable.discord
     ];
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
   services.flatpak.enable = true;
