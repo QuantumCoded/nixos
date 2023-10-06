@@ -112,7 +112,7 @@
     micro
     tmux
     tree
-    vim
+    neovim
     wget
     xclip
   ];
@@ -149,6 +149,7 @@
     flakes.enable = true;
     nixvim = {
       enable = true;
+      coc.enable = true;
       toggleterm.enable = true;
     };
 

@@ -11,7 +11,7 @@ require("toggleterm").setup({
 
 local floating_term = Terminal:new({
 	-- FIXME: this needs to be set to a nix store path
-	cmd = "fish -c 'clear'",
+	cmd = "fish",
 	dir = "git_dir",
 	direction = "float",
 	float_opts = {},
