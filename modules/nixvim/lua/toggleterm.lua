@@ -1,10 +1,17 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
-require("toggleterm").setup({
-  vim.api.nvim_set_keymap(
+require("toggleterm").setup(
+	vim.api.nvim_set_keymap(
 		"n",
 		"<leader>f",
 		"<cmd>lua floating_term_toggle()<CR>",
+		{ noremap = true, silent = true }
+	)
+
+	vim.api.nvim_set_keymap(
+		"n",
+		"<leader>m",
+		"<cmd>lua qalculate_toggle()<CR>",
 		{ noremap = true, silent = true }
 	)
 })
@@ -32,10 +39,9 @@ local floating_term = Terminal:new({
 	end
 })
 
---[[
 local qalculate = Terminal:new({
-	-- TODO: this needs to be set to a nix store path
-	cmd = "fish -c 'clear && qalc'",
+	-- FIXME: this needs to be set to a nix store path
+	cmd = "qalc",
 	dir = "git_dir",
 	direction = "float",
 	float_opts = {},
@@ -55,12 +61,16 @@ local qalculate = Terminal:new({
 		vim.cmd("startinsert!")
 	end
 })
-]]
 
 function floating_term_toggle()
 	floating_term:toggle()
 end
 
+function qalculate_toggle()
+	qalculate:toggle()
+end
+
 return {
 	floating_term_toggle = floating_term_toggle
+	qalculate_toggle = qalculate_toggle
 }

@@ -112,6 +112,7 @@
   environment.systemPackages = with pkgs; [
     btop
     git
+    libqalculate
     micro
     tmux
     tree
