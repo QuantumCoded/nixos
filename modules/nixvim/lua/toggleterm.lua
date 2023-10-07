@@ -1,19 +1,19 @@
 local Terminal = require("toggleterm.terminal").Terminal
 
-require("toggleterm").setup(
+require("toggleterm").setup({
 	vim.api.nvim_set_keymap(
 		"n",
 		"<leader>f",
 		"<cmd>lua floating_term_toggle()<CR>",
 		{ noremap = true, silent = true }
-	)
+	),
 
 	vim.api.nvim_set_keymap(
 		"n",
 		"<leader>m",
 		"<cmd>lua qalculate_toggle()<CR>",
 		{ noremap = true, silent = true }
-	)
+	),
 })
 
 local floating_term = Terminal:new({
@@ -71,6 +71,6 @@ function qalculate_toggle()
 end
 
 return {
-	floating_term_toggle = floating_term_toggle
-	qalculate_toggle = qalculate_toggle
+	floating_term_toggle = floating_term_toggle,
+	qalculate_toggle = qalculate_toggle,
 }
