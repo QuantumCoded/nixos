@@ -11,6 +11,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim/nixos-23.05";
     nur.url = "github:nix-community/NUR";
+    rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     base16.url = "github:SenchoPens/base16.nix";
