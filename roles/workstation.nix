@@ -112,6 +112,7 @@
   environment.systemPackages = with pkgs; [
     btop
     git
+    lazygit
     libqalculate
     micro
     tmux
