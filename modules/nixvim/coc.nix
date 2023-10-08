@@ -20,7 +20,15 @@ in
       ];
 
       extraConfigLua = ''
-        require('lspconfig').rust_analyzer.setup{}
+        require('lspconfig').rust_analyzer.setup{
+          settings = {
+            ['rust-analyzer'] = {
+              cargo = {
+                sysroot = "${pkgs.rust-bin.stable.latest.default}";
+              }
+            }
+          }
+        }
         require('lspconfig').nil_ls.setup{}
       '';
 
