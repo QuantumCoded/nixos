@@ -28,6 +28,5 @@ in
     overlay-raccoon
     overlay-unstable
     overlay-flake
-    rust-overlay.overlays.default
   ];
 }
