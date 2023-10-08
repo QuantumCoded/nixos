@@ -25,12 +25,7 @@ in
       enable = true;
 
       plugins = {
-        treesitter = {
-          enable = true;
-          # indent = true;
-          # folding = true;
-        };
-
+        treesitter.enable = true; 
         lualine.enable = true;
       };
 
