@@ -13,6 +13,7 @@ in
     deemix-server = nixpkgs.callPackage ./deemix-server { };
     gdlauncher = nixpkgs.callPackage ./gdlauncher.nix { };
     nomos-rebuild = nixpkgs.callPackage ./nomos-rebuild { };
+    tetrust = nixpkgs.callPackage ./tetrust.nix { };
     xwinwrap = nixpkgs.callPackage ./xwinwrap.nix { };
 
     # Re-export correct version of disko
