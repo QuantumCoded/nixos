@@ -142,8 +142,17 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
+        libsForQt5.fcitx5-qt
       ];
     };
+  };
+
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "ibus";
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -167,6 +176,13 @@
     };
 
     # tuigreet.enable = true;
+
+    # HACK: bspwm should get its own module
+    homeConfig = {
+      xsession.windowManager.bspwm.extraConfig = ''
+        fcitx5 &
+      '';
+    };
 
     user.jeff = {
       enable = true;
