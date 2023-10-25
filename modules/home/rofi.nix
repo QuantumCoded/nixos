@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (builtins) replaceStrings;
   inherit (lib)
@@ -13,6 +13,7 @@ let
   cfg = config.base.rofi;
 in
 {
+  # FIXME: rework rofi
   options.base.rofi = {
     enable = mkEnableOption "Rofi";
     websites = {
@@ -33,6 +34,9 @@ in
       enable = true;
       # TODO: consolodate font info
       font = "FiraCode Nerd Font Mono 10";
+      plugins = with pkgs; [
+        rofi-calc
+      ];
     };
 
     services.sxhkd.keybindings =
