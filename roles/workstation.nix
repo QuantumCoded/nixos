@@ -117,7 +117,6 @@
     micro
     tmux
     tree
-    # neovim
     wget
     xclip
   ];
