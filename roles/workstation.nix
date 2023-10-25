@@ -115,6 +115,7 @@
     lazygit
     libqalculate
     micro
+    ntfs3g
     tmux
     tree
     wget
