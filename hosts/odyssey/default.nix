@@ -21,7 +21,7 @@
           bspc monitor "${externalMonitor}" -d 1 2 3 4 5
           bspc monitor "${internalMonitor}" -d 6 7 8 9 10
           bspc wm -O "${externalMonitor}" "${internalMonitor}"
-          xrandr --output HDMI-1 --left-of eDP-1
+          xrandr --output HDMI-1 --auto --left-of eDP-1
         else
           bspc monitor "${internalMonitor}" -d 1 2 3 4 5 6 7 8 9 10
         fi
