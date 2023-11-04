@@ -46,6 +46,9 @@ in
         # email client
         "super + e" = "thunderbird";
 
+        # rofi calculator
+        "super + BackSpace" = "rofi -show calc -modi calc -no-show-match -no-sort";
+
         #
         # volume control hotkeys
         #

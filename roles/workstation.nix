@@ -115,9 +115,9 @@
     lazygit
     libqalculate
     micro
+    ntfs3g
     tmux
     tree
-    # neovim
     wget
     xclip
   ];
