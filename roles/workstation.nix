@@ -18,6 +18,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
+    xkbOptions = "caps:swapescape";
   };
 
   services.xserver.windowManager.bspwm.enable = true;
