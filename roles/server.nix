@@ -178,7 +178,7 @@ in
     };
 
     vsftpd = {
-      # enable = true;
+      enable = true;
       localUsers = true;
       userlist = [ "sender" ];
       writeEnable = true;
