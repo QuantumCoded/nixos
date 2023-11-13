@@ -28,6 +28,9 @@ in
         # application hotkeys
         #
 
+        # libreoffice
+        "super + l" = "libreoffice";
+
         # obsidian
         "super + o" = "obsidian";
 
