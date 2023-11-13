@@ -43,7 +43,9 @@
   };
 
   fonts.fonts = with pkgs; [
+    liberation_ttf
     nerdfonts
+    flake.nimbus-roman-ttf
   ];
 
   services.openssh.enable = true;
