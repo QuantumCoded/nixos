@@ -140,7 +140,7 @@ in
 
     invidious = {
       enable = true;
-      domain = "invidious.hydrogen.lan";
+      package = pkgs.unstable.invidious;
     };
 
     jellyfin = {
