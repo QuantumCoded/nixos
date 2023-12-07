@@ -21,6 +21,8 @@
     xkbOptions = "caps:swapescape";
   };
 
+  nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
+
   services.xserver.windowManager.bspwm.enable = true;
   services.xserver.windowManager.twm.enable = true;
 
@@ -53,17 +55,18 @@
   environment.shells = with pkgs; [ fish ];
   programs.fish.enable = true;
 
-  virtualisation.waydroid.enable = true;
+  virtualisation.docker.enable = true;
 
   users.users.jeff = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.fish;
 
     # TODO: packages could be split into different roles, not sure to get the username
     # to carry across roles though, perhaps that should be defined in the system somehow?
     packages = with pkgs; [
       comma
+      distrobox
       feh
       file
       flameshot
