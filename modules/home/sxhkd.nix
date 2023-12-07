@@ -29,7 +29,7 @@ in
         #
 
         # libreoffice
-        "super + l" = "libreoffice";
+        "super + p" = "libreoffice";
 
         # obsidian
         "super + o" = "obsidian";
