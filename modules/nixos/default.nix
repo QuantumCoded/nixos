@@ -13,5 +13,6 @@
     ./networkmanager.nix
     ./nvidia.nix
     ./tuigreet.nix
+    ./virtualization.nix
   ];
 }
