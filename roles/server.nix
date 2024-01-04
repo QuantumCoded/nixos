@@ -189,6 +189,8 @@ in
       extraConfig = ''
         pasv_min_port=56250
         pasv_max_port=56260
+        file_open_mode=0777
+        local_umask=0
       '';
       allowWriteableChroot = true;
     };
