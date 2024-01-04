@@ -62,7 +62,7 @@ in
 
   networking.firewall = {
     allowedTCPPorts = [
-      # 20 21
+      21
       80
       443
       2049
@@ -77,8 +77,11 @@ in
       19132
     ];
 
+    allowedTCPPortRanges = [
+      { from = 56250; to = 56260; }
+    ];
+
     interfaces.luni.allowedTCPPorts = [ 25566 ];
-    # connectionTrackingModules = [ "ftp" ];
   };
 
   services = {
@@ -182,9 +185,20 @@ in
       localUsers = true;
       userlist = [ "sender" ];
       writeEnable = true;
-      # set the passive ports range here and in firewall
-      # add a symlink in systemd tmpfiles
+      chrootlocalUser = true;
+      extraConfig = ''
+        pasv_min_port=56250
+        pasv_max_port=56260
+      '';
     };
+  };
+
+  users.users.sender = {
+    isNormalUser = true;
+    password = "sender";
+    createHome = true;
+    home = "/data/documents/sender";
+    homeMode = "777";
   };
 
   # TODO: possibly use a function to clean this up a bit
