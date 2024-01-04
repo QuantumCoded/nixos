@@ -190,6 +190,7 @@ in
         pasv_min_port=56250
         pasv_max_port=56260
       '';
+      allowWriteableChroot = true;
     };
   };
 
