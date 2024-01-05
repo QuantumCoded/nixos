@@ -92,7 +92,7 @@ in
           "/usr/local/bin/vfio-pci-override.sh".source = pkgs.writeScript "vfio-pci-override.sh" ''
             #! /bin/sh
 
-            DEVS="${concatStringsSep " " cfg.vfioBusIds}"
+            DEVS="${concatStringsSep " " (map (id: "0000:${id}") cfg.vfioBusIds)}"
 
             if [ ! -z "$(ls -A /sys/class/iommu)" ]; then
                 for DEV in $DEVS; do
