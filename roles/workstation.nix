@@ -61,7 +61,7 @@
 
   users.users.jeff = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     shell = pkgs.fish;
 
     # TODO: packages could be split into different roles, not sure to get the username
