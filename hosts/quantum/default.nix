@@ -12,6 +12,8 @@
 
   networking.hostName = "quantum";
 
+  # FIXME: this should adapt to different monitor configurations
+  # specifically 1, 3, and 4 monitor(s)
   services.xserver.displayManager.setupCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 144 --pos 0x0 --brightness 0.5 --output DP-2 --primary --mode 1920x1080 --rate 144 --right-of DP-0 --brightness 0.5 --output DP-4 --mode 1920x1080 --rate 144 --right-of DP-2 --brightness 0.5 --output HDMI-0 --mode 1920x1080 --rate 60 --right-of DP-4 --brightness 1
   '';
