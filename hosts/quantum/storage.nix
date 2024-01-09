@@ -24,15 +24,11 @@
   #   fsType = "ext4";
   # };
 
-  # FIXME: things don't like it when this drive doesn't exist
-  # fileSystems."/mnt" = {
-  #   device = "/dev/disk/by-label/external";
-  #   fsType = "ext4";
-  #   options = [
-  #     "x-systemd.automount"
-  #     "noauto"
-  #   ];
-  # };
+  # TODO: this should be renamed
+  fileSystems."/mnt" = {
+    device = "/dev/disk/by-label/external";
+    fsType = "ext4";
+  };
 
   fileSystems."/nfs/hydrogen" = {
     device = "hydrogen.lan:/data";
