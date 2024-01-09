@@ -2,7 +2,7 @@
 
 {
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-24.8.6"
+    "electron-25.9.0"
   ];
 
   hardware.opengl = {
@@ -46,7 +46,7 @@
     jack.enable = false;
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
     flake.nimbus-roman-ttf
@@ -117,6 +117,7 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
+    config.common.default = "*";
   };
 
   environment.systemPackages = with pkgs; [

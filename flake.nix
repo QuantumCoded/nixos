@@ -5,11 +5,11 @@
     agenix.url = "github:ryantm/agenix";
     deploy-rs.url = "github:serokell/deploy-rs";
     disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim/nixos-23.05";
+    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     nur.url = "github:nix-community/NUR";
     rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
