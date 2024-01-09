@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
+
   hardware.opengl = {
     enable = true;
     package = pkgs.raccoon.mesa.drivers;
@@ -20,8 +24,6 @@
     layout = "us";
     xkbOptions = "caps:swapescape";
   };
-
-  nixpkgs.config.permittedInsecurePackages = [ "electron-24.8.6" ];
 
   services.xserver.windowManager.bspwm.enable = true;
   services.xserver.windowManager.twm.enable = true;
