@@ -20,4 +20,6 @@
     virtCpus = "6-7";
     hostCpus = "0-7";
   };
+
+  networking.interfaces.wlp4s0.wakeOnLan.enable = true;
 }
