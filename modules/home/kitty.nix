@@ -16,6 +16,7 @@ in
     programs.kitty = {
       enable = true;
       package = pkgs.kitty;
+      theme = "Material Dark";
       # TODO: maybe font should go somewhere else, no promise Nerdfonts are installed in this module
       font.name = "MesloLG Nerd Font";
       settings = {
