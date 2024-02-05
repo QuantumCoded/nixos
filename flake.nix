@@ -19,6 +19,8 @@
       flake = false;
       url = "github:kdrag0n/base16-kitty";
     };
+
+    nixvirt.url = "path:/home/jeff/Source/nix-virt";
   };
 
   outputs = inputs:
@@ -40,6 +42,7 @@
           agenix.nixosModules.default
           disko.nixosModules.disko
           nixvim.nixosModules.nixvim
+          nixvirt.nixosModules.nixvirt
           ./common.nix
           ./overlays.nix
           ./modules/nixos
