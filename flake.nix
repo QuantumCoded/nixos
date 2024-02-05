@@ -9,7 +9,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     nur.url = "github:nix-community/NUR";
     rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
@@ -41,12 +40,10 @@
         modules = [
           agenix.nixosModules.default
           disko.nixosModules.disko
-          nixvim.nixosModules.nixvim
           nixvirt.nixosModules.nixvirt
           ./common.nix
           ./overlays.nix
           ./modules/nixos
-          ./modules/nixvim
           config
         ];
       };
