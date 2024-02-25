@@ -37,12 +37,12 @@ in
 
     vfioPciIds = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
     };
 
     vfioBusIds = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
     };
 
     cpuArch = mkOption { type = types.enum [ "intel" "amd" ]; };
@@ -115,7 +115,7 @@ in
             "nvidia_modeset"
             "nvidia_uvm"
             "nvidia_drm"
-          ] else []
+          ] else [ ]
         );
       };
 
