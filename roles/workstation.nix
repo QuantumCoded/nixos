@@ -74,7 +74,6 @@
       flameshot
       man-pages
       man-pages-posix
-      # mpv
       neofetch
       nix-index # TODO: see if nix-index can be ran automatically
       noisetorch
