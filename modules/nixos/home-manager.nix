@@ -1,3 +1,4 @@
+# TODO: this whole module needs a rework
 { config, inputs, lib, self, ... }:
 let
   inherit (lib)

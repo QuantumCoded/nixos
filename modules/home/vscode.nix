@@ -46,7 +46,9 @@ in
           serayuzgur.crates
           takumii.markdowntable
           tamasfe.even-better-toml
+          tomoki1207.pdf
           usernamehw.errorlens
+          vscodevim.vim
         ];
 
       userSettings = {
@@ -121,6 +123,14 @@ in
         "bookmarks.sideBar.countBadge" = "off";
         "terminal.integrated.shellIntegration.enabled" = false;
         "files.exclude"."**/.git" = false;
+        "gitlens.showWelcomeOnInstall" = false;
+        "gitlens.showWhatsNewAfterUpgrades" = false;
+
+        # Change line numbers to relatie line numbers.
+        "editor.lineNumbers" = "relative";
+
+        # Allow vim to use the system clipboard.
+        "vim.useSystemClipboard" = true;
       };
     };
   };

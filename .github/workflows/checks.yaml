@@ -1,0 +1,129 @@
+name: "Checks"
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  format:
+    name: "Nix Format Check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Run Format Check"
+        uses: workflow/nix-shell-action@v3.3.0
+        with:
+          packages: nixpkgs-fmt
+          script: nixpkgs-fmt --check .
+
+  # Hydrogen
+
+  nixos-hydrogen:
+    name: "NixOS Build Check for Hydrogen"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build NixOS"
+        run: nix build .#nixosConfigurations.hydrogen.config.system.build.toplevel --dry-run
+
+  home-manager-hydrogen:
+    name: "Build HomeManager for Jeff on Hydrogen"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build HomeManager"
+        run: nix build .#homeConfigurations.jeff@hydrogen.activationPackage --dry-run
+
+  # Odyssey
+
+  nixos-odyssey:
+    name: "NixOS Build Check for Odyssey"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build NixOS"
+        run: nix build .#nixosConfigurations.odyssey.config.system.build.toplevel --dry-run
+
+  home-manager-odyssey:
+    name: "Build HomeManager for Jeff on Odyssey"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build HomeManager"
+        run: nix build .#homeConfigurations.jeff@odyssey.activationPackage --dry-run
+
+  # Quantum
+
+  nixos-quantum:
+    name: "NixOS Build Check for Quantum"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build NixOS"
+        run: nix build .#nixosConfigurations.quantum.config.system.build.toplevel --dry-run
+
+  home-manager-quantum:
+    name: "Build HomeManager for Jeff on Quantum"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
+
+      - name: "Install Nix"
+        uses: cachix/install-nix-action@v20
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Build HomeManager"
+        run: nix build .#homeConfigurations.jeff@quantum.activationPackage --dry-run

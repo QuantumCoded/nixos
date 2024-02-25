@@ -62,7 +62,7 @@ in
 
   networking.firewall = {
     allowedTCPPorts = [
-      # 20 21
+      21
       80
       443
       2049
@@ -71,14 +71,45 @@ in
       19132
     ];
 
-    allowedUDPPorts = [ 19132 ];
-    # connectionTrackingModules = [ "ftp" ];
+    allowedUDPPorts = [
+      1900
+      4041
+      19132
+    ];
+
+    allowedTCPPortRanges = [
+      { from = 56250; to = 56260; }
+    ];
+
+    interfaces.luni.allowedTCPPorts = [ 25566 ];
   };
 
   services = {
     airsonic = {
       enable = true;
       jre = pkgs.openjdk11;
+      jvmOptions = [
+        "-server"
+        "-Xms4G"
+        "-XX:+UseG1GC"
+        "-XX:+ParallelRefProcEnabled"
+        "-XX:MaxGCPauseMillis=200"
+        "-XX:+UnlockExperimentalVMOptions"
+        "-XX:+DisableExplicitGC"
+        "-XX:+AlwaysPreTouch"
+        "-XX:G1NewSizePercent=30"
+        "-XX:G1MaxNewSizePercent=40"
+        "-XX:G1HeapRegionSize=16M"
+        "-XX:G1ReservePercent=20"
+        "-XX:G1HeapWastePercent=5"
+        "-XX:G1MixedGCCountTarget=4"
+        "-XX:InitiatingHeapOccupancyPercent=25"
+        "-XX:G1MixedGCLiveThresholdPercent=90"
+        "-XX:G1RSetUpdatingPauseTimePercent=5"
+        "-XX:SurvivorRatio=32"
+        "-XX:+PerfDisableSharedMem"
+        "-XX:MaxTenuringThreshold=1"
+      ];
       maxMemory = 8192;
       war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
@@ -88,6 +119,7 @@ in
     caddy = {
       enable = true;
       virtualHosts = {
+        "http://hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8082";
         "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
         "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
@@ -111,7 +143,7 @@ in
 
     invidious = {
       enable = true;
-      domain = "invidious.hydrogen.lan";
+      package = pkgs.unstable.invidious;
     };
 
     jellyfin = {
@@ -145,29 +177,51 @@ in
     syncthing = {
       enable = true;
       # TODO: add devices
+      extraOptions.gui.insecureSkipHostcheck = true;
     };
 
     vsftpd = {
-      # enable = true;
+      enable = true;
       localUsers = true;
       userlist = [ "sender" ];
       writeEnable = true;
-      # set the passive ports range here and in firewall
-      # add a symlink in systemd tmpfiles
+      chrootlocalUser = true;
+      extraConfig = ''
+        pasv_min_port=56250
+        pasv_max_port=56260
+        file_open_mode=0777
+        local_umask=0
+      '';
+      allowWriteableChroot = true;
     };
   };
 
+  users.users.sender = {
+    isNormalUser = true;
+    password = "sender";
+    createHome = true;
+    home = "/data/documents/sender";
+    homeMode = "777";
+  };
+
+  # TODO: possibly use a function to clean this up a bit
   fileSystems = {
     "/var/lib/airsonic" = { device = "/data/services/airsonic"; options = [ "bind" ]; };
     "/var/lib/ankisyncd" = { device = "/data/services/ankisyncd"; options = [ "bind" ]; };
     "/var/lib/caddy" = { device = "/data/services/caddy"; options = [ "bind" ]; };
-    "/var/lib/dmx" = { device = "/data/services/deemix"; options = [ "bind" ]; };
+    "/var/lib/deemix" = { device = "/data/services/deemix"; options = [ "bind" ]; };
     "/var/lib/gitea" = { device = "/data/services/gitea"; options = [ "bind" ]; };
     "/var/lib/jellyfin" = { device = "/data/services/jellyfin"; options = [ "bind" ]; };
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
+    "/var/lib/homepage-dashboard" = { device = "/data/services/homepage-dashboard"; options = [ "bind" ]; };
   };
 
-  base.dmx-server.enable = true;
+  base.homepage-dashboard = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  base.deemix-server.enable = true;
 
   base.minecraft = {
     enable = true;
@@ -213,29 +267,37 @@ in
       };
   };
 
-  networking.firewall.interfaces.luni.allowedTCPPorts = [ 25566 ];
-  networking.wireguard.interfaces.luni = {
-    ips = [
-      "fd01:1:a1:69::1"
-      "10.51.0.16"
-      # "10.51.12.0/24" -- later
+  networking = {
+    interfaces.eno1.ipv4.addresses = [
+      { address = "10.0.0.2"; prefixLength = 16; }
     ];
 
-    privateKeyFile = "/var/lib/wireguard/privatekey";
-    listenPort = 51820;
-    peers = [{
-      publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
-      allowedIPs = [ "fd01:1:a1::/48" "10.51.0.0/24" ];
-      endpoint = "unallocatedspace.dev:51820";
-    }];
-    postSetup = ''
-      ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
-      ${pkgs.iproute2}/bin/ip route add 10.51.0.0/24 dev luni
-    '';
-    postShutdown = ''
-      ${pkgs.iproute2}/bin/ip route del fd01:1:a1::/48 dev luni
-      ${pkgs.iproute2}/bin/ip route del 10.51.0.0/24 dev luni
-    '';
+    defaultGateway = "10.0.0.1";
+    nameservers = [ "10.0.0.1" ];
+
+    wireguard.interfaces.luni = {
+      ips = [
+        "fd01:1:a1:69::1"
+        "10.51.0.16"
+        # "10.51.12.0/24" -- later
+      ];
+
+      privateKeyFile = "/var/lib/wireguard/privatekey";
+      listenPort = 51820;
+      peers = [{
+        publicKey = "LIP2yM8DbX563oRbtDGn1WxzPiBXUP6tCLbcnXXUOz4=";
+        allowedIPs = [ "fd01:1:a1::/48" "10.51.0.0/24" ];
+        endpoint = "unallocatedspace.dev:51820";
+      }];
+      postSetup = ''
+        ${pkgs.iproute2}/bin/ip route add fd01:1:a1::/48 dev luni
+        ${pkgs.iproute2}/bin/ip route add 10.51.0.0/24 dev luni
+      '';
+      postShutdown = ''
+        ${pkgs.iproute2}/bin/ip route del fd01:1:a1::/48 dev luni
+        ${pkgs.iproute2}/bin/ip route del 10.51.0.0/24 dev luni
+      '';
+    };
   };
 
   base.homeBaseConfig.git.enable = true;

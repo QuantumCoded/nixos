@@ -4,12 +4,13 @@
   inputs = {
     agenix.url = "github:ryantm/agenix";
     deploy-rs.url = "github:serokell/deploy-rs";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     base16.url = "github:SenchoPens/base16.nix";
@@ -30,15 +31,13 @@
       };
 
       specialArgs = { inherit inputs self; };
-      moduleArgs = {
-        inherit inputs self;
-        nixpkgs = pkgs;
-      };
+      moduleArgs = specialArgs // { nixpkgs = pkgs; };
 
       mkNixos = system: config: nixpkgs.lib.nixosSystem {
         inherit specialArgs system;
         modules = [
           agenix.nixosModules.default
+          disko.nixosModules.disko
           ./common.nix
           ./overlays.nix
           ./modules/nixos

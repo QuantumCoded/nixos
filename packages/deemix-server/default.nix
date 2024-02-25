@@ -1,7 +1,7 @@
 { stdenv }:
 
 stdenv.mkDerivation {
-  name = "dmx-server";
+  name = "deemix-server";
   src = ./.;
   phases = "installPhase";
   installPhase = ''

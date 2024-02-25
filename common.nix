@@ -1,8 +1,8 @@
 {
-  documentation.nixos = {
-    includeAllModules = true;
-    options.warningsAreErrors = false;
-  };
+  # documentation.nixos = {
+  #   includeAllModules = true;
+  #   options.warningsAreErrors = false;
+  # };
 
   programs.ssh.knownHosts = {
     hydrogen = {

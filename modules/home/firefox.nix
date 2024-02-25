@@ -79,7 +79,7 @@ in
           # Disable Firefox account features
           "identity.fxaccounts.enabled" = false;
 
-          # FIXME: Enable dark theme.
+          # Enable dark theme.
           "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
           "browser.theme.content-theme" = 2;
           "browser.theme.toolbar-theme" = 2;

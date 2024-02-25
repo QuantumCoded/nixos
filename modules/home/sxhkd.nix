@@ -28,6 +28,12 @@ in
         # application hotkeys
         #
 
+        # libreoffice
+        "super + p" = "libreoffice";
+
+        # obsidian
+        "super + o" = "obsidian";
+
         # discord
         "super + d" = "discord";
 
@@ -42,6 +48,9 @@ in
 
         # email client
         "super + e" = "thunderbird";
+
+        # rofi calculator
+        "super + BackSpace" = "rofi -show calc -modi calc -no-show-match -no-sort";
 
         #
         # volume control hotkeys
