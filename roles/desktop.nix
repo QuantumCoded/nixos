@@ -7,12 +7,14 @@
       "1b21:1242"
       # Ethernet Controller
       "8086:15b8"
-    ];
-
-    vfioBusIds = [
-      # Nvidia GPU
-      "07:00.0"
-      "07:00.1"
+      # GPU
+      "10de:1e04"
+      # GPU Audio
+      "10de:10f7"
+      # GPU USB 3.1 Controller
+      "10de:1ad6"
+      # GPU USB-C Controller
+      "10de:1ad7"
     ];
 
     cpuArch = "intel";
