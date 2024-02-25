@@ -56,6 +56,8 @@ in
   base.boot.enable = true;
   base.flakes.enable = true;
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   networking.networkmanager.enable = true;
 
   base.user.jeff.enable = true;
@@ -123,7 +125,7 @@ in
         "http://airsonic.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:4040";
         "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
-        "http://gitea.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
+        "http://git.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
         "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
         "http://jellyfin.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8096";
         "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
@@ -131,12 +133,12 @@ in
       };
     };
 
-    gitea = {
+    forgejo = {
       enable = true;
-      appName = "QuantumCoded Gitea Server";
+      appName = "Forgejo Internal";
       settings.server = {
-        ROOT_URL = "http://gitea.hydrogen.lan/";
-        DOMAIN = "gitea.hydrogen.lan";
+        ROOT_URL = "http://git.hydrogen.lan/";
+        DOMAIN = "git.hydrogen.lan";
         HTTP_PORT = 3001;
       };
     };
@@ -217,7 +219,7 @@ in
   };
 
   base.homepage-dashboard = {
-    enable = true;
+    # enable = true;
     openFirewall = true;
   };
 
