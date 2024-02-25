@@ -78,7 +78,6 @@
       neofetch
       nix-index # TODO: see if nix-index can be ran automatically
       noisetorch
-      raccoon.kitty # HACK: newer versions of kitty have a bug rednering svgs
       sonixd
       wireguard-tools
 
