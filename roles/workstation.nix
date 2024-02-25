@@ -84,7 +84,7 @@
       # gaming
       dwarf-fortress
       steam
-      flake.gdlauncher
+      prismlauncher
 
       # TODO: this goes in vscode
       nil
