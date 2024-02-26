@@ -116,7 +116,10 @@ in
       war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
 
-    # ankisyncd.enable = true;
+    # ankisyncd = {
+    #   enable = true;
+    #   openFirewall = true;
+    # };
 
     caddy = {
       enable = true;
@@ -209,7 +212,7 @@ in
   # TODO: possibly use a function to clean this up a bit
   fileSystems = {
     "/var/lib/airsonic" = { device = "/data/services/airsonic"; options = [ "bind" ]; };
-    "/var/lib/ankisyncd" = { device = "/data/services/ankisyncd"; options = [ "bind" ]; };
+    "/var/lib/ankisync" = { device = "/data/services/ankisync"; options = [ "bind" ]; };
     "/var/lib/caddy" = { device = "/data/services/caddy"; options = [ "bind" ]; };
     "/var/lib/deemix" = { device = "/data/services/deemix"; options = [ "bind" ]; };
     "/var/lib/gitea" = { device = "/data/services/gitea"; options = [ "bind" ]; };
@@ -217,6 +220,8 @@ in
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
     "/var/lib/homepage-dashboard" = { device = "/data/services/homepage-dashboard"; options = [ "bind" ]; };
   };
+
+  base.ankisync.enable = true;
 
   base.homepage-dashboard = {
     # enable = true;

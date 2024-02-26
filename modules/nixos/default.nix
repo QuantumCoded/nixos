@@ -1,5 +1,6 @@
 {
   imports = [
+    ./services/ankisync.nix
     ./services/deemix-server.nix
     # FIXME: this is to be stablized in 23.11
     ./services/homepage-dashboard.nix
