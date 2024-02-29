@@ -138,11 +138,16 @@ in
 
     forgejo = {
       enable = true;
-      appName = "Forgejo Internal";
-      settings.server = {
-        ROOT_URL = "http://git.hydrogen.lan/";
-        DOMAIN = "git.hydrogen.lan";
-        HTTP_PORT = 3001;
+      settings = {
+        DEFAULT.APP_NAME = "Forgejo Internal";
+
+        repository.DEFAULT_BRANCH = "master";
+
+        server = {
+          ROOT_URL = "http://git.hydrogen.lan/";
+          DOMAIN = "git.hydrogen.lan";
+          HTTP_PORT = 3001;
+        };
       };
     };
 
@@ -215,7 +220,7 @@ in
     "/var/lib/ankisync" = { device = "/data/services/ankisync"; options = [ "bind" ]; };
     "/var/lib/caddy" = { device = "/data/services/caddy"; options = [ "bind" ]; };
     "/var/lib/deemix" = { device = "/data/services/deemix"; options = [ "bind" ]; };
-    "/var/lib/gitea" = { device = "/data/services/gitea"; options = [ "bind" ]; };
+    "/var/lib/forgejo" = { device = "/data/services/forgejo"; options = [ "bind" ]; };
     "/var/lib/jellyfin" = { device = "/data/services/jellyfin"; options = [ "bind" ]; };
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
     "/var/lib/homepage-dashboard" = { device = "/data/services/homepage-dashboard"; options = [ "bind" ]; };
