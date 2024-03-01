@@ -166,7 +166,9 @@ in
 
     invidious = {
       enable = true;
-      package = pkgs.unstable.invidious;
+      # HACK: invidious won't start without this being set
+      # a secure key should be used and encrypted
+      settings.hmac_key = "eeth5na2aing5xaiP3Uu";
     };
 
     jellyfin = {
