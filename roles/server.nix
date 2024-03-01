@@ -116,11 +116,6 @@ in
       war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
     };
 
-    # ankisyncd = {
-    #   enable = true;
-    #   openFirewall = true;
-    # };
-
     caddy = {
       enable = true;
       virtualHosts = {
