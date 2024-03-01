@@ -129,6 +129,7 @@ in
         "http://ankisync.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:27701";
         "http://deemix.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:6595";
         "http://git.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3001";
+        "http://graphana.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3300";
         "http://invidious.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3000";
         "http://jellyfin.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8096";
         "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
@@ -147,6 +148,18 @@ in
           ROOT_URL = "http://git.hydrogen.lan/";
           DOMAIN = "git.hydrogen.lan";
           HTTP_PORT = 3001;
+        };
+      };
+    };
+
+    grafana = {
+      enable = true;
+      settings = {
+        server = {
+          http_addr = "127.0.0.1";
+          http_port = 3300;
+          domain = "graphana.hydrogen.lan";
+          root_url = "http://graphana.hydrogen.lan";
         };
       };
     };
