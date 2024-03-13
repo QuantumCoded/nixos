@@ -12,7 +12,7 @@
 
   networking = {
     hostName = "quantum";
-    interfaces.wlp4s0.wakeOnLan.enable = true;
+    interfaces.wlp3s0.wakeOnLan.enable = true;
   };
 
   # FIXME: this should adapt to different monitor configurations
