@@ -26,7 +26,6 @@
   };
 
   services.xserver.windowManager.bspwm.enable = true;
-  services.xserver.windowManager.twm.enable = true;
 
   services.printing = {
     enable = true;
