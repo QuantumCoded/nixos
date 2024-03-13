@@ -52,8 +52,13 @@ in
       nvidia = {
         package = patchDriver config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;
+        powerManagement.enable = true;
       };
     };
+
+    boot.extraModprobeConfig = ''
+      options nvidia NVreg_PreserveVideoMemoryAllocations=1
+    '';
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
