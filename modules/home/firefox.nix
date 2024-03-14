@@ -64,6 +64,7 @@ in
           "toolkit.telemetry.enabled" = false;
           "toolkit.telemetry.server" = "";
           "toolkit.telemetry.unified" = false;
+          "toolkit.telemetry.pioneer-new-studies-available" = false;
 
           # Disable Firefox Pocket.
           "extensions.pocket.enabled" = false;
@@ -75,6 +76,7 @@ in
 
           # Disable Firefox View.
           "browser.tabs.firefox-view" = false;
+          "browser.tabs.firefox-view-next" = false;
 
           # Disable Firefox account features
           "identity.fxaccounts.enabled" = false;
