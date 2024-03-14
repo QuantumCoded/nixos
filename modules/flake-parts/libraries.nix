@@ -4,11 +4,6 @@ let
   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
 in
 {
-  perSystem = { pkgs, ... }: {
-    packages = {
-    };
-  };
-
   flake = rec {
     lib = {
       buildFirefoxXpiAddon = pkgs.callPackage ../../libraries/build-firefox-xpi-addon.nix;

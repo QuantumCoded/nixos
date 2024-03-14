@@ -23,67 +23,67 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
-    ({ config, flake-parts-lib, withSystem, ... }:
-    let
-      inherit (flake-parts-lib) importApply;
+      ({ config, flake-parts-lib, withSystem, ... }:
+        let
+          inherit (flake-parts-lib) importApply;
 
-      flakeModules = {
-        home-manager = importApply ./modules/flake-parts/home-manager.nix { inherit withSystem; };
-        libraries = importApply ./modules/flake-parts/libraries.nix { inherit withSystem; };
-        nixos = importApply ./modules/flake-parts/nixos.nix { inherit withSystem; };
-        packages = importApply ./modules/flake-parts/packages.nix { inherit withSystem; };
-      };
-    in
-    {
-      imports = with flakeModules; [
-        home-manager
-        libraries
-        nixos
-        packages
-      ];
-
-      systems = [ "x86_64-linux" ];
-
-      perSystem = { config, inputs', pkgs, ... }: {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            inputs'.agenix.packages.default
-            colmena
-            deploy-rs
-            git-lfs
-            just
+          flakeModules = {
+            home-manager = importApply ./modules/flake-parts/home-manager.nix { inherit withSystem; };
+            libraries = importApply ./modules/flake-parts/libraries.nix { inherit withSystem; };
+            nixos = importApply ./modules/flake-parts/nixos.nix { inherit withSystem; };
+            packages = importApply ./modules/flake-parts/packages.nix { inherit withSystem; };
+          };
+        in
+        {
+          imports = with flakeModules; [
+            home-manager
+            libraries
+            nixos
+            packages
           ];
 
-          shellHook = ''
-            export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
-          '';
-        };
-      };
+          systems = [ "x86_64-linux" ];
 
-      flake = {
-        nixosConfigurations = {
-          hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
-          odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
-          quantum = config.flake.lib.mkNixos ./hosts/quantum;
-        };
+          perSystem = { config, inputs', pkgs, ... }: {
+            devShells.default = pkgs.mkShell {
+              packages = with pkgs; [
+                inputs'.agenix.packages.default
+                colmena
+                deploy-rs
+                git-lfs
+                just
+              ];
 
-        homeConfigurations = {
-          "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
-          "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
-          "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
-        };
-
-        deploy.nodes = {
-          hydrogen = {
-            hostname = "hydrogen.lan";
-            profiles.system = {
-              user = "root";
-              sshUser = "root";
-              sshOpts = [ "-t" ];
-              path = inputs.deploy-rs.lib.activate.nixos config.nixosConfigurations.hydrogen;
+              shellHook = ''
+                export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
+              '';
             };
           };
-        };
-      };
-    });
+
+          flake = {
+            nixosConfigurations = {
+              hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
+              odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
+              quantum = config.flake.lib.mkNixos ./hosts/quantum;
+            };
+
+            homeConfigurations = {
+              "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
+              "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
+              "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
+            };
+
+            deploy.nodes = {
+              hydrogen = {
+                hostname = "hydrogen.lan";
+                profiles.system = {
+                  user = "root";
+                  sshUser = "root";
+                  sshOpts = [ "-t" ];
+                  path = inputs.deploy-rs.lib.activate.nixos config.nixosConfigurations.hydrogen;
+                };
+              };
+            };
+          };
+        });
 }

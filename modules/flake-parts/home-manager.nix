@@ -13,7 +13,7 @@ _: { config, lib, ... }: {
         vscode = import ../home-manager/vscode.nix;
       };
 
-      default.imports = lib.mapAttrsToList (_: path: path) modules;
+      default.imports = lib.mapAttrsToList (_: mod: mod) modules;
     in
-      modules // { inherit default; };
+    modules // { inherit default; };
 }

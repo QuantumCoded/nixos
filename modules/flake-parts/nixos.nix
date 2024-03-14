@@ -15,7 +15,7 @@ _: { config, lib, ... }: {
         virtualization = import ../nixos/virtualization.nix;
       };
 
-      default.imports = lib.mapAttrsToList (_: path: path) modules;
+      default.imports = lib.mapAttrsToList (_: mod: mod) modules;
     in
-      modules // { inherit default; };
+    modules // { inherit default; };
 }
