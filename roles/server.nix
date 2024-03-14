@@ -238,7 +238,7 @@ in
 
   base.ankisync.enable = true;
 
-  base.homepage-dashboard = {
+  services.homepage-dashboard = {
     # enable = true;
     openFirewall = true;
   };

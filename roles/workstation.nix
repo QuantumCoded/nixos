@@ -99,6 +99,8 @@
     ];
   };
 
+  programs.direnv.enable = true;
+
   programs.steam.enable = true;
 
   programs.gnupg.agent = {
@@ -135,7 +137,6 @@
 
   base = {
     boot.enable = true;
-    direnv.enable = true;
     flakes.enable = true;
     input.enable = true;
 

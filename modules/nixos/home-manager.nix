@@ -50,7 +50,7 @@ in
       cfg.user.jeff.homeConfig
       {
         imports = [
-          ../home
+          self.homeModules.default
           (../../home/jeff + "/${config.networking.hostName}.nix")
         ];
 
