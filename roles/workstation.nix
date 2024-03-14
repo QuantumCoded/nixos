@@ -22,7 +22,6 @@
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbOptions = "caps:swapescape";
   };
 
   services.xserver.windowManager.bspwm.enable = true;
@@ -132,43 +131,13 @@
 
   time.timeZone = "America/Chicago";
 
-  i18n = rec {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = defaultLocale;
-      LC_IDENTIFICATION = defaultLocale;
-      LC_MEASUREMENT = defaultLocale;
-      LC_MONETARY = defaultLocale;
-      LC_NAME = defaultLocale;
-      LC_NUMERIC = defaultLocale;
-      LC_PAPER = defaultLocale;
-      LC_TELEPHONE = defaultLocale;
-      LC_TIME = defaultLocale;
-    };
-    inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-        libsForQt5.fcitx5-qt
-      ];
-    };
-  };
-
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    SDL_IM_MODULE = "fcitx";
-    GLFW_IM_MODULE = "ibus";
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   base = {
     boot.enable = true;
     direnv.enable = true;
     flakes.enable = true;
+    input.enable = true;
 
     networkmanager = {
       enable = true;
@@ -176,15 +145,6 @@
         wifi_5g = ../secrets/wifi_5g.age;
         wifi = ../secrets/wifi.age;
       };
-    };
-
-    # tuigreet.enable = true;
-
-    # HACK: bspwm should get its own module
-    homeConfig = {
-      xsession.windowManager.bspwm.extraConfig = ''
-        fcitx5 &
-      '';
     };
 
     user.jeff = {
