@@ -95,7 +95,7 @@
 
       # social
       element-desktop
-      unstable.discord
+      vesktop
     ];
   };
 

@@ -35,7 +35,7 @@ in
         "super + o" = "obsidian";
 
         # discord
-        "super + d" = "discord";
+        "super + d" = "vencorddesktop";
 
         # vscode
         "super + v" = "codium";
