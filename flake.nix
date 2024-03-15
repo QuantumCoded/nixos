@@ -28,10 +28,10 @@
           inherit (flake-parts-lib) importApply;
 
           flakeModules = {
-            home-manager = importApply ./modules/flake-parts/home-manager.nix { inherit withSystem; };
-            libraries = importApply ./modules/flake-parts/libraries.nix { inherit withSystem; };
-            nixos = importApply ./modules/flake-parts/nixos.nix { inherit withSystem; };
-            packages = importApply ./modules/flake-parts/packages.nix { inherit withSystem; };
+            home-manager = importApply ./flake-parts/home-manager { inherit withSystem; };
+            libraries = importApply ./flake-parts/libraries { inherit withSystem; };
+            nixos = importApply ./flake-parts/nixos { inherit withSystem; };
+            packages = importApply ./flake-parts/packages { inherit withSystem; };
           };
         in
         {
@@ -61,6 +61,8 @@
           };
 
           flake = {
+            inherit flakeModules;
+
             nixosConfigurations = {
               hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
               odyssey = config.flake.lib.mkNixos ./hosts/odyssey;

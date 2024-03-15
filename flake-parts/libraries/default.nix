@@ -6,9 +6,9 @@ in
 {
   flake = rec {
     lib = {
-      buildFirefoxXpiAddon = pkgs.callPackage ../../libraries/build-firefox-xpi-addon.nix;
-      nvencUnlock = import ../../libraries/nvenc-unlock.nix;
-      nvfbcUnlock = import ../../libraries/nvfbc-unlock.nix;
+      buildFirefoxXpiAddon = pkgs.callPackage ./build-firefox-xpi-addon.nix;
+      nvencUnlock = import ./nvenc-unlock.nix;
+      nvfbcUnlock = import ./nvfbc-unlock.nix;
 
       mkHome = cfg: inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
