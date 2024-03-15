@@ -24,9 +24,8 @@
   #   fsType = "ext4";
   # };
 
-  # TODO: this should be renamed
-  fileSystems."/mnt" = {
-    device = "/dev/disk/by-label/external";
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-label/storage";
     fsType = "ext4";
   };
 
