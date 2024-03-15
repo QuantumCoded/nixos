@@ -11,6 +11,9 @@ jobs:
     name: "Nix Format Check"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -32,6 +35,9 @@ jobs:
     name: "NixOS Build Check for Hydrogen"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -48,6 +54,9 @@ jobs:
     name: "Build HomeManager for Jeff on Hydrogen"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -66,6 +75,9 @@ jobs:
     name: "NixOS Build Check for Odyssey"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -82,6 +94,9 @@ jobs:
     name: "Build HomeManager for Jeff on Odyssey"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -100,6 +115,9 @@ jobs:
     name: "NixOS Build Check for Quantum"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
@@ -116,6 +134,9 @@ jobs:
     name: "Build HomeManager for Jeff on Quantum"
     runs-on: ubuntu-latest
     steps:
+      - name: "Install sudo package"
+        run: apt update && apt install sudo
+
       - name: "Checkout Repository"
         uses: actions/checkout@v3
 
