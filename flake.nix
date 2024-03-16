@@ -22,16 +22,18 @@
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      ({ config, flake-parts-lib, withSystem, ... }:
+  inputs.flake-parts.lib.mkFlake { inherit inputs; } 
+      (args @ { config, flake-parts-lib, ... }:
         let
           inherit (flake-parts-lib) importApply;
 
           flakeModules = {
-            home-manager = importApply ./flake-parts/home-manager { inherit withSystem; };
-            libraries = importApply ./flake-parts/libraries { inherit withSystem; };
-            nixos = importApply ./flake-parts/nixos { inherit withSystem; };
-            packages = importApply ./flake-parts/packages { inherit withSystem; };
+            home-manager = importApply ./flake-parts/home-manager args;
+            libraries = importApply ./flake-parts/libraries args;
+            nixos = importApply ./flake-parts/nixos args;
+            packages = importApply ./flake-parts/packages args;
+            firefox = importApply ./flake-parts/firefox args;
+            transpose = importApply ./flake-parts/transpose args;
           };
         in
         {
@@ -40,6 +42,7 @@
             libraries
             nixos
             packages
+            transpose
           ];
 
           systems = [ "x86_64-linux" ];
