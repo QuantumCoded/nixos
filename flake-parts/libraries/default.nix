@@ -4,7 +4,7 @@ let
   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
 in
 {
-  flake = rec {
+  flake = {
     lib = {
       combineModules = import ./combine-modules.nix { inherit lib; };
       nvencUnlock = import ./nvenc-unlock.nix;
@@ -36,6 +36,6 @@ in
       };
     };
 
-    libraries = lib;
+    libraries = config.flake.lib;
   };
 }
