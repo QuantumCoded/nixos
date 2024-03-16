@@ -1,4 +1,4 @@
-_: { config, inputs, self, ... }:
+_: { config, inputs, lib, self, ... }:
 let
   # FIXME: use pkgs from flake-parts somehow
   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
@@ -6,6 +6,7 @@ in
 {
   flake = rec {
     lib = {
+      combineModules = import ./combine-modules.nix { inherit lib; };
       nvencUnlock = import ./nvenc-unlock.nix;
       nvfbcUnlock = import ./nvfbc-unlock.nix;
 
