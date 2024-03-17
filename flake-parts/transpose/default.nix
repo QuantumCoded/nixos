@@ -1,9 +1,22 @@
-_: { config, ... }:
+_: { config, flake-parts-lib, ... }:
+let
+  inherit (config.flake.lib)
+    combineModules
+    ;
 
+  inherit (flake-parts-lib)
+    importApply
+    ;
+
+  modules = {
+    builders = importApply ./builders.nix;
+    home-config = importApply ./home-config.nix;
+  };
+in
 {
-  flake.transpose = {
-    builders = import ./builders.nix;
-    home-config = import ./home-config.nix;
-    default.imports = with config.flake; lib.combineModules transpose;
+  imports = builtins.attrValues modules;
+
+  flake.transpose = modules // {
+    default.imports = combineModules config.flake.transpose;
   };
 }

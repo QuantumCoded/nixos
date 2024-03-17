@@ -1,4 +1,4 @@
-_: { config, flake-parts-lib, inputs, lib }:
+_: { config, flake-parts-lib, inputs, lib, ... }:
 let
   inherit (lib)
     mkOption
@@ -10,7 +10,7 @@ let
     ;
 in
 mkTransposedPerSystemModule {
-  file = ./home-transpose.nix;
+  file = ./home-config.nix;
   name = "homeConfiguration";
   option = mkOption {
     type = with types; attrsOf raw;
