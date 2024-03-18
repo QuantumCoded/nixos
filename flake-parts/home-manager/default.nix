@@ -1,19 +1,29 @@
-_: { config, lib, ... }: {
-  flake.homeModules =
-    let
-      modules = {
-        fish = import ./fish;
-        neofetch = import ./neofetch;
-        dunst = import ./dunst.nix;
-        firefox = import ./firefox.nix;
-        git = import ./git.nix;
-        kitty = import ./kitty.nix;
-        rofi = import ./rofi.nix;
-        sxhkd = import ./sxhkd.nix;
-        vscode = import ./vscode.nix;
-      };
+_: { config, lib, ... }:
+let
+  inherit (config.flake.lib)
+    combineModules
+    ;
 
-      default.imports = lib.mapAttrsToList (_: mod: mod) modules;
-    in
-    modules // { inherit default; };
+  inherit (lib)
+    mkOption
+    types
+    ;
+in
+{
+  options.flake.homeModules = mkOption {
+    type = types.attrs;
+    default = { };
+  };
+
+  config.flake.homeModules = {
+    neofetch = import ./modules/neofetch;
+    dunst = import ./modules/dunst.nix;
+    fish = import ./modules/fish.nix;
+    git = import ./modules/git.nix;
+    kitty = import ./modules/kitty.nix;
+    rofi = import ./modules/rofi.nix;
+    sxhkd = import ./modules/sxhkd.nix;
+    vscode = import ./modules/vscode.nix;
+    default.imports = combineModules config.flake.homeModules;
+  };
 }
