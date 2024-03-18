@@ -11,6 +11,8 @@ let
   modules = {
     builders = importApply ./builders.nix;
     home-config = importApply ./home-config.nix;
+    machines = importApply ./machines.nix;
+    nixos-config = importApply ./nixos-config.nix;
   };
 in
 {
