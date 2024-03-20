@@ -1,15 +1,5 @@
 {
-  imports = [
-    ../../roles/laptop.nix
-    ../../roles/workstation.nix
-
-    ./hardware.nix
-    ./storage.nix
-  ];
-
-  networking.hostName = "odyssey";
-
-  base.homeConfig =
+  homeManager =
     let
       internalMonitor = "eDP-1";
       externalMonitor = "HDMI-1";
@@ -29,5 +19,8 @@
       '';
     };
 
-  hardware.bluetooth.enable = true;
+  nixos = {
+    networking.hostName = "odyssey";
+    hardware.bluetooth.enable = true;
+  };
 }
