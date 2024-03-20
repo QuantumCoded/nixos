@@ -1,21 +1,22 @@
-_: { config, lib, ... }: {
-  flake.nixosModules =
-    let
-      modules = {
-        ankisync = import ./services/ankisync.nix;
-        deemix-server = import ./services/deemix-server.nix;
-        minecraft = import ./services/minecraft.nix;
+_: { config, lib, ... }:
+let
+  inherit (config.lib)
+    combineModules
+    ;
+in
+  {
+    flake.nixosModules = {
+      ankisync = import ./modules/services/ankisync.nix;
+      deemix-server = import ./modules/services/deemix-server.nix;
+      minecraft = import ./modules/services/minecraft.nix;
 
-        input = import ./input;
-        boot = import ./boot.nix;
-        flakes = import ./flakes.nix;
-        home-manager = import ./home-manager.nix;
-        networkmanager = import ./networkmanager.nix;
-        nvidia = import ./nvidia.nix;
-        virtualization = import ./virtualization.nix;
-      };
-
-      default.imports = lib.mapAttrsToList (_: mod: mod) modules;
-    in
-    modules // { inherit default; };
-}
+      input = import ./modules/input;
+      boot = import ./modules/boot.nix;
+      flakes = import ./modules/flakes.nix;
+      home-manager = import ./modules/home-manager.nix;
+      networkmanager = import ./modules/networkmanager.nix;
+      nvidia = import ./modules/nvidia.nix;
+      virtualization = import ./modules/virtualization.nix;
+      default.imports = combineModules config.flake.nixosModules;
+    };
+  }
