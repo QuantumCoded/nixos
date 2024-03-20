@@ -5,6 +5,7 @@
     agenix.url = "github:ryantm/agenix";
     deploy-rs.url = "github:serokell/deploy-rs";
     disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-raccoon.url = "github:nixos/nixpkgs/nixos-22.11";
@@ -21,103 +22,86 @@
   };
 
   outputs = inputs:
-    with inputs;
-    let
-      system = "x86_64-linux";
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      (args @ { config, flake-parts-lib, ... }:
+        let
+          inherit (flake-parts-lib) importApply;
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      specialArgs = { inherit inputs self; };
-      moduleArgs = specialArgs // { nixpkgs = pkgs; };
-
-      mkNixos = system: config: nixpkgs.lib.nixosSystem {
-        inherit specialArgs system;
-        modules = [
-          agenix.nixosModules.default
-          disko.nixosModules.disko
-          ./common.nix
-          ./overlays.nix
-          ./modules/nixos
-          config
-        ];
-      };
-
-      mkHome = config: home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = specialArgs;
-        modules = [
-          ./overlays.nix
-          ./modules/home
-          config
-        ];
-      };
-    in
-    {
-      inherit (import ./packages moduleArgs) packages;
-      lib = import ./libraries moduleArgs;
-
-      nixosConfigurations = {
-        hydrogen = mkNixos "x86_64-linux" ./hosts/hydrogen;
-        odyssey = mkNixos "x86_64-linux" ./hosts/odyssey;
-        quantum = mkNixos "x86_64-linux" ./hosts/quantum;
-      };
-
-      homeConfigurations = {
-        "jeff@hydrogen" = mkHome ./home/jeff/hydrogen.nix;
-        "jeff@odyssey" = mkHome ./home/jeff/odyssey.nix;
-        "jeff@quantum" = mkHome ./home/jeff/quantum.nix;
-      };
-
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          agenix.packages.${system}.default
-          colmena
-          deploy-rs
-          git-lfs
-          just
-        ];
-
-        shellHook = ''
-          export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
-        '';
-      };
-
-      deploy.nodes = {
-        hydrogen = {
-          hostname = "hydrogen.lan";
-          profiles.system = {
-            user = "root";
-            sshUser = "root";
-            sshOpts = [ "-t" ];
-            path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.hydrogen;
+          flakeModules = {
+            firefox = importApply ./flake-parts/firefox args;
+            hardware = importApply ./flake-parts/hardware args;
+            home-manager = importApply ./flake-parts/home-manager args;
+            hosts = importApply ./flake-parts/hosts args;
+            libraries = importApply ./flake-parts/libraries args;
+            machines = importApply ./flake-parts/machines.nix args;
+            nixos = importApply ./flake-parts/nixos args;
+            packages = importApply ./flake-parts/packages args;
+            roles = importApply ./flake-parts/roles args;
+            transpose = importApply ./flake-parts/transpose args;
+            users = importApply ./flake-parts/users args;
           };
-        };
-      };
+        in
+        {
+          imports = with flakeModules; [
+            firefox
+            hardware
+            home-manager
+            hosts
+            libraries
+            machines
+            nixos
+            packages
+            roles
+            transpose
+            users
 
-      colmena = {
-        meta = {
-          nixpkgs = pkgs;
-          inherit specialArgs;
-        };
-
-        hydrogen = {
-          deployment = {
-            targetHost = "hydrogen.lan";
-            buildOnTarget = true;
-          };
-
-          imports = [
-            agenix.nixosModules.default
-
-            ./common.nix
-            ./overlays.nix
-            ./modules/nixos
-            ./hosts/hydrogen
+            ./machines.nix
           ];
-        };
-      };
-    };
+
+          systems = [ "x86_64-linux" ];
+
+          perSystem = { config, inputs', pkgs, ... }: {
+            devShells.default = pkgs.mkShell {
+              packages = with pkgs; [
+                inputs'.agenix.packages.default
+                colmena
+                deploy-rs
+                git-lfs
+                just
+              ];
+
+              shellHook = ''
+                export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
+              '';
+            };
+          };
+
+          flake = {
+            inherit flakeModules;
+
+            # nixosConfigurations = {
+            #   hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
+            #   odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
+            #   quantum = config.flake.lib.mkNixos ./hosts/quantum;
+            # };
+            #
+            # homeConfigurations = {
+            #   "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
+            #   "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
+            #   "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
+            # };
+
+            deploy.nodes = {
+              hydrogen = {
+                hostname = "hydrogen.lan";
+                profiles.system = {
+                  user = "root";
+                  sshUser = "root";
+                  sshOpts = [ "-t" ];
+                  path = inputs.deploy-rs.lib.activate.nixos config.nixosConfigurations.hydrogen;
+                };
+              };
+            };
+          };
+        });
 }

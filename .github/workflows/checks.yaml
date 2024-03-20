@@ -58,7 +58,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Build HomeManager"
-        run: nix build .#homeConfigurations.jeff@hydrogen.activationPackage --dry-run
+        run: nix build .#homeConfiguration.x86_64-linux.hydrogen.jeff.activationPackage --dry-run 
 
   # Odyssey
 
@@ -92,7 +92,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Build HomeManager"
-        run: nix build .#homeConfigurations.jeff@odyssey.activationPackage --dry-run
+        run: nix build .#homeConfiguration.x86_64-linux.odyssey.jeff.activationPackage --dry-run 
 
   # Quantum
 
@@ -126,4 +126,4 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Build HomeManager"
-        run: nix build .#homeConfigurations.jeff@quantum.activationPackage --dry-run
+        run: nix build .#homeConfiguration.x86_64-linux.quantum.jeff.activationPackage --dry-run 
