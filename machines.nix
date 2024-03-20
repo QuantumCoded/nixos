@@ -12,7 +12,7 @@ in
     hydrogen = {
       hardware = hardwareModules.hydrogen;
       host = hostModules.hydrogen;
-      users.jeff = [];
+      users.jeff = [ ];
       roles = with roleModules; [ server ];
       extraNixos.imports = [
         ./overlays.nix

@@ -93,7 +93,7 @@ in
               users = mapAttrs
                 (uname: userModules: {
                   home = rec {
-                    username = uname; 
+                    username = uname;
                     homeDirectory = lib.mkDefault "/home/${username}";
                   };
 
@@ -104,28 +104,28 @@ in
             };
           }
         else
-         {};
+          { };
 
       mkNixosConfig = machine: attrs:
         inputs.nixpkgs.lib.nixosSystem ({
           specialArgs = { inherit inputs self; };
           modules = with machine;
-            nixosModules
-            ++ roles
-            ++ [
+            [
               hardware
               host.nixos
               (mkHomeManagerModule machine)
               machine.extraNixos
               { system.stateVersion = machine.stateVersion; }
-            ];
+            ]
+            ++ nixosModules
+            ++ roles;
         } // attrs);
     in
     {
       perSystem = { pkgs, system, ... }: lib.mkMerge (builtins.attrValues (mapAttrs
         (name: machine: {
           homeConfiguration.${name} = mapAttrs
-            (uname: userModules: 
+            (uname: userModules:
               inputs.home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
                 extraSpecialArgs = { inherit inputs self; };
@@ -135,7 +135,7 @@ in
                     machine.host.homeManager
                     {
                       home = rec {
-                        username = uname; 
+                        username = uname;
                         homeDirectory = lib.mkDefault "/home/${username}";
                         stateVersion = machine.stateVersion;
                       };
@@ -146,7 +146,7 @@ in
               })
             machine.users;
 
-          nixosConfiguration.${name} = mkNixosConfig machine { inherit system; }; 
+          nixosConfiguration.${name} = mkNixosConfig machine { inherit system; };
         })
         config.machines));
 
@@ -154,7 +154,7 @@ in
         inherit (config) machines;
 
         nixosConfigurations = mapAttrs
-          (_: machine: mkNixosConfig machine {})
+          (_: machine: mkNixosConfig machine { })
           config.machines;
       };
     };

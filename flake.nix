@@ -22,7 +22,7 @@
   };
 
   outputs = inputs:
-  inputs.flake-parts.lib.mkFlake { inherit inputs; } 
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
       (args @ { config, flake-parts-lib, ... }:
         let
           inherit (flake-parts-lib) importApply;
