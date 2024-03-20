@@ -1,6 +1,6 @@
 _: { config, lib, ... }:
 let
-  inherit (config.lib)
+  inherit (config.flake.lib)
     combineModules
     ;
 in
@@ -13,7 +13,6 @@ in
       input = import ./modules/input;
       boot = import ./modules/boot.nix;
       flakes = import ./modules/flakes.nix;
-      home-manager = import ./modules/home-manager.nix;
       networkmanager = import ./modules/networkmanager.nix;
       nvidia = import ./modules/nvidia.nix;
       virtualization = import ./modules/virtualization.nix;

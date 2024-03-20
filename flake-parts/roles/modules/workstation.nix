@@ -143,16 +143,9 @@
     networkmanager = {
       enable = true;
       connections = {
-        wifi_5g = ../secrets/wifi_5g.age;
-        wifi = ../secrets/wifi.age;
+        wifi_5g = ../../../secrets/wifi_5g.age;
+        wifi = ../../../secrets/wifi.age;
       };
     };
-
-    user.jeff = {
-      enable = true;
-      baseConfig.fish.tide.enable = true;
-    };
   };
-
-  system.stateVersion = "23.05";
 }

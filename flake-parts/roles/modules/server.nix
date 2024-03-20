@@ -60,8 +60,6 @@ in
 
   networking.networkmanager.enable = true;
 
-  base.user.jeff.enable = true;
-
   networking.firewall = {
     allowedTCPPorts = [
       21
@@ -321,8 +319,4 @@ in
       '';
     };
   };
-
-  base.homeBaseConfig.git.enable = true;
-
-  system.stateVersion = "23.05";
 }

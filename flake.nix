@@ -28,21 +28,34 @@
           inherit (flake-parts-lib) importApply;
 
           flakeModules = {
+            firefox = importApply ./flake-parts/firefox args;
+            hardware = importApply ./flake-parts/hardware args;
             home-manager = importApply ./flake-parts/home-manager args;
+            hosts = importApply ./flake-parts/hosts args;
             libraries = importApply ./flake-parts/libraries args;
+            machines = importApply ./flake-parts/machines.nix args;
             nixos = importApply ./flake-parts/nixos args;
             packages = importApply ./flake-parts/packages args;
-            firefox = importApply ./flake-parts/firefox args;
+            roles = importApply ./flake-parts/roles args;
             transpose = importApply ./flake-parts/transpose args;
+            users = importApply ./flake-parts/users args;
           };
         in
         {
           imports = with flakeModules; [
+            firefox
+            hardware
             home-manager
+            hosts
             libraries
+            machines
             nixos
             packages
+            roles
             transpose
+            users
+
+            ./machines.nix
           ];
 
           systems = [ "x86_64-linux" ];
@@ -66,17 +79,17 @@
           flake = {
             inherit flakeModules;
 
-            nixosConfigurations = {
-              hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
-              odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
-              quantum = config.flake.lib.mkNixos ./hosts/quantum;
-            };
-
-            homeConfigurations = {
-              "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
-              "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
-              "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
-            };
+            # nixosConfigurations = {
+            #   hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
+            #   odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
+            #   quantum = config.flake.lib.mkNixos ./hosts/quantum;
+            # };
+            #
+            # homeConfigurations = {
+            #   "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
+            #   "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
+            #   "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
+            # };
 
             deploy.nodes = {
               hydrogen = {

@@ -1,5 +1,5 @@
 {
-  homeManager =
+  homeManager = { pkgs, ... }:
     let
       internalMonitor = "eDP-1";
       externalMonitor = "HDMI-1";
@@ -16,6 +16,8 @@
             bspc monitor "${internalMonitor}" -d 1 2 3 4 5 6 7 8 9 10
           fi
         fi
+
+        ${pkgs.feh}/bin/feh --bg-max ${../../../wallpapers/wallpaper.jpg}
       '';
     };
 

@@ -1,10 +1,25 @@
 {
-  homeManager = {
-    xsession.windowManager.bspwm.monitors = {
-      DP-0 = [ "L1" "L2" "L3" ];
-      DP-2 = [ "M1" "M2" "M3" ];
-      DP-4 = [ "R1" "R2" "R3" ];
-      HDMI-0 = [ "P" ];
+  homeManager = { pkgs, ... }: {
+    xsession.windowManager.bspwm = {
+      monitors = {
+        DP-0 = [ "L1" "L2" "L3" ];
+        DP-2 = [ "M1" "M2" "M3" ];
+        DP-4 = [ "R1" "R2" "R3" ];
+        HDMI-0 = [ "P" ];
+      };
+
+      extraConfig = ''
+        ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../../wallpapers/animated.mkv}
+      '';
+    };
+
+    base = {
+      dunst = {
+        origin = "bottom-left";
+        monitor = 1;
+      };
+
+      sxhkd.desktopOrder = "1,4,7,2,5,8,3,6,9,10";
     };
   };
 

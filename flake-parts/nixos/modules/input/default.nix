@@ -54,9 +54,5 @@ in
       # Compose config
       XCOMPOSEFILE = ./XCompose;
     };
-
-    base.homeConfig = {
-      xsession.windowManager.bspwm.startupPrograms = [ "fcitx5 -d" ];
-    };
   };
 }
