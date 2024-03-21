@@ -79,18 +79,6 @@
           flake = {
             inherit flakeModules;
 
-            # nixosConfigurations = {
-            #   hydrogen = config.flake.lib.mkNixos ./hosts/hydrogen;
-            #   odyssey = config.flake.lib.mkNixos ./hosts/odyssey;
-            #   quantum = config.flake.lib.mkNixos ./hosts/quantum;
-            # };
-            #
-            # homeConfigurations = {
-            #   "jeff@hydrogen" = config.flake.lib.mkHome ./home/jeff/hydrogen.nix;
-            #   "jeff@odyssey" = config.flake.lib.mkHome ./home/jeff/odyssey.nix;
-            #   "jeff@quantum" = config.flake.lib.mkHome ./home/jeff/quantum.nix;
-            # };
-
             deploy.nodes = {
               hydrogen = {
                 hostname = "hydrogen.lan";
@@ -98,7 +86,7 @@
                   user = "root";
                   sshUser = "root";
                   sshOpts = [ "-t" ];
-                  path = inputs.deploy-rs.lib.activate.nixos config.nixosConfigurations.hydrogen;
+                  path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos config.flake.nixosConfigurations.hydrogen;
                 };
               };
             };
