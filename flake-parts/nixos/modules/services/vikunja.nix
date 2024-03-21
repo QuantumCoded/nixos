@@ -140,9 +140,3 @@ in {
     ];
   };
 }
-
-/*
-when upgrading the service must be patched to support a specific user
-
-
-*/
