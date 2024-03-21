@@ -127,6 +127,7 @@ in
         "http://jellyfin.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8096";
         "http://searx.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8888";
         "http://syncthing.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:8384";
+        "http://vikunja.hydrogen.lan".extraConfig = "reverse_proxy http://127.0.0.1:3456";
       };
     };
 
@@ -232,6 +233,13 @@ in
     "/var/lib/jellyfin" = { device = "/data/services/jellyfin"; options = [ "bind" ]; };
     "/var/lib/minecraft" = { device = "/data/services/minecraft"; options = [ "bind" ]; };
     "/var/lib/homepage-dashboard" = { device = "/data/services/homepage-dashboard"; options = [ "bind" ]; };
+    "/var/lib/vikunja" = { device = "/data/services/vikunja"; options = [ "bind" ]; };
+  };
+
+  base.vikunja = {
+    enable = true;
+    frontendScheme = "http";
+    frontendHostname = "vikunja.hydrogen.lan";
   };
 
   base.ankisync.enable = true;
