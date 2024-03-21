@@ -9,7 +9,7 @@ let
     ;
 in
 mkTransposedPerSystemModule {
-  file = ./nixos-config.nix;
+  file = ./machines.nix;
   name = "nixosConfiguration";
   option = mkOption {
     type = options.machines.type;
