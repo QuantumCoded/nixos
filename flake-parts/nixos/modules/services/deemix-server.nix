@@ -16,6 +16,10 @@ in
       type = types.port;
       default = 6595;
     };
+    openPort = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -45,6 +49,6 @@ in
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ cfg.port ];
+    networking.firewall.allowedTCPPorts = mkIf cfg.openPort [ cfg.port ];
   };
 }
