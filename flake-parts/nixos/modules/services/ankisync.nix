@@ -16,6 +16,10 @@ in
       type = types.port;
       default = 27701;
     };
+    openPort = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -33,6 +37,7 @@ in
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       environment = {
+        # FIXME: this should be moved to an encrypted env file
         SYNC_USER1 = "jeff:password";
         SYNC_PORT = toString cfg.port;
         SYNC_BASE = "/var/lib/ankisync";
@@ -49,7 +54,7 @@ in
       };
     };
 
-    networking.firewall.allowedTCPPorts = [ cfg.port ];
+    networking.firewall.allowedTCPPorts = mkIf cfg.openPort [ cfg.port ];
   };
 }
 
