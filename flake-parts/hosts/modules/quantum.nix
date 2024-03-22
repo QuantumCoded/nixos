@@ -25,6 +25,7 @@
 
   nixos = { pkgs, ... }: {
     networking = {
+      hostName = "quantum";
       # FIXME: change this to eth intherface
       interfaces.wlp3s0.wakeOnLan.enable = true;
     };
