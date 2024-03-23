@@ -5,11 +5,12 @@ with lib;
 
 let
   cfg = config.base.vikunja;
-  format = pkgs.formats.yaml {};
+  format = pkgs.formats.yaml { };
   configFile = format.generate "config.yaml" cfg.settings;
   useMysql = cfg.database.type == "mysql";
   usePostgresql = cfg.database.type == "postgres";
-in {
+in
+{
   imports = [
     (mkRemovedOptionModule [ "base" "vikunja" "setupNginx" ] "services.vikunja no longer supports the automatic set up of a nginx virtual host. Set up your own webserver config with a proxy pass to the vikunja service.")
 
@@ -66,12 +67,12 @@ in {
 
     settings = mkOption {
       type = format.type;
-      default = {};
+      default = { };
       description = lib.mdDoc ''
         Vikunja configuration. Refer to
         <https://vikunja.io/docs/config-options/>
         for details on supported values.
-        '';
+      '';
     };
     database = {
       type = mkOption {
