@@ -37,6 +37,10 @@ in
       );
       default = { };
     };
+    openPorts = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -86,7 +90,9 @@ in
       in
       mapAttrs' make cfg.servers;
 
-    networking.firewall.allowedUDPPorts = serverPorts;
-    networking.firewall.allowedTCPPorts = serverPorts;
+    networking.firewall = mkIf cfg.openPorts {
+      allowedUDPPorts = serverPorts;
+      allowedTCPPorts = serverPorts;
+    };
   };
 }
