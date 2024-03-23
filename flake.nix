@@ -85,7 +85,7 @@
                 profiles.system = {
                   user = "root";
                   sshUser = "root";
-                  sshOpts = [ "-t" ];
+                  sshOpts = [ "-T" ];
                   path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos config.flake.nixosConfigurations.hydrogen;
                 };
               };
