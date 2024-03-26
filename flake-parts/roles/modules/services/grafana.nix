@@ -5,7 +5,7 @@
   };
 
   services = {
-    caddy.virtualHosts."http://graphana.hydrogen.lan".extraConfig = ''
+    caddy.virtualHosts."http://grafana.hydrogen.lan".extraConfig = ''
       reverse_proxy http://127.0.0.1:3300
     '';
 
