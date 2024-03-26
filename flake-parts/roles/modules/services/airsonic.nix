@@ -39,5 +39,18 @@
     caddy.virtualHosts."http://airsonic.hydrogen.lan".extraConfig = ''
       reverse_proxy http://127.0.0.1:4040
     '';
+
+    postgresql = {
+      ensureDatabases = [ "airsonic" ];
+      authentication = ''
+        local airsonic airsonic trust
+        host airsonic airsonic 127.0.0.1/32 trust
+      '';
+
+      ensureUsers = [{
+        name = "airsonic";
+        ensureDBOwnership = true;
+      }];
+    };
   };
 }

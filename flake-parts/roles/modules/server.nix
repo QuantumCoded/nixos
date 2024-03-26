@@ -13,6 +13,7 @@
     ./services/jellyfin.nix
     ./services/minecraft.nix
     ./services/nfs.nix
+    ./services/postgresql.nix
     ./services/searx.nix
     ./services/syncthing.nix
     ./services/vikunja.nix
