@@ -11,6 +11,12 @@
 
     forgejo = {
       enable = true;
+
+      database = {
+        type = "postgres";
+        socket = "/run/postgresql";
+      };
+
       settings = {
         DEFAULT.APP_NAME = "Forgejo Internal";
 
@@ -22,6 +28,18 @@
           HTTP_PORT = 3001;
         };
       };
+    };
+
+    postgresql = {
+      ensureDatabases = [ "forgejo" ];
+      authentication = ''
+        local forgejo forgejo trust
+      '';
+
+      ensureUsers = [{
+        name = "forgejo";
+        ensureDBOwnership = true;
+      }];
     };
   };
 }
