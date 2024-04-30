@@ -17,6 +17,13 @@ in
       extraNixos.imports = [
         ./overlays.nix
         inputs.agenix.nixosModules.default
+        {
+          base.wireguard.enable = true;
+          age.secrets.luninet-hydrogen = {
+            file = ./secrets/luninet-hydrogen.age;
+            mode = "0400";
+          };
+        }
       ];
       extraHomeManager.imports = [
         { base.git.enable = true; }
@@ -48,6 +55,13 @@ in
         ./overlays.nix
         inputs.agenix.nixosModules.default
         inputs.disko.nixosModules.default
+        {
+          base.wireguard.enable = true;
+          age.secrets.luninet-quantum = {
+            file = ./secrets/luninet-quantum.age;
+            mode = "0400";
+          };
+        }
       ];
       stateVersion = "23.11";
     };

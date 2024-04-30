@@ -13,6 +13,8 @@ let
   everywhere = allUsers ++ allSystems;
 in
 {
+  "luninet-hydrogen.age".publicKeys = everywhere;
+  "luninet-quantum.age".publicKeys = everywhere;
   "wifi_5g.age".publicKeys = everywhere;
   "wifi.age".publicKeys = everywhere;
 }  

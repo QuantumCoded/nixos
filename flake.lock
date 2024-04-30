@@ -257,6 +257,21 @@
         "type": "github"
       }
     },
+    "lynx": {
+      "locked": {
+        "lastModified": 1713290550,
+        "narHash": "sha256-j2LQfQYVJNhG+QYj4FjUTg7JP7/He1S/oGbS7NzClGM=",
+        "owner": "the-computer-club",
+        "repo": "lynx",
+        "rev": "8e0d33c6d4f62d0c54723805eb56fbc1ff30ad4b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "the-computer-club",
+        "repo": "lynx",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1677676435,
@@ -443,6 +458,7 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
+        "lynx": "lynx",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-raccoon": "nixpkgs-raccoon",
         "nixpkgs-unstable": "nixpkgs-unstable",

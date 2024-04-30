@@ -14,6 +14,8 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    lynx.url = "github:the-computer-club/lynx";
+
     base16.url = "github:SenchoPens/base16.nix";
     base16-kitty = {
       flake = false;
@@ -39,6 +41,7 @@
             roles = importApply ./flake-parts/roles args;
             transpose = importApply ./flake-parts/transpose args;
             users = importApply ./flake-parts/users args;
+            wireguard = importApply ./flake-parts/wireguard args;
           };
         in
         {
@@ -54,6 +57,9 @@
             roles
             transpose
             users
+            wireguard
+
+            inputs.lynx.flakeModules.flake-guard
 
             ./machines.nix
           ];
