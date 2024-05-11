@@ -11,6 +11,7 @@
     ./services/homepage.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
+    ./services/kiwix.nix
     ./services/minecraft.nix
     ./services/nfs.nix
     ./services/postgresql.nix
