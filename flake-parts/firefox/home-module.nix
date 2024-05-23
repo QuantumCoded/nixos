@@ -41,6 +41,7 @@ in
           with customAddons;
           [
             darkreader
+            keepassxc-browser
             return-youtube-dislikes
             sponsorblock
             tree-style-tab
