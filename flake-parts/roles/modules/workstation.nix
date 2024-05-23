@@ -77,6 +77,7 @@
       noisetorch
       sonixd
       wireguard-tools
+      keepassxc
 
       # gaming
       dwarf-fortress
