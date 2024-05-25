@@ -11,8 +11,19 @@
 
     syncthing = {
       enable = true;
-      # TODO: add devices
-      settings.gui.insecureSkipHostcheck = true;
+      openDefaultPorts = true;
+      settings = {
+        options = {
+          listenAddresses = [
+            "tcp://:22000"
+            "quic://:22000"
+          ];
+
+          urAccepted = -1;
+        };
+
+        gui.insecureSkipHostcheck = true;
+      };
     };
   };
 }
