@@ -11,8 +11,23 @@
 
     syncthing = {
       enable = true;
-      # TODO: add devices
-      settings.gui.insecureSkipHostcheck = true;
+      openDefaultPorts = true;
+      settings = {
+        options = {
+          globalAnnounceEnabled = false;
+          relaysEnabled = false;
+          startBrowser = false;
+          natEnabled = false;
+          autoUpgradeIntervalH = 0;
+          urAccepted = -1;
+          listenAddresses = [
+            "tcp://:22000"
+            "quic://:22000"
+          ];
+        };
+
+        gui.insecureSkipHostcheck = true;
+      };
     };
   };
 }
