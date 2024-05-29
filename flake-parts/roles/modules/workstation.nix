@@ -136,6 +136,7 @@
     libqalculate
     micro
     ntfs3g
+    sshpass
     tmux
     tree
     wget
