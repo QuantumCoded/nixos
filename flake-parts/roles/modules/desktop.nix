@@ -5,8 +5,6 @@
     vfioPciIds = [
       # USB 3.1 Controller
       "1b21:1242"
-      # Ethernet Controller
-      "8086:15b8"
       # GPU
       "10de:1e04"
       # GPU Audio
