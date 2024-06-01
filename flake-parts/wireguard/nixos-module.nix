@@ -24,9 +24,9 @@ in
       };
 
       wireguard = {
-        # interfaces.luninet.presistentKeepAlive = 30;
+        # interfaces.asluni.presistentKeepAlive = 30;
 
-        networks.luninet.autoConfig = {
+        networks.asluni.autoConfig = {
           interface = true;
           peers = true;
         };

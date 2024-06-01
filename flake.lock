@@ -20,6 +20,21 @@
         "type": "github"
       }
     },
+    "auto-zones": {
+      "locked": {
+        "lastModified": 1716083807,
+        "narHash": "sha256-IOgLy7VjJzfSxGmVAIZhrLr3OcVoNTbYsupjh4ZHfg8=",
+        "owner": "the-computer-club",
+        "repo": "automous-zones",
+        "rev": "a74adcc4ebc711df8b7ef746f8d4a4731b967205",
+        "type": "github"
+      },
+      "original": {
+        "owner": "the-computer-club",
+        "repo": "automous-zones",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -452,6 +467,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "auto-zones": "auto-zones",
         "base16": "base16",
         "base16-kitty": "base16-kitty",
         "deploy-rs": "deploy-rs",

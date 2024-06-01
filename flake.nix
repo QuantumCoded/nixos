@@ -14,6 +14,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
 
     base16.url = "github:SenchoPens/base16.nix";
@@ -60,6 +61,7 @@
             wireguard
 
             inputs.lynx.flakeModules.flake-guard
+            inputs.auto-zones.flakeModules.asluni
 
             ./machines.nix
           ];
