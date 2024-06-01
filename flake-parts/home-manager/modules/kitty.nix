@@ -15,8 +15,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      # HACK: this is downgraded because kitty still doesn't render neofetch svg
-      package = pkgs.raccoon.kitty;
+      package = pkgs.kitty;
       theme = "Material Dark";
       # TODO: maybe font should go somewhere else, no promise Nerdfonts are installed in this module
       font.name = "MesloLG Nerd Font";

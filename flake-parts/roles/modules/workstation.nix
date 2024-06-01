@@ -17,7 +17,6 @@
 
   hardware.opengl = {
     enable = true;
-    package = pkgs.raccoon.mesa.drivers;
     driSupport = true;
     driSupport32Bit = true;
   };

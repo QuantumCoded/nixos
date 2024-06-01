@@ -3,13 +3,6 @@ with inputs;
 let
   system = pkgs.stdenv.hostPlatform.system;
 
-  overlay-raccoon = final: prev: {
-    raccoon = import nixpkgs-raccoon {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  };
-
   overlay-unstable = final: prev: {
     unstable = import nixpkgs-unstable {
       inherit system;
@@ -25,7 +18,6 @@ in
   nixpkgs.overlays = [
     vscode-extensions.overlays.default
     nur.overlay
-    overlay-raccoon
     overlay-unstable
     overlay-flake
   ];
