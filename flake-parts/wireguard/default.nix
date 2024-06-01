@@ -7,7 +7,7 @@ _: { config, inputs, ... }:
     enable = true;
 
     networks.asluni = {
-      peers.by-name ={
+      peers.by-name = {
         hydrogen.sopsLookup = "luninet-hydrogen";
         quantum.sopsLookup = "luninet-quantum";
       };
