@@ -10,7 +10,7 @@ let
 in
 mkTransposedPerSystemModule {
   file = ./machines.nix;
-  name = "nixosConfiguration";
+  name = "machines";
   option = mkOption {
     type = options.machines.type;
     default = { };
