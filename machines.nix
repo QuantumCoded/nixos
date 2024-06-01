@@ -20,7 +20,7 @@ in
         inputs.agenix.nixosModules.default
         inputs.disko.nixosModules.default
       ];
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
 
     hydrogen = {
@@ -43,7 +43,7 @@ in
         { base.git.enable = true; }
         ./overlays.nix
       ];
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
 
     odyssey = {
@@ -56,7 +56,7 @@ in
         ./overlays.nix
         inputs.agenix.nixosModules.default
       ];
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
 
     quantum = {
@@ -77,7 +77,7 @@ in
           };
         }
       ];
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
 
     odyssey-server = {
@@ -90,7 +90,7 @@ in
         ./overlays.nix
         inputs.agenix.nixosModules.default
       ];
-      stateVersion = "23.11";
+      stateVersion = "24.05";
     };
   };
 }
