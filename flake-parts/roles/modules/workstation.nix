@@ -93,6 +93,7 @@
       dwarf-fortress
       steam
       prismlauncher
+      unstable.minetest
 
       # TODO: this goes in vscode
       nil
