@@ -31,7 +31,7 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb.layout = "us";
   };
 
   services.xserver.windowManager.bspwm.enable = true;
@@ -66,6 +66,8 @@
   programs.fish.enable = true;
 
   virtualisation.docker.enable = true;
+
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   users.users.jeff = {
     isNormalUser = true;

@@ -28,14 +28,11 @@ in
         # application hotkeys
         #
 
-        # libreoffice
-        "super + p" = "libreoffice";
-
         # obsidian
         "super + o" = "obsidian";
 
         # discord
-        "super + d" = "vencorddesktop";
+        "super + d" = "vesktop";
 
         # vscode
         "super + v" = "codium";

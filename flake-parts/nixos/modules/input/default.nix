@@ -14,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.xserver.xkbOptions = concatStringsSep "," [
+    services.xserver.xkb.options = concatStringsSep "," [
       "caps:swapescape"
       "compose:ralt"
     ];
