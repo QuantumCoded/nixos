@@ -7,6 +7,7 @@
     ./services/caddy.nix
     ./services/deemix.nix
     ./services/forgejo.nix
+    ./services/gitea-actions.nix
     ./services/grafana.nix
     ./services/homepage.nix
     ./services/invidious.nix
