@@ -16,12 +16,6 @@
 
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
-
-    base16.url = "github:SenchoPens/base16.nix";
-    base16-kitty = {
-      flake = false;
-      url = "github:kdrag0n/base16-kitty";
-    };
   };
 
   outputs = inputs:
