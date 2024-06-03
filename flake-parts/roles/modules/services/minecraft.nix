@@ -48,11 +48,6 @@ in
     openPorts = true;
   };
 
-  fileSystems."/var/lib/minecraft" = {
-    device = "/data/services/minecraft";
-    options = [ "bind" ];
-  };
-
   networking.firewall = {
     allowedTCPPorts = [ 19132 ];
     allowedUDPPorts = [ 19132 ];

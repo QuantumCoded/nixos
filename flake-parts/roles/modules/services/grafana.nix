@@ -1,9 +1,4 @@
 {
-  fileSystems."/var/lib/grafana" = {
-    device = "/data/services/grafana";
-    options = [ "bind" ];
-  };
-
   services = {
     caddy.virtualHosts."http://grafana.hydrogen.lan".extraConfig = ''
       reverse_proxy http://127.0.0.1:3300

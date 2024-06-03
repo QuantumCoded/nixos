@@ -23,6 +23,11 @@
     ./services/vsftpd.nix
   ];
 
+  fileSystems."/var/lib" = {
+    options = [ "bind" ];
+    device = "/data/services";
+  };
+
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
