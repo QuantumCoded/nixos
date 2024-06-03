@@ -14,6 +14,7 @@ let
   everywhere = allUsers ++ allSystems;
 in
 {
+  "attic-credentials.age".publicKeys = everywhere;
   "luninet-hydrogen.age".publicKeys = everywhere;
   "luninet-quantum.age".publicKeys = everywhere;
   "wifi_5g.age".publicKeys = everywhere;

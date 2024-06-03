@@ -31,6 +31,7 @@ in
       extraNixos.imports = [
         ./overlays.nix
         inputs.agenix.nixosModules.default
+        inputs.attic.nixosModules.atticd
         {
           base.wireguard.enable = true;
           age.secrets.luninet-hydrogen = {
@@ -89,6 +90,7 @@ in
       extraNixos.imports = [
         ./overlays.nix
         inputs.agenix.nixosModules.default
+        inputs.attic.nixosModules.atticd
       ];
       stateVersion = "24.05";
     };

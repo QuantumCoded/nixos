@@ -3,6 +3,7 @@
 
   inputs = {
     agenix.url = "github:ryantm/agenix";
+    attic.url = "github:zhaofengli/attic";
     deploy-rs.url = "github:serokell/deploy-rs";
     disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -71,6 +72,7 @@
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 inputs'.agenix.packages.default
+                inputs'.attic.packages.default
                 colmena
                 deploy-rs
                 git-lfs

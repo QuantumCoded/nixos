@@ -4,6 +4,7 @@
   imports = [
     ./services/airsonic.nix
     ./services/ankisync.nix
+    ./services/atticd.nix
     ./services/caddy.nix
     ./services/deemix.nix
     ./services/forgejo.nix
