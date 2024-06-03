@@ -2,17 +2,52 @@
   description = "NixOS configuration";
 
   inputs = {
-    agenix.url = "github:ryantm/agenix";
-    attic.url = "github:zhaofengli/attic";
-    deploy-rs.url = "github:serokell/deploy-rs";
-    disko.url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nur.url = "github:nix-community/NUR";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
