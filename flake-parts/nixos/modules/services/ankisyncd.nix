@@ -7,10 +7,10 @@ let
     mkIf
     ;
 
-  cfg = config.base.ankisync;
+  cfg = config.base.ankisyncd;
 in
 {
-  options.base.ankisync = {
+  options.base.ankisyncd = {
     enable = mkEnableOption "Anki Sync Server";
     port = mkOption {
       type = types.port;
@@ -23,16 +23,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.groups.ankisync = { };
-    users.users.ankisync = {
+    users.groups.ankisyncd = { };
+    users.users.ankisyncd = {
       description = "Anki Sync Server User";
-      home = "/var/lib/ankisync";
+      home = "/var/lib/ankisyncd";
       createHome = true;
       isSystemUser = true;
-      group = "ankisync";
+      group = "ankisyncd";
     };
 
-    systemd.services.ankisync = {
+    systemd.services.ankisyncd = {
       description = "Anki Sync Server";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
@@ -40,15 +40,15 @@ in
         # FIXME: this should be moved to an encrypted env file
         SYNC_USER1 = "jeff:password";
         SYNC_PORT = toString cfg.port;
-        SYNC_BASE = "/var/lib/ankisync";
+        SYNC_BASE = "/var/lib/ankisyncd";
       };
       serviceConfig = {
         ExecStart = ''
           ${pkgs.anki-bin}/bin/anki --syncserver
         '';
         Restart = "always";
-        User = "ankisync";
-        WorkingDirectory = "/var/lib/ankisync";
+        User = "ankisyncd";
+        WorkingDirectory = "/var/lib/ankisyncd";
         StandardOutput = "journal";
         StandardError = "journal";
       };

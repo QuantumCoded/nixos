@@ -3,7 +3,7 @@
 {
   imports = [
     ./services/airsonic.nix
-    ./services/ankisync.nix
+    ./services/ankisyncd.nix
     ./services/atticd.nix
     ./services/caddy.nix
     ./services/deemix.nix
@@ -22,6 +22,11 @@
     ./services/vikunja.nix
     ./services/vsftpd.nix
   ];
+
+  fileSystems."/var/lib" = {
+    options = [ "bind" ];
+    device = "/data/services";
+  };
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;

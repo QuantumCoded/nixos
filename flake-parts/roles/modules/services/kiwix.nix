@@ -1,9 +1,4 @@
 {
-  fileSystems."/var/lib/kiwix" = {
-    device = "/data/services/kiwix";
-    options = [ "bind" ];
-  };
-
   base.kiwix.enable = true;
 
   services = {

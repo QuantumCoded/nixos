@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 {
-  fileSystems."/var/lib/airsonic" = {
-    device = "/data/services/airsonic";
-    options = [ "bind" ];
-  };
-
   services = {
     airsonic = {
       enable = true;

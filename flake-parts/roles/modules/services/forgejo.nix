@@ -1,9 +1,4 @@
 {
-  fileSystems."/var/lib/forgejo" = {
-    device = "/data/services/forgejo";
-    options = [ "bind" ];
-  };
-
   services = {
     caddy.virtualHosts."http://git.hydrogen.lan".extraConfig = ''
       reverse_proxy http://127.0.0.1:3001
