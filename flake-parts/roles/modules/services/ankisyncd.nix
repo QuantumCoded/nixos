@@ -1,5 +1,5 @@
 {
-  base.ankisync.enable = true;
+  base.ankisyncd.enable = true;
 
   fileSystems."/var/lib/ankisync" = {
     device = "/data/services/ankisync";

@@ -3,7 +3,7 @@
 {
   imports = [
     ./services/airsonic.nix
-    ./services/ankisync.nix
+    ./services/ankisyncd.nix
     ./services/atticd.nix
     ./services/caddy.nix
     ./services/deemix.nix
