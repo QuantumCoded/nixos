@@ -116,6 +116,7 @@ in
               (mkHomeManagerModule machine)
               machine.extraNixos
               { system.stateVersion = machine.stateVersion; }
+              ../common.nix
             ]
             ++ nixosModules
             ++ roles;
