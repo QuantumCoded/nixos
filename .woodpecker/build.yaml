@@ -8,12 +8,14 @@ matrix:
 steps:
   - name: nixos build ${NIXOS_HOST}
     when:
-      - event: manual
       - event: push
+      - event: manual
       - event: pull_request
         branch: master
     image: nixos/nix
     secrets: [ ATTIC_TOKEN ]
+    volumes:
+      - /nix/store:/nix/store
     commands: |
       nix --extra-experimental-features "nix-command flakes" shell nixpkgs#attic-client
       attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
