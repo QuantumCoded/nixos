@@ -1,5 +1,9 @@
 steps:
-  first-job:
+  setup-attic-cache:
+    name: setup attic cache
     image: nixos/nix
+    secrets: [ ATTIC_TOKEN ]
     commands:
-      - echo "first run"
+      - nix --extra-expiramental-features "nix-command flakes" shell nixpkgs#attic-client
+      - attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
+      - attic use local
