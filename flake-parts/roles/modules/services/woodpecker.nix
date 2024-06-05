@@ -35,9 +35,13 @@
         WOODPECKER_OPEN = "false";
         WOODPECKER_ADMIN = "QuantumCoded,woodpecker-ci";
         WOODPECKER_DATABASE_DRIVER = "postgres";
+
         WOODPECKER_GITEA = "true";
         WOODPECKER_GITEA_URL = "http://git.hydrogen.lan";
         WOODPECKER_GITEA_CLIENT = "7ca40157-4f4f-460b-9624-796aa3a783bb";
+
+        WOODPECKER_GITHUB = "true";
+        WOODPECKER_GITHUB_CLIENT = "Ov23lilAPhiQgitVOlAB";
       };
 
       environmentFile = config.age.secrets.woodpecker-server-env.path;
@@ -54,20 +58,13 @@
             WOODPECKER_MAX_WORKFLOWS = "4";
             WOODPECKER_HOSTNAME = "hydrogen";
             WOODPECKER_BACKEND = "docker";
-            # DOCKER_HOST = "unix:///run/podman/podman.sock";
           };
 
-          environmentFile = [
-            config.age.secrets.woodpecker-agent-env.path
-          ];
+          environmentFile = [ config.age.secrets.woodpecker-agent-env.path ];
         };
       };
     };
   };
 
-  virtualisation = {
-    docker.enable = true;
-    # podman.enable = true;
-    # podman.dockerSocket.enable = true;
-  };
+  virtualisation.docker.enable = true;
 }
