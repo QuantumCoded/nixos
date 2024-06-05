@@ -40,7 +40,7 @@
         WOODPECKER_GITEA_URL = "http://git.hydrogen.lan";
         WOODPECKER_GITEA_CLIENT = "7ca40157-4f4f-460b-9624-796aa3a783bb";
 
-        WOODPECKER_GITHUB = "true";
+        # WOODPECKER_GITHUB = "true";
         WOODPECKER_GITHUB_CLIENT = "Ov23lilAPhiQgitVOlAB";
       };
 
