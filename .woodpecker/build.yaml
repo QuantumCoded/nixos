@@ -15,11 +15,12 @@ steps:
     image: nixos/nix
     secrets: [ ATTIC_TOKEN ]
     volumes:
-      - /data/nix:/mnt/nix
+      - /nix:/host/nix:ro
     commands: |
       echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
       nix shell nixpkgs#attic-client
       attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
       attic use local
-      nix build -j 16 --cores 24 --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+      export NIX_REMOTE=daemon
+      nix build -j 8 --cores 12 --store unix:////host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
       attic push local $(realpath result)
