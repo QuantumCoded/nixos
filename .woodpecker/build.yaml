@@ -1,5 +1,12 @@
+matrix:
+  NIXOS_HOST:
+    - avalon
+    - hydrogen
+    - odyssey
+    - quantum
+
 steps:
-  - name: setup attic cache
+  - name: build
     when:
       - event: manual
       - event: push
@@ -11,3 +18,5 @@ steps:
       nix --extra-experimental-features "nix-command flakes" shell nixpkgs#attic-client
       attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
       attic use local
+      nix build .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+      attic push local $(realpath result)
