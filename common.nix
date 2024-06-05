@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   # documentation.nixos = {
   #   includeAllModules = true;
@@ -12,12 +14,14 @@
   };
 
   nix.settings = {
-    substituters = [
+    substituters = lib.mkForce [
       "http://attic.hydrogen.lan/local"
+      "https://cache.nixos.org/"
     ];
 
-    trusted-public-keys = [
+    trusted-public-keys = lib.mkForce [
       "local:WfrRqzAL225DVcxg5tug9FtVX+gH6kkjcj3hGerZmq0="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
   };
 }
