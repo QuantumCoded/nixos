@@ -14,8 +14,8 @@ steps:
         branch: master
     image: nixos/nix
     secrets: [ ATTIC_TOKEN ]
-    volumes:
-      - /nix/store:/nix/store
+    # volumes:
+      # - /nix/store:/nix/store
     commands: |
       echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
       nix shell nixpkgs#attic-client
