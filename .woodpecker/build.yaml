@@ -17,8 +17,9 @@ steps:
     volumes:
       - /nix/store:/nix/store
     commands: |
-      nix --extra-experimental-features "nix-command flakes" shell nixpkgs#attic-client
+      echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
+      nix shell nixpkgs#attic-client
       attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
       attic use local
-      nix --extra-experimental-features "nix-command flakes" build .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+      nix build -j 16 --cores 24 .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
       attic push local $(realpath result)
