@@ -15,7 +15,7 @@ steps:
     image: nixos/nix
     secrets: [ ATTIC_TOKEN ]
     volumes:
-      - /nix:/mnt/nix:ro
+      - /data/nix:/mnt/nix
     commands: |
       echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
       nix shell nixpkgs#attic-client
