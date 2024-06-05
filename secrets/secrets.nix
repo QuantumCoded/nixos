@@ -19,4 +19,6 @@ in
   "luninet-quantum.age".publicKeys = everywhere;
   "wifi_5g.age".publicKeys = everywhere;
   "wifi.age".publicKeys = everywhere;
+  "woodpecker-agent-env.age".publicKeys = everywhere;
+  "woodpecker-server-env.age".publicKeys = everywhere;
 }  

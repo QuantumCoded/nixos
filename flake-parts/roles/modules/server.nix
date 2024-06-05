@@ -21,6 +21,7 @@
     ./services/syncthing.nix
     ./services/vikunja.nix
     ./services/vsftpd.nix
+    ./services/woodpecker.nix
   ];
 
   fileSystems."/var/lib" = {
@@ -44,7 +45,7 @@
 
   users.users.jeff = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
     shell = pkgs.fish;
 
     packages = [ ];
