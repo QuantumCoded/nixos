@@ -12,9 +12,8 @@
       settings = {
         listen = "[::]:4623";
         api-endpoint = "http://attic.hydrogen.lan/";
-        database = {
-          url = "postgres://atticd?host=/run/postgresql";
-        };
+        database.url = "postgres://atticd?host=/run/postgresql";
+        require-proof-of-possession = false;
 
         # Warning: If you change any of the values here, it will be
         # difficult to reuse existing chunks for newly-uploaded NARs
