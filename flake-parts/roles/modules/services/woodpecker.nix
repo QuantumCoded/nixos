@@ -45,16 +45,16 @@
 
     woodpecker-agents = {
       agents = {
-        podman = {
+        docker = {
           enable = true;
 
-          extraGroups = [ "podman" ];
+          extraGroups = [ "docker" ];
 
           environment = {
             WOODPECKER_MAX_WORKFLOWS = "4";
             WOODPECKER_HOSTNAME = "hydrogen";
             WOODPECKER_BACKEND = "docker";
-            DOCKER_HOST = "unix:///run/podman/podman.sock";
+            # DOCKER_HOST = "unix:///run/podman/podman.sock";
           };
 
           environmentFile = [
@@ -66,8 +66,8 @@
   };
 
   virtualisation = {
-    docker.enable = false;
-    podman.enable = true;
-    podman.dockerSocket.enable = true;
+    docker.enable = true;
+    # podman.enable = true;
+    # podman.dockerSocket.enable = true;
   };
 }
