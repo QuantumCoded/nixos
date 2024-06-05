@@ -6,7 +6,7 @@ matrix:
     - quantum
 
 steps:
-  - name: build
+  - name: nixos build ${NIXOS_HOST}
     when:
       - event: manual
       - event: push
