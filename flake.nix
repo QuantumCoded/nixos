@@ -102,7 +102,6 @@
               packages = with pkgs; [
                 inputs'.agenix.packages.default
                 inputs'.attic.packages.default
-                colmena
                 deploy-rs
                 git-lfs
               ];
