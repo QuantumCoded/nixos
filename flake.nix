@@ -101,7 +101,7 @@
             devShells.default = pkgs.mkShell {
               packages = with pkgs; [
                 inputs'.agenix.packages.default
-                inputs'.attic.packages.default
+                attic-client
                 deploy-rs
                 git-lfs
               ];
