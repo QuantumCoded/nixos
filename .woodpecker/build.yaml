@@ -1,13 +1,5 @@
-when:
-  - event: push
-  - event: pull_request
-    branch: master
-
 steps:
-  - name: setup attic cache
+  first-job:
     image: nixos/nix
-    secrets: [ ATTIC_TOKEN ]
     commands:
-      - nix --extra-expiramental-features "nix-command flakes" shell nixpkgs#attic-client
-      - attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
-      - attic use local
+      - echo "first run"
