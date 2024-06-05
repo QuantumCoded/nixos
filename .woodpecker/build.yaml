@@ -1,9 +1,13 @@
 steps:
-  setup-attic-cache:
-    name: setup attic cache
+  - name: setup attic cache
+    when:
+      - event: manual
+      - event: push
+      - event: pull_request
+        branch: master
     image: nixos/nix
     secrets: [ ATTIC_TOKEN ]
-    commands:
-      - nix --extra-expiramental-features "nix-command flakes" shell nixpkgs#attic-client
-      - attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
-      - attic use local
+    commands: |
+      nix --extra-experimental-features "nix-command flakes" shell nixpkgs#attic-client
+      attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
+      attic use local
