@@ -105,7 +105,6 @@
                 colmena
                 deploy-rs
                 git-lfs
-                just
               ];
 
               shellHook = ''
