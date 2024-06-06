@@ -27,4 +27,4 @@ steps:
     image: nixos/nix
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
-      nix flake check
+      NIX_REMOTE=daemon nix flake check --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host
