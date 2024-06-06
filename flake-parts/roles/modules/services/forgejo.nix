@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   services = {
     caddy.virtualHosts."http://git.hydrogen.lan".extraConfig = ''
@@ -22,6 +24,12 @@
           DOMAIN = "git.hydrogen.lan";
           HTTP_PORT = 3001;
         };
+
+        ui.DEFAULT_THEME = "gitea-dark";
+
+        webhook.ALLOWED_HOST_LIST = lib.concatStringsSep "," [
+          "woodpecker.hydrogen.lan"
+        ];
       };
     };
 

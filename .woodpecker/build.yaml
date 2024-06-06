@@ -1,10 +1,14 @@
 matrix:
+  ARCH:
+    - x86_64-linux
+
   NIXOS_HOST:
     - avalon
     - hydrogen
     - odyssey
     - quantum
 
+# TODO: move experimental-features to custom docker container
 steps:
   - name: nixos build ${NIXOS_HOST}
     when:
@@ -12,14 +16,26 @@ steps:
       - event: manual
       - event: pull_request
         branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
     image: nixos/nix
-    secrets: [ ATTIC_TOKEN ]
-    # volumes:
-      # - /nix/store:/nix/store
+    volumes:
+      - /nix:/host/nix:ro
     commands: |
-      echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
-      nix shell nixpkgs#attic-client
-      attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
-      attic use local
-      nix build -j 16 --cores 24 .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
-      attic push local $(realpath result)
+      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
+      NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+
+  - name: home-manager jeff@${NIXOS_HOST} build check
+    when:
+      - event: push
+      - event: manual
+      - event: pull_request
+        branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
+    image: nixos/nix
+    commands: |
+      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
+      nix build .#homeConfiguration.${ARCH}.${NIXOS_HOST}.jeff.activationPackage --dry-run
