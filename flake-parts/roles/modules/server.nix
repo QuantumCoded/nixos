@@ -15,6 +15,7 @@
     ./services/jellyfin.nix
     ./services/kiwix.nix
     ./services/minecraft.nix
+    ./services/navidrome.nix
     ./services/nfs.nix
     ./services/postgresql.nix
     ./services/searx.nix
