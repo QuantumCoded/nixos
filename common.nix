@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  age.secrets.attic-local-token.file = ./secrets/attic-local-token.age;
+
   # documentation.nixos = {
   #   includeAllModules = true;
   #   options.warningsAreErrors = false;
@@ -23,5 +25,19 @@
       "local:WfrRqzAL225DVcxg5tug9FtVX+gH6kkjcj3hGerZmq0="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
+  };
+
+  systemd.services.attic-store-watcher = {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = "root";
+      Group = "root";
+      EnvironmentFile = config.age.secrets.attic-local-token.path;
+    };
+    script = ''
+      ${pkgs.attic-client}/bin/attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
+      ${pkgs.attic-client}/bin/attic watch-store local
+    '';
   };
 }
