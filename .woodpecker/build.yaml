@@ -17,11 +17,8 @@ steps:
     volumes:
       - /nix:/host/nix:ro
     commands: |
-      ls /host/nix
-      ls /host/nix/var
-      ls /host/nix/var/nix
-      ls /host/nix/var/nix/daemon-socket
-      # echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
+      echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
+      NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:////host/nix/var/nix/daemon-socket/socket?root=/host github:zhaofengli/attic
       # nix shell nixpkgs#attic-client
       # attic login hydrogen http://attic.hydrogen.lan/ $ATTIC_TOKEN
       # attic use local
