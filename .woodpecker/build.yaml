@@ -17,7 +17,8 @@ steps:
       - event: pull_request
         branch: master
         repo:
-          exclude: [ "QuantumCoded/nixos" ]
+          exclude:
+            - "QuantumCoded/nixos"
     image: nixos/nix
     volumes:
       - /nix:/host/nix:ro

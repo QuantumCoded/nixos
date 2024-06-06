@@ -7,6 +7,9 @@ steps:
       - event: manual
       - event: pull_request
         branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
     image: nixos/nix
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
