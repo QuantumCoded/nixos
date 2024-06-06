@@ -1,4 +1,7 @@
 matrix:
+  ARCH:
+    - x86_64-linux
+
   NIXOS_HOST:
     - avalon
     - hydrogen
@@ -13,6 +16,9 @@ steps:
       - event: manual
       - event: pull_request
         branch: master
+        repo:
+          exclude:
+            - QuantumCoded/nixos
     image: nixos/nix
     volumes:
       - /nix:/host/nix:ro
@@ -26,7 +32,10 @@ steps:
       - event: manual
       - event: pull_request
         branch: master
+        repo:
+          exclude:
+            - QuantumCoded/nixos
     image: nixos/nix
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
-      nix build .#homeConfiguration.${NIXOS_HOST}.jeff.activationPackage --dry-run
+      nix build .#homeConfiguration.${ARCH}.${NIXOS_HOST}.jeff.activationPackage --dry-run
