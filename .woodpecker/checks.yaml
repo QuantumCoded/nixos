@@ -14,3 +14,17 @@ steps:
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
       nix run nixpkgs#nixpkgs-fmt -- --check .
+
+  - name: nix flake check
+    when:
+      - event: push
+      - event: manual
+      - event: pull_request
+        branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
+    image: nixos/nix
+    commands: |
+      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
+      nix flake check
