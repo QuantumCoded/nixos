@@ -55,7 +55,7 @@
           extraGroups = [ "docker" ];
 
           environment = {
-            WOODPECKER_MAX_WORKFLOWS = "4";
+            WOODPECKER_MAX_WORKFLOWS = "16";
             WOODPECKER_HOSTNAME = "hydrogen";
             WOODPECKER_BACKEND = "docker";
           };
