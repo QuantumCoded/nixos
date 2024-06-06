@@ -7,18 +7,6 @@ matrix:
 
 # TODO: move experimental-features to custom docker container
 steps:
-    # TODO: nixpkgs-fmt should be on the custom container
-  - name: nixpkgs-fmt check
-    when:
-      - event: push
-      - event: manual
-      - event: pull_request
-        branch: master
-    image: nixos/nix
-    commands: |
-      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
-      nix run nixpkgs#nixpkgs-fmt -- --check .
-
   - name: nixos build ${NIXOS_HOST}
     when:
       - event: push
