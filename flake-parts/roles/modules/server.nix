@@ -8,6 +8,7 @@
     ./services/caddy.nix
     ./services/deemix.nix
     ./services/forgejo.nix
+    ./services/gonic.nix
     ./services/grafana.nix
     ./services/homepage.nix
     ./services/invidious.nix
