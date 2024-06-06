@@ -6,6 +6,27 @@ matrix:
     - quantum
 
 steps:
+  # TODO: this should be moved into a custom docker container
+  - name: enable nix flakes
+    when:
+      - event: push
+      - event: manual
+    image: nixos/nix
+    commands: |
+      echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
+      nix --version
+
+  - name: nixpkgs-fmt check
+    when:
+      - event: push
+      - event: manual
+    image: nixos/nix
+    volumes:
+      - /nix:/host/nix:ro
+    commands: |
+      NIX_REMOTE=daemon nix run --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host nixpkgs#nixpkgs-fmt -- --check .
+
+
   - name: nixos build ${NIXOS_HOST}
     when:
       - event: push
@@ -13,9 +34,17 @@ steps:
       - event: pull_request
         branch: master
     image: nixos/nix
-    secrets: [ ATTIC_TOKEN ]
     volumes:
       - /nix:/host/nix:ro
     commands: |
-      echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
       NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+
+  - name: home-manager jeff@${NIXOS_HOST} build check
+    when:
+      - event: push
+      - event: manual
+      - event: pull_request
+        branch: master
+    image: nixos/nix
+    commands: |
+      nix build .#homeConfiguration.${NIXOS_HOST}.jeff.activationPackage --dry-run
