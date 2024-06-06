@@ -17,6 +17,7 @@ in
   "attic-credentials.age".publicKeys = everywhere;
   "luninet-hydrogen.age".publicKeys = everywhere;
   "luninet-quantum.age".publicKeys = everywhere;
+  "pgadmin.age".publicKeys = everywhere;
   "wifi_5g.age".publicKeys = everywhere;
   "wifi.age".publicKeys = everywhere;
   "woodpecker-agent-env.age".publicKeys = everywhere;

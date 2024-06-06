@@ -17,6 +17,7 @@
     ./services/minecraft.nix
     ./services/navidrome.nix
     ./services/nfs.nix
+    ./services/pgadmin.nix
     ./services/postgresql.nix
     ./services/searx.nix
     ./services/syncthing.nix
