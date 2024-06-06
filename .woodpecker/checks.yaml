@@ -25,6 +25,8 @@ steps:
           exclude:
             - "QuantumCoded/nixos"
     image: nixos/nix
+    volumes:
+      - /nix:/host/nix:ro
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
       NIX_REMOTE=daemon nix flake check --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host
