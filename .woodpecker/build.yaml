@@ -17,8 +17,7 @@ steps:
       - event: pull_request
         branch: master
         repo:
-          exclude:
-            - QuantumCoded/nixos
+          exclude: [ "QuantumCoded/nixos" ]
     image: nixos/nix
     volumes:
       - /nix:/host/nix:ro
@@ -34,7 +33,7 @@ steps:
         branch: master
         repo:
           exclude:
-            - QuantumCoded/nixos
+            - "QuantumCoded/nixos"
     image: nixos/nix
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
