@@ -18,4 +18,4 @@ steps:
       - /nix:/host/nix:ro
     commands: |
       echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
-      NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:////host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
+      NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
