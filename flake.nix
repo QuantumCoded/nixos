@@ -44,6 +44,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    std = {
+      url = "github:divnix/std";
+      inputs = {
+        devshell.url = "github:numtide/devshell";
+        nixago.url = "github:nix-community/nixago";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,7 +62,7 @@
     lynx.url = "github:the-computer-club/lynx";
   };
 
-  outputs = inputs:
+  outputs = inputs @ { std, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
       (args @ { config, flake-parts-lib, ... }:
         let
@@ -92,25 +101,12 @@
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
 
+            inputs.std.flakeModule
+
             ./machines.nix
           ];
 
           systems = [ "x86_64-linux" ];
-
-          perSystem = { config, inputs', pkgs, ... }: {
-            devShells.default = pkgs.mkShell {
-              packages = with pkgs; [
-                inputs'.agenix.packages.default
-                attic-client
-                deploy-rs
-                git-lfs
-              ];
-
-              shellHook = ''
-                export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
-              '';
-            };
-          };
 
           flake = {
             inherit flakeModules;
@@ -126,6 +122,23 @@
                 };
               };
             };
+          };
+
+          std = {
+            grow = {
+              cellsFrom = ./nix;
+              cellBlocks = with std.blockTypes; [
+                (devshells "shells")
+              ];
+            };
+
+            harvest = {
+              devShells = [
+                [ "local" "shells" ]
+              ];
+            };
+
+            pick = {};
           };
         });
 }

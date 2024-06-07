@@ -2,3 +2,11 @@
 result
 keys/*
 !keys/*.pub.*
+
+.bin
+.cache
+.config
+.data
+.run
+
+# nixago: ignore-linked-files
