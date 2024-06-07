@@ -28,7 +28,8 @@
     woodpecker-server = {
       enable = true;
 
-      package = pkgs.unstable.woodpecker-server;
+      # TODO: 2.5.0 from unstable breaks oauth, upgrade when stable
+      package = pkgs.woodpecker-server;
 
       environment = {
         WOODPECKER_HOST = "http://woodpecker.hydrogen.lan";
@@ -38,33 +39,51 @@
 
         WOODPECKER_GITEA = "true";
         WOODPECKER_GITEA_URL = "http://git.hydrogen.lan";
-        WOODPECKER_GITEA_CLIENT = "7ca40157-4f4f-460b-9624-796aa3a783bb";
+        WOODPECKER_GITEA_CLIENT = "ecac1705-43ea-4638-8269-ea88dad8919b";
 
         # WOODPECKER_GITHUB = "true";
-        WOODPECKER_GITHUB_CLIENT = "Ov23lilAPhiQgitVOlAB";
+        # WOODPECKER_GITHUB_CLIENT = "Ov23lilAPhiQgitVOlAB";
       };
 
       environmentFile = config.age.secrets.woodpecker-server-env.path;
     };
 
-    woodpecker-agents = {
-      agents = {
-        docker = {
-          enable = true;
+    woodpecker-agents.agents.docker = {
+      enable = true;
 
-          extraGroups = [ "docker" ];
+      package = pkgs.woodpecker-agent;
 
-          environment = {
-            WOODPECKER_MAX_WORKFLOWS = "16";
-            WOODPECKER_HOSTNAME = "hydrogen";
-            WOODPECKER_BACKEND = "docker";
-          };
+      extraGroups = [ "podman" ];
 
-          environmentFile = [ config.age.secrets.woodpecker-agent-env.path ];
-        };
+      environment = {
+        WOODPECKER_MAX_WORKFLOWS = "16";
+        WOODPECKER_HOSTNAME = "hydrogen";
+        WOODPECKER_BACKEN = "docker";
+        DOCKER_HOST = "unix:///run/podman/podman.sock";
       };
+
+      environmentFile = [ config.age.secrets.woodpecker-agent-env.path ];
     };
   };
 
-  virtualisation.docker.enable = true;
+  systemd.services.woodpecker-agent-docker = {
+    after = [ "podman.socket" "woodpecker-server.service" ];
+    serviceConfig.BindPaths = [
+      "/run/podman/podman.sock"
+    ];
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
+    };
+
+    lxc.systemConfig = ''
+      lxc.cgroup.relative = 1
+    '';
+  };
 }
