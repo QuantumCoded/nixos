@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   age.secrets = {
@@ -74,13 +74,28 @@
   };
 
   virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings = {
-        dns_enabled = true;
+    podman =
+      let
+        cfg = config.virtualisation.podman;
+
+        # taken from https://github.com/NixOS/nixpkgs/blob/0b8e7a1ae5a94da2e1ee3f3030a32020f6254105/nixos/modules/virtualisation/podman/default.nix#L8-L13
+        package = (pkgs.unstable.podman.override {
+          extraPackages = cfg.extraPackages
+            # setuid shadow
+            ++ [ "/run/wrappers" ]
+            ++ lib.optional (config.boot.supportedFilesystems.zfs or false) config.boot.zfs.package;
+        });
+      in
+      {
+        enable = true;
+
+        inherit package;
+
+        dockerCompat = true;
+        defaultNetwork.settings = {
+          dns_enabled = true;
+        };
       };
-    };
 
     lxc.systemConfig = ''
       lxc.cgroup.relative = 1
