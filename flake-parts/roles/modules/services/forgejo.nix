@@ -27,6 +27,10 @@
 
         ui.DEFAULT_THEME = "gitea-dark";
 
+        migrations.ALLOWED_DOMAINS = lib.concatStringsSep "," [
+          "codex.cypress.local"
+        ];
+
         webhook.ALLOWED_HOST_LIST = lib.concatStringsSep "," [
           "woodpecker.hydrogen.lan"
         ];
