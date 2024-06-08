@@ -30,6 +30,11 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,11 +56,17 @@
 
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
+
+
+    shard = {
+      url = "path:/etc/nixos/shard";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      (args @ { config, flake-parts-lib, ... }:
+    inputs.shard.lib.mkFlake { inherit inputs; }
+      (args @ { config, options, flake-parts-lib, ... }:
         let
           inherit (flake-parts-lib) importApply;
 
@@ -113,7 +124,12 @@
           };
 
           flake = {
+            _config = config;
+            _options = options;
+
             inherit flakeModules;
+
+            testoutput = "helloworld";
 
             deploy.nodes = {
               hydrogen = {
@@ -126,6 +142,15 @@
                 };
               };
             };
+          };
+
+          shard = {
+            enable = true;
+            source = ./nix;
+
+            extract = [
+              [ "shard" "test" ]
+            ];
           };
         });
 }
