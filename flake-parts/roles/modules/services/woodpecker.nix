@@ -53,27 +53,35 @@
 
       package = pkgs.woodpecker-agent;
 
-      extraGroups = [ "podman" ];
+      # TODO: switch to podman
+      # extraGroups = [ "podman" ];
+
+      extraGroups = [ "docker" ];
 
       environment = {
         WOODPECKER_MAX_WORKFLOWS = "16";
         WOODPECKER_HOSTNAME = "hydrogen";
-        WOODPECKER_BACKEN = "docker";
-        DOCKER_HOST = "unix:///run/podman/podman.sock";
+        # TODO: switch to podman
+        # WOODPECKER_BACKEN = "docker";
+        # DOCKER_HOST = "unix:///run/podman/podman.sock";
       };
 
       environmentFile = [ config.age.secrets.woodpecker-agent-env.path ];
     };
   };
 
-  systemd.services.woodpecker-agent-docker = {
-    after = [ "podman.socket" "woodpecker-server.service" ];
-    serviceConfig.BindPaths = [
-      "/run/podman/podman.sock"
-    ];
-  };
+  # TODO: switch to podman
+  # systemd.services.woodpecker-agent-docker = {
+  #   after = [ "podman.socket" "woodpecker-server.service" ];
+  #   serviceConfig.BindPaths = [
+  #     "/run/podman/podman.sock"
+  #   ];
+  # };
 
   virtualisation = {
+    # TODO: switch to podman
+    docker.enable = true;
+
     podman =
       let
         cfg = config.virtualisation.podman;
@@ -87,7 +95,8 @@
         });
       in
       {
-        enable = true;
+        # TODO: switch to podman
+        # enable = true;
 
         inherit package;
 
