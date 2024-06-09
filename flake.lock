@@ -394,11 +394,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1717894324,
+        "lastModified": 1717289404,
         "narHash": "sha256-4q6ZO3BqHgdd3Aacb/xiQXB4g9TQKpQg/praTpD9vbI=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "13eac98dc5233fe7e52f0cd0e2cba7dcd77feca5",
+        "rev": "e090cb30ae82f4b4461aafdb808847c6c97b08c2",
         "type": "github"
       },
       "original": {
@@ -471,13 +471,13 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-02gq4sxUffeFwDk0q3TMuHhE0i2nb/Rt/xQ8gtcJ39g=",
-        "path": "./shard",
+        "lastModified": 1717874331,
+        "narHash": "sha256-jyRcrihQdiaOfk6+pqv3hg+2HiFGkK4DUu3NGt34pQM=",
+        "path": "/etc/nixos/shard",
         "type": "path"
       },
       "original": {
-        "path": "./shard",
+        "path": "/etc/nixos/shard",
         "type": "path"
       }
     },
