@@ -57,9 +57,8 @@
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
 
-
     shard = {
-      url = "path:/etc/nixos/shard";
+      url = "path:./shard";
       inputs.flake-parts.follows = "flake-parts";
     };
   };
