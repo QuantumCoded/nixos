@@ -1,5 +1,9 @@
-args @ { config, lib, options, inputs, ... }:
+args @ { config, flake-parts-lib, lib, ... }:
 let
+  inherit (flake-parts-lib)
+    mkTransposedPerSystemModule
+    ;
+
   inherit (builtins)
     elem
     filter
@@ -45,6 +49,17 @@ in
     };
   };
 
+  imports = [
+    (mkTransposedPerSystemModule {
+      file = ./.;
+      name = "__shardPerSystem";
+      option = mkOption {
+        type = with types; attrsOf (lazyAttrsOf anything);
+        default = { };
+      };
+    })
+  ];
+
   config =
     let
       applyModule = { src, ... }: mkMerge
@@ -57,13 +72,14 @@ in
             (map (path: attrByPath path null src) cfg.extract));
       };
 
-      # TODO: finish this
-      extractWithSystemModule = { config, src, ... }: {
-
+      extractWithSystemModule = { src, ... }: {
+        imports = [
+          # make the transposition module
+        ];
       };
     in
     mkIf cfg.enable {
-      # WARN: this is read-only in extendFlake scope! trying to modify this
+      # WARN: this is read-only in any other scope! trying to modify this
       # attribute causes infinite recurion or stack overflow errors. this
       # can be used only for passing read-only values into extendFlake scope.
       flake.__shard = {
@@ -73,6 +89,10 @@ in
           applyModule
           extractModule
         ];
+      };
+
+      perSystem = { pkgs, ... }: {
+        __shardPerSystem = { inherit pkgs; };
       };
     };
 }

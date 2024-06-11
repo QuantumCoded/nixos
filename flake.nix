@@ -57,11 +57,15 @@
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
 
-
     shard = {
       url = "path:/etc/nixos/shard";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    # global = {
+    #   url = "path:/etc/nixos/global";
+    #   inputs.flake-parts.follows = "flake-parts";
+    # };
   };
 
   outputs = inputs:
@@ -102,6 +106,7 @@
 
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
+            # inputs.global.flakeModules.default
 
             ./machines.nix
           ];

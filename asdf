@@ -1,0 +1,44 @@
+digraph G {
+    subgraph cluster_1 {
+        unallocatedspace[shape=rect];
+        asluni[shape=rect];
+        jeff_az[shape=rect];
+        org -> unallocatedspace;
+        unallocatedspace -> asluni;
+        unallocatedspace -> jeff_az;
+
+        label = "Logical";
+    }
+
+    subgraph cluster_0 {
+        node [shape=folder];
+        
+        src;
+        
+        subgraph cluster_3 {
+            flakeparts[label="flake-parts"];
+            flakeparts -> firefox;
+            home_0[shape=note label="home.nix" group=g1];
+            builders_0[shape=note label="builders.nix" group=g1];
+            firefox -> home_0;
+            firefox -> builders_0;
+        }
+        
+        subgraph cluster_4 {
+            hosts -> avalon;
+            home_1[shape=note label="home.nix"];
+        avalon -> home_1;
+        
+        hosts -> hydrogen;
+        hosts -> odyssey;
+        hosts -> quantum;
+        }
+
+        src -> flakeparts;
+        src -> hosts;
+
+
+        label = "Physical";
+    }
+
+}

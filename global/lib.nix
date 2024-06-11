@@ -34,10 +34,8 @@ let
     flake = flake-parts.lib.mkFlake args { imports = [ module ]; };
   in
   flake-parts.lib.mkFlake (mkFinalArgs flake) ({ lib, ... }: {
-    # the final flake doesn't need systems as config is inherited.
-    systems = [ ];
-    # import the evaluated `module` flake's outputs and extended modules.
     imports = [{ inherit flake; }] ++ (mkModules flake);
+    systems = mkSystems flake;
   });
 
   mkFlake = args: module: extendFlake {
@@ -50,18 +48,7 @@ let
       ];
     };
 
-    mkFinalArgs = flake: {
-      specialArgs = {
-        src = inputs.haumea.lib.load {
-          src = flake.__shard.source;
-          inputs = lib.filterAttrs
-            (k: _: !(builtins.elem k [ "self" "super" "root" ]))
-            flake.__shard.args;
-        };
-      };
-    } // args;
-
-    mkModules = flake: flake.__shard.modules;
+    mkModules = flake: flake.__global.modules;
   };
 in
 { inherit extendFlake mkFlake; }
