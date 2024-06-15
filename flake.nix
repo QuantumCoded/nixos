@@ -69,6 +69,7 @@
             nixos = import ./flake-parts/nixos;
             packages = import ./flake-parts/packages;
             roles = import ./flake-parts/roles;
+            services = import ./flake-parts/services;
             transpose = import ./flake-parts/transpose;
             users = import ./flake-parts/users;
             wireguard = import ./flake-parts/wireguard;
@@ -87,6 +88,7 @@
             nixos
             packages
             roles
+            services
             transpose
             users
             wireguard
