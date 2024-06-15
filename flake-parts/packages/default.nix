@@ -1,4 +1,4 @@
-_: { ... }: {
+{
   perSystem = { inputs', pkgs, ... }: {
     packages = {
       airsonic-advanced = pkgs.callPackage ./airsonic-advanced.nix { };

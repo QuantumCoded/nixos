@@ -55,23 +55,21 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      (args @ { config, flake-parts-lib, ... }:
+      ({ config, flake-parts-lib, ... }:
         let
-          inherit (flake-parts-lib) importApply;
-
           flakeModules = {
-            firefox = importApply ./flake-parts/firefox args;
-            hardware = importApply ./flake-parts/hardware args;
-            home-manager = importApply ./flake-parts/home-manager args;
-            hosts = importApply ./flake-parts/hosts args;
-            libraries = importApply ./flake-parts/libraries args;
-            machines = importApply ./flake-parts/machines.nix args;
-            nixos = importApply ./flake-parts/nixos args;
-            packages = importApply ./flake-parts/packages args;
-            roles = importApply ./flake-parts/roles args;
-            transpose = importApply ./flake-parts/transpose args;
-            users = importApply ./flake-parts/users args;
-            wireguard = importApply ./flake-parts/wireguard args;
+            firefox = import ./flake-parts/firefox;
+            hardware = import ./flake-parts/hardware;
+            home-manager = import ./flake-parts/home-manager;
+            hosts = import ./flake-parts/hosts;
+            libraries = import ./flake-parts/libraries;
+            machines = import ./flake-parts/machines.nix;
+            nixos = import ./flake-parts/nixos;
+            packages = import ./flake-parts/packages;
+            roles = import ./flake-parts/roles;
+            transpose = import ./flake-parts/transpose;
+            users = import ./flake-parts/users;
+            wireguard = import ./flake-parts/wireguard;
           };
         in
         {

@@ -1,4 +1,4 @@
-_: { config, lib, ... }:
+{ config, ... }:
 let
   inherit (config.flake.lib)
     combineModules
