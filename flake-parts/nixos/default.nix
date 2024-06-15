@@ -6,7 +6,6 @@ let
 in
 {
   flake.nixosModules = {
-    ankisyncd = import ./modules/services/ankisyncd.nix;
     deemix-server = import ./modules/services/deemix-server.nix;
     kiwix = import ./modules/services/kiwix.nix;
     minecraft = import ./modules/services/minecraft.nix;

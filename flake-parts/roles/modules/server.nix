@@ -3,6 +3,7 @@ toplevel: { config, pkgs, ... }:
 {
   imports = with toplevel.config.flake.serviceModules; [
     airsonic
+    ankisyncd
     ./services/ankisyncd.nix
     ./services/atticd.nix
     ./services/caddy.nix
