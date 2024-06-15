@@ -58,6 +58,7 @@
       ({ config, flake-parts-lib, ... }:
         let
           flakeModules = {
+            airsonic = import ./flake-parts/airsonic;
             firefox = import ./flake-parts/firefox;
             hardware = import ./flake-parts/hardware;
             home-manager = import ./flake-parts/home-manager;
@@ -74,6 +75,7 @@
         in
         {
           imports = with flakeModules; [
+            airsonic
             firefox
             hardware
             home-manager

@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+toplevel: { config, pkgs, ... }:
 
 {
-  imports = [
-    ./services/airsonic.nix
+  imports = with toplevel.config.flake.serviceModules; [
+    airsonic
     ./services/ankisyncd.nix
     ./services/atticd.nix
     ./services/caddy.nix
