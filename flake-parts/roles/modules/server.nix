@@ -1,29 +1,29 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [
-    ./services/airsonic.nix
-    ./services/ankisyncd.nix
-    ./services/atticd.nix
-    ./services/caddy.nix
-    ./services/deemix.nix
-    ./services/forgejo.nix
-    ./services/gonic.nix
-    ./services/grafana.nix
-    ./services/homepage.nix
-    ./services/invidious.nix
-    ./services/jellyfin.nix
-    ./services/kiwix.nix
-    ./services/minecraft.nix
-    ./services/navidrome.nix
-    ./services/nfs.nix
-    ./services/pgadmin.nix
-    ./services/postgresql.nix
-    ./services/searx.nix
-    ./services/syncthing.nix
-    ./services/vikunja.nix
-    ./services/vsftpd.nix
-    ./services/woodpecker.nix
+  imports = with config.flake.serviceModules; [
+    airsonic
+    ankisyncd
+    atticd
+    caddy
+    deemix
+    forgejo
+    gonic
+    grafana
+    homepage
+    invidious
+    jellyfin
+    kiwix
+    minecraft
+    navidrome
+    nfs
+    pgadmin
+    postgresql
+    searx
+    syncthing
+    vikunja
+    vsftpd
+    woodpecker
   ];
 
   fileSystems."/var/lib" = {

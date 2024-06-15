@@ -1,8 +1,8 @@
-_: { config, ... }:
+args @ { ... }:
 
 {
   flake = {
-    homeModules.firefox = import ./home-module.nix { inherit config; };
+    homeModules.firefox = import ./home-module.nix args;
   };
 
   perSystem = { pkgs, ... }: {

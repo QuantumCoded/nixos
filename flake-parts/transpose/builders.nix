@@ -1,4 +1,4 @@
-_: { config, flake-parts-lib, inputs, lib, ... }:
+{ flake-parts-lib, lib, ... }:
 let
   inherit (lib)
     mkOption

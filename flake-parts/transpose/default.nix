@@ -1,18 +1,14 @@
-_: { config, flake-parts-lib, ... }:
+{ config, ... }:
 let
   inherit (config.flake.lib)
     combineModules
     ;
 
-  inherit (flake-parts-lib)
-    importApply
-    ;
-
   modules = {
-    builders = importApply ./builders.nix;
-    home-config = importApply ./home-config.nix;
-    machines = importApply ./machines.nix;
-    nixos-config = importApply ./nixos-config.nix;
+    builders = import ./builders.nix;
+    home-config = import ./home-config.nix;
+    machines = import ./machines.nix;
+    nixos-config = import ./nixos-config.nix;
   };
 in
 {
