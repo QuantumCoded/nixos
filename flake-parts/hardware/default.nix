@@ -1,5 +1,3 @@
-_: { config, lib, ... }:
-
 {
   flake.hardwareModules = {
     avalon = import ./avalon;

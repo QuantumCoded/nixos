@@ -2,3 +2,9 @@
 result
 keys/*
 !keys/*.pub.*
+
+.bin
+.cache
+.config
+.data
+.run

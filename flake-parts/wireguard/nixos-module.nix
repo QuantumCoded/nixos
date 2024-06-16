@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     networking = {
       hosts = {
-        "172.16.2.3" = [
+        "172.16.2.1" = [
           "cypress.local"
           "sesh.cypress.local"
           "tape.cypress.local"

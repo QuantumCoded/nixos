@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  age.secrets.attic-credentials.file = ../../../../secrets/attic-credentials.age;
+  age.secrets.attic-credentials.file = ../../../secrets/attic-credentials.age;
 
   services = {
     atticd = {

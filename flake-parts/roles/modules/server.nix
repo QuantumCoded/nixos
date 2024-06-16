@@ -1,26 +1,29 @@
-{ pkgs, ... }:
+toplevel: { config, pkgs, ... }:
 
 {
-  imports = [
-    ./services/airsonic.nix
-    ./services/ankisyncd.nix
-    ./services/atticd.nix
-    ./services/caddy.nix
-    ./services/deemix.nix
-    ./services/forgejo.nix
-    ./services/grafana.nix
-    ./services/homepage.nix
-    ./services/invidious.nix
-    ./services/jellyfin.nix
-    ./services/kiwix.nix
-    ./services/minecraft.nix
-    ./services/nfs.nix
-    ./services/postgresql.nix
-    ./services/searx.nix
-    ./services/syncthing.nix
-    ./services/vikunja.nix
-    ./services/vsftpd.nix
-    ./services/woodpecker.nix
+  imports = with toplevel.config.flake.serviceModules; [
+    airsonic
+    ankisyncd
+    atticd
+    caddy
+    deemix
+    forgejo
+    gonic
+    grafana
+    homepage
+    invidious
+    jellyfin
+    kiwix
+    minecraft
+    navidrome
+    nfs
+    pgadmin
+    postgresql
+    searx
+    syncthing
+    vikunja
+    vsftpd
+    woodpecker
   ];
 
   fileSystems."/var/lib" = {
@@ -28,16 +31,16 @@
     device = "/data/services";
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = false;
-  };
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = false;
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   jack.enable = false;
+  # };
 
   environment.shells = with pkgs; [ fish ];
   programs.fish.enable = true;
