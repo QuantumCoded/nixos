@@ -6,6 +6,7 @@ toplevel: { config, pkgs, ... }:
     ankisyncd
     deemix
     kiwix
+    minecraft
 
     ./services/atticd.nix
     ./services/caddy.nix
@@ -15,7 +16,6 @@ toplevel: { config, pkgs, ... }:
     ./services/homepage.nix
     ./services/invidious.nix
     ./services/jellyfin.nix
-    ./services/minecraft.nix
     ./services/navidrome.nix
     ./services/nfs.nix
     ./services/pgadmin.nix

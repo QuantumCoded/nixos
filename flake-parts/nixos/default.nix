@@ -6,8 +6,6 @@ let
 in
 {
   flake.nixosModules = {
-    minecraft = import ./modules/services/minecraft.nix;
-
     input = import ./modules/input;
     boot = import ./modules/boot.nix;
     flakes = import ./modules/flakes.nix;

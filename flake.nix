@@ -68,6 +68,7 @@
             kiwix = import ./flake-parts/kiwix;
             libraries = import ./flake-parts/libraries;
             machines = import ./flake-parts/machines.nix;
+            minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
             packages = import ./flake-parts/packages;
             roles = import ./flake-parts/roles;
@@ -89,6 +90,7 @@
             kiwix
             libraries
             machines
+            minecraft
             nixos
             packages
             roles
