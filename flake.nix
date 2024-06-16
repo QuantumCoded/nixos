@@ -23,6 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko?ref=00169fe4a6015a88c3799f0bf89689e06a4d4896";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -101,6 +106,8 @@
             users
             wireguard
 
+            inputs.devshell.flakeModule
+
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
 
@@ -109,18 +116,29 @@
 
           systems = [ "x86_64-linux" ];
 
-          perSystem = { config, inputs', pkgs, ... }: {
-            devShells.default = pkgs.mkShell {
+          perSystem = { config, inputs', lib, pkgs, ... }: {
+            devshells.default = {
+              commands = [
+                {
+                  help = "starts neovim";
+                  name = "nvim";
+                  command = "nix run --refresh github:quantumcoded/neovim";
+                }
+              ];
+
+              env = [
+                {
+                  name = "LOCAL_KEY";
+                  value = "/etc/nixos/keys/binary-cache-key.pem";
+                }
+              ];
+
               packages = with pkgs; [
                 inputs'.agenix.packages.default
                 attic-client
                 deploy-rs
                 git-lfs
               ];
-
-              shellHook = ''
-                export LOCAL_KEY=/etc/nixos/keys/binary-cache-key.pem
-              '';
             };
           };
 
