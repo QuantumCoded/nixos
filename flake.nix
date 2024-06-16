@@ -120,6 +120,11 @@
             devshells.default = {
               commands = [
                 {
+                  help = "run nixpkgs-fmt";
+                  name = "fmt";
+                  command = "nixpkgs-fmt .";
+                }
+                {
                   help = "starts neovim";
                   name = "nvim";
                   command = "nix run --refresh github:quantumcoded/neovim";
