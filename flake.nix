@@ -60,6 +60,7 @@
           flakeModules = {
             airsonic = import ./flake-parts/airsonic;
             ankisyncd = import ./flake-parts/ankisyncd;
+            deemix = import ./flake-parts/deemix;
             firefox = import ./flake-parts/firefox;
             hardware = import ./flake-parts/hardware;
             home-manager = import ./flake-parts/home-manager;
@@ -79,6 +80,7 @@
           imports = with flakeModules; [
             airsonic
             ankisyncd
+            deemix
             firefox
             hardware
             home-manager

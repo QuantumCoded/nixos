@@ -4,9 +4,10 @@ toplevel: { config, pkgs, ... }:
   imports = with toplevel.config.flake.serviceModules; [
     airsonic
     ankisyncd
+    deemix
+
     ./services/atticd.nix
     ./services/caddy.nix
-    ./services/deemix.nix
     ./services/forgejo.nix
     ./services/gonic.nix
     ./services/grafana.nix
