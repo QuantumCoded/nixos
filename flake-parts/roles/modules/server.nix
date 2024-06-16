@@ -1,7 +1,7 @@
-toplevel: { config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = with toplevel.config.flake.serviceModules; [
+  imports = with config.flake.serviceModules; [
     airsonic
     ankisyncd
     atticd
