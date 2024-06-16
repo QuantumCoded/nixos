@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  age.secrets.pgadmin.file = ../../../../secrets/pgadmin.age;
+  age.secrets.pgadmin.file = ../../../secrets/pgadmin.age;
 
   services = {
     caddy.virtualHosts."http://pgadmin.hydrogen.lan".extraConfig = ''

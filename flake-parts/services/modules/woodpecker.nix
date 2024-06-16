@@ -2,8 +2,8 @@
 
 {
   age.secrets = {
-    woodpecker-agent-env.file = ../../../../secrets/woodpecker-agent-env.age;
-    woodpecker-server-env.file = ../../../../secrets/woodpecker-server-env.age;
+    woodpecker-agent-env.file = ../../../secrets/woodpecker-agent-env.age;
+    woodpecker-server-env.file = ../../../secrets/woodpecker-server-env.age;
   };
 
   services = {

@@ -4,27 +4,26 @@ toplevel: { config, pkgs, ... }:
   imports = with toplevel.config.flake.serviceModules; [
     airsonic
     ankisyncd
+    atticd
+    caddy
     deemix
+    forgejo
+    gonic
+    grafana
+    homepage
+    invidious
+    jellyfin
     kiwix
     minecraft
-
-    ./services/atticd.nix
-    ./services/caddy.nix
-    ./services/forgejo.nix
-    ./services/gonic.nix
-    ./services/grafana.nix
-    ./services/homepage.nix
-    ./services/invidious.nix
-    ./services/jellyfin.nix
-    ./services/navidrome.nix
-    ./services/nfs.nix
-    ./services/pgadmin.nix
-    ./services/postgresql.nix
-    ./services/searx.nix
-    ./services/syncthing.nix
-    ./services/vikunja.nix
-    ./services/vsftpd.nix
-    ./services/woodpecker.nix
+    navidrome
+    nfs
+    pgadmin
+    postgresql
+    searx
+    syncthing
+    vikunja
+    vsftpd
+    woodpecker
   ];
 
   fileSystems."/var/lib" = {
