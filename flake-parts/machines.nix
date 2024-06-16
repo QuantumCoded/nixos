@@ -1,4 +1,4 @@
-_: { config, inputs, lib, self, ... }:
+{ config, inputs, lib, self, ... }:
 let
   inherit (builtins)
     attrNames

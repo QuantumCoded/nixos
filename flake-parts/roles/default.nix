@@ -1,15 +1,10 @@
-_: { config, lib, ... }:
-let
-  inherit (config.flake.lib)
-    combineModules
-    ;
-in
+args @ { ... }:
+
 {
   config.flake.roleModules = {
     desktop = import ./modules/desktop.nix;
     laptop = import ./modules/laptop.nix;
-    server = import ./modules/server.nix;
+    server = import ./modules/server.nix args;
     workstation = import ./modules/workstation.nix;
-    default.imports = combineModules config.flake.homeModules;
   };
 }

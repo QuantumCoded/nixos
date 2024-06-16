@@ -1,4 +1,4 @@
-_: { config, flake-parts-lib, ... }:
+{ config, flake-parts-lib, ... }:
 let
   inherit (config.flake.lib)
     combineModules
