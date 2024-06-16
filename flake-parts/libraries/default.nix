@@ -1,11 +1,19 @@
-args @ { config, ... }:
-
+args @ { config, lib, ... }:
+let
+  inherit (lib)
+    mkOption
+    types
+    ;
+in
 {
-  flake = {
+  options.flake.lib = mkOption {
+    type = with types; attrsOf (functionTo raw);
+    default = { };
+  };
+
+  config.flake = {
     lib = {
       combineModules = import ./combine-modules.nix args;
-      nvencUnlock = import ./nvenc-unlock.nix;
-      nvfbcUnlock = import ./nvfbc-unlock.nix;
     };
 
     libraries = config.flake.lib;

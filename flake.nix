@@ -70,6 +70,7 @@
             machines = import ./flake-parts/machines.nix;
             minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
+            nvidia = import ./flake-parts/nvidia;
             packages = import ./flake-parts/packages;
             roles = import ./flake-parts/roles;
             services = import ./flake-parts/services;
@@ -92,6 +93,7 @@
             machines
             minecraft
             nixos
+            nvidia
             packages
             roles
             services
