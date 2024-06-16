@@ -1,18 +1,41 @@
-args @ { config, lib, ... }:
+_: { config, inputs, lib, self, ... }:
 let
-  inherit (lib)
-    mkOption
-    types
-    ;
+  # FIXME: use pkgs from flake-parts somehow
+  pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
 in
 {
-  options.flake.lib = mkOption {
-    type = with types; attrsOf (functionTo anything);
-    default = { };
-  };
+  flake = {
+    lib = {
+      combineModules = import ./combine-modules.nix { inherit lib; };
+      nvencUnlock = import ./nvenc-unlock.nix;
+      nvfbcUnlock = import ./nvfbc-unlock.nix;
 
-  config.flake = {
-    lib.combineModules = import ./combine-modules.nix args;
+      mkHome = cfg: inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = { inherit inputs self; };
+
+        modules = [
+          config.flake.homeModules.default
+          ../../overlays.nix
+          cfg
+        ];
+      };
+
+      mkNixos = cfg: inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs self; };
+
+        modules = [
+          config.flake.nixosModules.default
+          inputs.agenix.nixosModules.default
+          inputs.disko.nixosModules.disko
+          ../../common.nix
+          ../../overlays.nix
+          cfg
+        ];
+      };
+    };
+
     libraries = config.flake.lib;
   };
 }

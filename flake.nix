@@ -55,51 +55,39 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      (toplevel @ { config, flake-parts-lib, lib, ... }:
+      (args @ { config, flake-parts-lib, ... }:
         let
+          inherit (flake-parts-lib) importApply;
+
           flakeModules = {
-            airsonic = import ./flake-parts/airsonic;
-            ankisyncd = import ./flake-parts/ankisyncd;
-            deemix = import ./flake-parts/deemix;
-            firefox = import ./flake-parts/firefox;
-            hardware = import ./flake-parts/hardware;
-            home-manager = import ./flake-parts/home-manager;
-            hosts = import ./flake-parts/hosts;
-            kiwix = import ./flake-parts/kiwix;
-            libraries = import ./flake-parts/libraries;
-            minecraft = import ./flake-parts/minecraft;
-            machines = import ./flake-parts/machines.nix;
-            nixos = flake-parts-lib.importApply ./flake-parts/nixos toplevel;
-            nvidia = import ./flake-parts/nvidia;
-            packages = import ./flake-parts/packages;
-            roles = import ./flake-parts/roles;
-            services = import ./flake-parts/services;
-            transpose = import ./flake-parts/transpose;
-            users = import ./flake-parts/users;
-            wireguard = import ./flake-parts/wireguard;
+            firefox = importApply ./flake-parts/firefox args;
+            hardware = importApply ./flake-parts/hardware args;
+            home-manager = importApply ./flake-parts/home-manager args;
+            hosts = importApply ./flake-parts/hosts args;
+            libraries = importApply ./flake-parts/libraries args;
+            machines = importApply ./flake-parts/machines.nix args;
+            nixos = importApply ./flake-parts/nixos args;
+            packages = importApply ./flake-parts/packages args;
+            roles = importApply ./flake-parts/roles args;
+            transpose = importApply ./flake-parts/transpose args;
+            users = importApply ./flake-parts/users args;
+            wireguard = importApply ./flake-parts/wireguard args;
           };
         in
         {
           imports = with flakeModules; [
-            # airsonic
-            # ankisyncd
-            # deemix
-            # firefox
+            firefox
             hardware
             home-manager
             hosts
-            # kiwix
             libraries
-            # minecraft
             machines
             nixos
-            # nvidia
             packages
             roles
-            services
             transpose
             users
-            # wireguard
+            wireguard
 
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
@@ -137,19 +125,6 @@
                   path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos config.flake.nixosConfigurations.hydrogen;
                 };
               };
-            };
-
-            nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
-              modules = [
-                # config.flake.nixosModules.input
-                # config.flake.nixosModules.boot
-                # config.flake.nixosModules.flakes
-                # config.flake.nixosModules.networkmanager
-                # config.flake.nixosModules.virtualization
-
-                config.flake.nixosModules.default
-              ];
             };
           };
         });
