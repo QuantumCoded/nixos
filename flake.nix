@@ -65,6 +65,7 @@
             hardware = import ./flake-parts/hardware;
             home-manager = import ./flake-parts/home-manager;
             hosts = import ./flake-parts/hosts;
+            kiwix = import ./flake-parts/kiwix;
             libraries = import ./flake-parts/libraries;
             machines = import ./flake-parts/machines.nix;
             nixos = import ./flake-parts/nixos;
@@ -85,6 +86,7 @@
             hardware
             home-manager
             hosts
+            kiwix
             libraries
             machines
             nixos
