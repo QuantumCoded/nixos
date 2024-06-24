@@ -16,7 +16,6 @@ let
 in
 {
   nixpkgs.overlays = [
-    vscode-extensions.overlays.default
     nur.overlay
     overlay-unstable
     overlay-flake

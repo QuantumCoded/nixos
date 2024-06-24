@@ -96,7 +96,7 @@
       prismlauncher
       unstable.minetest
 
-      # TODO: this goes in vscode
+      # development
       nil
       nixpkgs-fmt
 

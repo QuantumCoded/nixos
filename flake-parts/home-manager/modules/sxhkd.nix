@@ -34,9 +34,6 @@ in
         # discord
         "super + d" = "vesktop";
 
-        # vscode
-        "super + v" = "codium";
-
         # firefox
         "super + w" = "firefox";
 

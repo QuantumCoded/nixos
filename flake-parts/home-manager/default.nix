@@ -23,7 +23,6 @@ in
     kitty = import ./modules/kitty.nix;
     rofi = import ./modules/rofi.nix;
     sxhkd = import ./modules/sxhkd.nix;
-    vscode = import ./modules/vscode.nix;
     default.imports = combineModules config.flake.homeModules;
   };
 }

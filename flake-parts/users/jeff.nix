@@ -24,6 +24,5 @@
     neofetch.enable = true;
     rofi.enable = true;
     sxhkd.enable = true;
-    vscode.enable = true;
   };
 }

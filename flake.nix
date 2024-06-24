@@ -49,11 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
   };
