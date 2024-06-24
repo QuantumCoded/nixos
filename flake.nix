@@ -72,7 +72,7 @@
             hosts = import ./flake-parts/hosts;
             kiwix = import ./flake-parts/kiwix;
             libraries = import ./flake-parts/libraries;
-            machines = import ./flake-parts/machines.nix;
+            machines = import ./flake-parts/machines;
             minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
             nvidia = import ./flake-parts/nvidia;
