@@ -29,6 +29,7 @@
 
         migrations.ALLOWED_DOMAINS = lib.concatStringsSep "," [
           "codex.cypress.local"
+          "github.com"
         ];
 
         webhook.ALLOWED_HOST_LIST = lib.concatStringsSep "," [
