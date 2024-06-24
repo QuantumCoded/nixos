@@ -105,8 +105,6 @@
 
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
-
-            ./machines.nix
           ];
 
           systems = [ "x86_64-linux" ];
