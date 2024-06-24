@@ -1,7 +1,7 @@
 .direnv
 result
 keys/*
-!keys/*.pub.*
+!keys/*.pub*
 
 .bin
 .cache
