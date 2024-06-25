@@ -71,6 +71,7 @@
             minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
             nvidia = import ./flake-parts/nvidia;
+            overlays = import ./flake-parts/overlays.nix;
             packages = import ./flake-parts/packages;
             roles = import ./flake-parts/roles;
             services = import ./flake-parts/services;
@@ -94,6 +95,7 @@
             minecraft
             nixos
             nvidia
+            overlays
             packages
             roles
             services
