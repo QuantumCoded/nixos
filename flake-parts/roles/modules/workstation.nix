@@ -56,7 +56,7 @@
   fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
-    flake.nimbus-roman-ttf
+    self.nimbus-roman-ttf
   ];
 
   services.openssh.enable = true;

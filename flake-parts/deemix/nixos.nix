@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib)
     mkEnableOption
@@ -38,7 +38,7 @@ in
       after = [ "network.target" ];
       serviceConfig = {
         ExecStart = ''
-          ${self.packages.${pkgs.system}.deemix-server}/bin/deemix-server --port ${toString cfg.port}
+          ${pkgs.self.deemix-server}/bin/deemix-server --port ${toString cfg.port}
         '';
         PrivateTmp = false;
         Restart = "always";

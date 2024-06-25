@@ -1,21 +1,27 @@
+{ config, ... }:
 let
   overlaysModule = { inputs, pkgs, ... }:
-  let
-    system = pkgs.system;
+    let
+      system = pkgs.system;
 
-    overlay-unstable = final: prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
+      overlay-unstable = final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
       };
+
+      overlay-self = final: prev: {
+        self = config.flake.packages.${system};
+      };
+    in
+    {
+      nixpkgs.overlays = [
+        inputs.nur.overlay
+        overlay-unstable
+        overlay-self
+      ];
     };
-  in
-  {
-    nixpkgs.overlays = [
-      inputs.nur.overlay
-      overlay-unstable
-    ];
-  };
 in
 {
   flake = {
