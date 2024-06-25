@@ -14,7 +14,6 @@ in
     users.jeff = [ ];
     roles = with roleModules; [ server ];
     extraNixos.imports = [
-      ./overlays.nix
       inputs.agenix.nixosModules.default
       inputs.attic.nixosModules.atticd
       {
@@ -27,7 +26,6 @@ in
     ];
     extraHomeManager.imports = [
       { base.git.enable = true; }
-      ./overlays.nix
     ];
     stateVersion = "24.05";
   };

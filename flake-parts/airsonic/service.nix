@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 {
   services = {
@@ -28,7 +28,7 @@
         "-XX:MaxTenuringThreshold=1"
       ];
       maxMemory = 8192;
-      war = "${pkgs.flake.airsonic-advanced}/webapps/airsonic.war";
+      war = "${self.packages.${pkgs.system}.airsonic-advanced}/webapps/airsonic.war";
     };
 
     caddy.virtualHosts."http://airsonic.hydrogen.lan".extraConfig = ''

@@ -1,5 +1,5 @@
 {
-  homeManager = { pkgs, ... }: {
+  homeManager = { pkgs, self, ... }: {
     xsession.windowManager.bspwm = {
       monitors = {
         DP-0 = [ "L1" "L2" "L3" ];
@@ -9,7 +9,7 @@
       };
 
       extraConfig = ''
-        ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../../wallpapers/animated.mkv}
+        ${pkgs.procps}/bin/pidof xwinwrap || ${self.packages.${pkgs.system}.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../../wallpapers/animated.mkv}
       '';
     };
 

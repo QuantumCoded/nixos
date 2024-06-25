@@ -13,9 +13,7 @@ in
     host = hostModules.quantum;
     users.jeff = with userModules; [ jeff ];
     roles = with roleModules; [ desktop workstation ];
-    extraHomeManager.imports = [ ./overlays.nix ];
     extraNixos.imports = [
-      ./overlays.nix
       inputs.agenix.nixosModules.default
       inputs.disko.nixosModules.default
       {

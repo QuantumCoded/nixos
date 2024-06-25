@@ -13,9 +13,7 @@ in
     host = hostModules.avalon;
     users.jeff = with userModules; [ jeff ];
     roles = with roleModules; [ laptop workstation ];
-    extraHomeManager.imports = [ ./overlays.nix ];
     extraNixos.imports = [
-      ./overlays.nix
       inputs.agenix.nixosModules.default
       inputs.disko.nixosModules.default
     ];
