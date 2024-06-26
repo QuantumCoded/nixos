@@ -1,0 +1,17 @@
+diff --git a/pkg/stdlib/html/document_exists_test.go b/pkg/stdlib/html/document_exists_test.go
+index 7a1927b..6b909ab 100644
+--- a/pkg/stdlib/html/document_exists_test.go
++++ b/pkg/stdlib/html/document_exists_test.go
+@@ -37,12 +37,5 @@ func TestDocumentExists(t *testing.T) {
+ 			So(err, ShouldBeNil)
+ 			So(out, ShouldEqual, values.False)
+ 		})
+-
+-		Convey("Should return 'true' when a website exists by a given url", func() {
+-			out, err := html.DocumentExists(context.Background(), values.NewString("https://www.google.com/"))
+-
+-			So(err, ShouldBeNil)
+-			So(out, ShouldEqual, values.True)
+-		})
+ 	})
+ }
