@@ -3,7 +3,6 @@ let
   inherit (config.flake)
     hardwareModules
     hostModules
-    userModules
     roleModules
     ;
 in
@@ -19,7 +18,7 @@ in
       {
         base.wireguard.enable = true;
         age.secrets.luninet-hydrogen = {
-          file = ./secrets/luninet-hydrogen.age;
+          file = ./../secrets/luninet-hydrogen.age;
           mode = "0400";
         };
       }
