@@ -1,11 +1,10 @@
 { appimageTools, fetchurl }:
 
-appimageTools.wrapType1
-{
+appimageTools.wrapType1 rec {
   pname = "imhex";
-  version = "1.34.0";
+  version = "1.35.3";
   src = fetchurl {
-    url = "https://github.com/WerWolv/ImHex/releases/download/v1.34.0/imhex-1.34.0-x86_64.AppImage";
-    hash = "sha256-OTNYNhRsSsOxaeNBWb7NiYxGjSuwANNCwqjI5CBHjwo=";
+    url = "https://github.com/WerWolv/ImHex/releases/download/v${version}/imhex-${version}-x86_64.AppImage";
+    hash = "sha256-xZD3PxiEGZ0aJmDvaU5mvxvqXyIHEJOtL6wrcyhK/jw=";
   };
 }

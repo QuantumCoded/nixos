@@ -99,6 +99,7 @@
       # development
       nil
       nixpkgs-fmt
+      self.imhex
 
       # productivity
       anki
