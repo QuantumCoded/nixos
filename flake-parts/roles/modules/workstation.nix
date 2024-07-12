@@ -108,7 +108,7 @@
 
       # social
       element-desktop
-      vesktop
+      unstable.vesktop
     ];
   };
 
