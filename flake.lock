@@ -295,6 +295,21 @@
         "type": "github"
       }
     },
+    "homelab": {
+      "locked": {
+        "lastModified": 1721292138,
+        "narHash": "sha256-CKP5+YY4y1WTT4ARMgoq+YUrVTZ7FXHY1QkOcyR9Siw=",
+        "ref": "refs/heads/master",
+        "rev": "7532489794ad09bac1058227fc7ff4f52c3177ec",
+        "revCount": 1,
+        "type": "git",
+        "url": "http://git.hydrogen.lan/quantumcoded/homelab.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "http://git.hydrogen.lan/quantumcoded/homelab.git"
+      }
+    },
     "lynx": {
       "locked": {
         "lastModified": 1717250171,
@@ -379,6 +394,7 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "homelab": "homelab",
         "lynx": "lynx",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

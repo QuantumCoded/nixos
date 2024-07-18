@@ -23,6 +23,12 @@ in
           mode = "0400";
         };
       }
+      {
+        base.syncthing = {
+          enable = true;
+          networks = inputs.homelab.syncthingNetworks;
+        };
+      }
     ];
     stateVersion = "24.05";
   };

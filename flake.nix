@@ -51,6 +51,8 @@
 
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
+
+    homelab.url = "git+http://git.hydrogen.lan/quantumcoded/homelab.git";
   };
 
   outputs = inputs:
