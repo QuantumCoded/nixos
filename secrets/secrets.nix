@@ -37,4 +37,3 @@ in
   "woodpecker-agent-env.age".publicKeys = everywhere;
   "woodpecker-server-env.age".publicKeys = everywhere;
 }  
-}
