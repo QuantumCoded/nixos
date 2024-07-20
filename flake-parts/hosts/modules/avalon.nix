@@ -16,7 +16,7 @@
     '';
 
     base.syncthing = {
-      enable = true;
+      # enable = true;
       networks = inputs.homelab.syncthingNetworks;
     };
 
