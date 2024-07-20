@@ -22,12 +22,6 @@ in
           mode = "0400";
         };
       }
-      {
-        base.syncthing = {
-          enable = true;
-          networks = inputs.homelab.syncthingNetworks;
-        };
-      }
     ];
     extraHomeManager.imports = [
       { base.git.enable = true; }

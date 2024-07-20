@@ -1,5 +1,5 @@
 {
-  nixos = {
+  nixos = { inputs, ... }: {
     networking = {
       hostName = "hydrogen";
       useDHCP = false;
@@ -26,6 +26,29 @@
       ];
 
       trusted-users = [ "jeff" ];
+    };
+
+    base.syncthing = {
+      enable = true;
+      networks = inputs.homelab.syncthingNetworks;
+    };
+
+    age.secrets = {
+      syncthing-hydrogen-cert = {
+        file = ../../../secrets/syncthing-hydrogen-cert.age;
+        path = "/var/lib/syncthing/.config/syncthing/cert.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+
+      syncthing-hydrogen-key = {
+        file = ../../../secrets/syncthing-hydrogen-key.age;
+        path = "/var/lib/syncthing/.config/syncthing/key.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
     };
   };
 }

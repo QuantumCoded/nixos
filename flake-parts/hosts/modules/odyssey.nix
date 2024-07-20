@@ -21,8 +21,31 @@
       '';
     };
 
-  nixos = {
+  nixos = { inputs, ... }: {
     networking.hostName = "odyssey";
     hardware.bluetooth.enable = true;
+
+    base.syncthing = {
+      enable = true;
+      networks = inputs.homelab.syncthingNetworks;
+    };
+
+    age.secrets = {
+      syncthing-odyssey-cert = {
+        file = ../../../secrets/syncthing-odyssey-cert.age;
+        path = "/var/lib/syncthing/.config/syncthing/cert.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+
+      syncthing-odyssey-key = {
+        file = ../../../secrets/syncthing-odyssey-key.age;
+        path = "/var/lib/syncthing/.config/syncthing/key.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+    };
   };
 }

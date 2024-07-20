@@ -26,7 +26,7 @@
     };
   };
 
-  nixos = { pkgs, ... }: {
+  nixos = { inputs, pkgs, ... }: {
     networking = {
       hostName = "quantum";
       # FIXME: change this to eth intherface
@@ -55,5 +55,28 @@
 
     hardware.bluetooth.enable = true;
     nix.settings.trusted-users = [ "jeff" ];
+
+    base.syncthing = {
+      enable = true;
+      networks = inputs.homelab.syncthingNetworks;
+    };
+
+    age.secrets = {
+      syncthing-quantum-cert = {
+        file = ../../../secrets/syncthing-quantum-cert.age;
+        path = "/var/lib/syncthing/.config/syncthing/cert.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+
+      syncthing-quantum-key = {
+        file = ../../../secrets/syncthing-quantum-key.age;
+        path = "/var/lib/syncthing/.config/syncthing/key.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+    };
   };
 }
