@@ -139,8 +139,10 @@
               packages = with pkgs; [
                 inputs'.agenix.packages.default
                 attic-client
+                deadnix
                 deploy-rs
                 git-lfs
+                statix
               ];
             };
           };

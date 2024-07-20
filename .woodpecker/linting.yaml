@@ -1,0 +1,30 @@
+# TODO: move experimental-features to custom docker container
+# TODO: move nix run commands to custom docker container env
+steps:
+  - name: deadnix check
+    when:
+      - event: push
+      - event: manual
+      - event: pull_request
+        branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
+    image: nixos/nix
+    commands: |
+      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
+      nix run nixpkgs#deadnix -- -f
+
+  - name: statix check
+    when:
+      - event: push
+      - event: manual
+      - event: pull_request
+        branch: master
+        repo:
+          exclude:
+            - "QuantumCoded/nixos"
+    image: nixos/nix
+    commands: |
+      echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
+      nix run nixpkgs#statix -- check
