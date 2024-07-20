@@ -41,6 +41,7 @@
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-tapir.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/NUR";

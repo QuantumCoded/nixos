@@ -4,6 +4,13 @@ let
     let
       system = pkgs.system;
 
+      overlay-tapir = final: prev: {
+        tapir = import inputs.nixpkgs-tapir {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+
       overlay-unstable = final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
@@ -18,6 +25,7 @@ let
     {
       nixpkgs.overlays = [
         inputs.nur.overlay
+        overlay-tapir
         overlay-unstable
         overlay-self
       ];

@@ -29,7 +29,7 @@
       enable = true;
 
       # TODO: 2.5.0 from unstable breaks oauth, upgrade when stable
-      package = pkgs.woodpecker-server;
+      package = pkgs.tapir.woodpecker-server;
 
       environment = {
         WOODPECKER_HOST = "http://woodpecker.hydrogen.lan";
@@ -39,10 +39,6 @@
 
         WOODPECKER_GITEA = "true";
         WOODPECKER_GITEA_URL = "http://git.hydrogen.lan";
-        WOODPECKER_GITEA_CLIENT = "ecac1705-43ea-4638-8269-ea88dad8919b";
-
-        # WOODPECKER_GITHUB = "true";
-        # WOODPECKER_GITHUB_CLIENT = "Ov23lilAPhiQgitVOlAB";
       };
 
       environmentFile = config.age.secrets.woodpecker-server-env.path;
@@ -51,7 +47,7 @@
     woodpecker-agents.agents.docker = {
       enable = true;
 
-      package = pkgs.woodpecker-agent;
+      package = pkgs.tapir.woodpecker-agent;
 
       # TODO: switch to podman
       # extraGroups = [ "podman" ];
