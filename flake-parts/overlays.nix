@@ -4,21 +4,21 @@ let
     let
       system = pkgs.system;
 
-      overlay-tapir = final: prev: {
+      overlay-tapir = _: _: {
         tapir = import inputs.nixpkgs-tapir {
           inherit system;
           config.allowUnfree = true;
         };
       };
 
-      overlay-unstable = final: prev: {
+      overlay-unstable = _: _: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
       };
 
-      overlay-self = final: prev: {
+      overlay-self = _: _: {
         self = config.flake.packages.${system};
       };
     in

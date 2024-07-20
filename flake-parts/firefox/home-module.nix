@@ -1,5 +1,7 @@
-toplevel: { config, lib, pkgs, self, ... }:
+toplevel: { config, lib, pkgs, ... }:
 let
+  # TODO: figure out if using self here causes "dangling pointer" issues
+  # when importing from another flake
   inherit (toplevel.config.flake.builders.${pkgs.system})
     buildFirefoxXpiAddon
     ;

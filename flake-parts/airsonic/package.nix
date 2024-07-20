@@ -1,6 +1,6 @@
 { airsonic, fetchurl }:
 
-airsonic.overrideAttrs (final: prev: {
+airsonic.overrideAttrs (_: _: {
   pname = "airsonic-advanced";
   version = "11.0.0-snapshot-20230217142243";
 
