@@ -1,7 +1,9 @@
 {
   perSystem = { inputs', pkgs, ... }: {
     packages = {
+      ferret = pkgs.callPackage ./ferret { };
       gdlauncher = pkgs.callPackage ./gdlauncher.nix { };
+      imhex = pkgs.callPackage ./imhex.nix { };
       nimbus-roman-ttf = pkgs.callPackage ./nimbus-roman.nix { };
       nomos-rebuild = pkgs.callPackage ./nomos-rebuild { };
       tetrust = pkgs.callPackage ./tetrust.nix { };

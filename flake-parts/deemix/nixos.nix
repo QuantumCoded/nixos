@@ -38,7 +38,7 @@ in
       after = [ "network.target" ];
       serviceConfig = {
         ExecStart = ''
-          ${pkgs.flake.deemix-server}/bin/deemix-server --port ${toString cfg.port}
+          ${pkgs.self.deemix-server}/bin/deemix-server --port ${toString cfg.port}
         '';
         PrivateTmp = false;
         Restart = "always";

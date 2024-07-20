@@ -71,8 +71,9 @@ in
     programs.dconf.enable = true; # virt-manager requires dconf to remember settings
 
     environment.systemPackages = with pkgs; [
-      virt-manager
       looking-glass-client
+      virtiofsd
+      virt-manager
     ];
 
     boot = {

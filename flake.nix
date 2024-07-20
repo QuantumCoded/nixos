@@ -41,6 +41,7 @@
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-tapir.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nur.url = "github:nix-community/NUR";
@@ -49,13 +50,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     auto-zones.url = "github:the-computer-club/automous-zones";
     lynx.url = "github:the-computer-club/lynx";
+
+    homelab.url = "git+http://git.hydrogen.lan/quantumcoded/homelab.git";
   };
 
   outputs = inputs:
@@ -72,10 +70,11 @@
             hosts = import ./flake-parts/hosts;
             kiwix = import ./flake-parts/kiwix;
             libraries = import ./flake-parts/libraries;
-            machines = import ./flake-parts/machines.nix;
+            machines = import ./flake-parts/machines;
             minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
             nvidia = import ./flake-parts/nvidia;
+            overlays = import ./flake-parts/overlays.nix;
             packages = import ./flake-parts/packages;
             roles = import ./flake-parts/roles;
             services = import ./flake-parts/services;
@@ -99,6 +98,7 @@
             minecraft
             nixos
             nvidia
+            overlays
             packages
             roles
             services
@@ -110,8 +110,6 @@
 
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
-
-            ./machines.nix
           ];
 
           systems = [ "x86_64-linux" ];

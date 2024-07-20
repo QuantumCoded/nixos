@@ -1,6 +1,11 @@
-{ pkgs, ... }:
+args @ { pkgs, ... }:
 
 {
+  imports = [
+    # FIXME: this name clashes, maybe flake was a better namespace?
+    args.self.serviceModules.syncthing
+  ];
+
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
@@ -35,6 +40,8 @@
 
   services.xserver.windowManager.bspwm.enable = true;
 
+  services.pcscd.enable = true;
+
   services.printing = {
     enable = true;
     drivers = with pkgs; [
@@ -56,7 +63,7 @@
   fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
-    flake.nimbus-roman-ttf
+    self.nimbus-roman-ttf
   ];
 
   services.openssh.enable = true;
@@ -70,7 +77,7 @@
 
   users.users.jeff = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "syncthing" ];
     shell = pkgs.fish;
 
     # TODO: packages could be split into different roles, not sure to get the username
@@ -78,6 +85,7 @@
     packages = with pkgs; [
       comma
       distrobox
+      emacs
       feh
       file
       flameshot
@@ -96,9 +104,10 @@
       prismlauncher
       unstable.minetest
 
-      # TODO: this goes in vscode
+      # development
       nil
       nixpkgs-fmt
+      self.imhex
 
       # productivity
       anki
@@ -108,7 +117,7 @@
 
       # social
       element-desktop
-      vesktop
+      unstable.vesktop
     ];
   };
 

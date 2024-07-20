@@ -1,5 +1,5 @@
 {
-  homeManager = { pkgs, ... }: {
+  homeManager = { pkgs, self, ... }: {
     xsession.windowManager.bspwm = {
       monitors = {
         DP-0 = [ "L1" "L2" "L3" ];
@@ -9,7 +9,10 @@
       };
 
       extraConfig = ''
-        ${pkgs.procps}/bin/pidof xwinwrap || ${pkgs.flake.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio ${../../../wallpapers/animated.mkv}
+        ${pkgs.procps}/bin/pidof xwinwrap \
+        || ${pkgs.self.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 \
+        -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio --no-terminal \
+        ${../../../wallpapers/animated.mkv}
       '';
     };
 
@@ -23,7 +26,7 @@
     };
   };
 
-  nixos = { pkgs, ... }: {
+  nixos = { inputs, pkgs, ... }: {
     networking = {
       hostName = "quantum";
       # FIXME: change this to eth intherface
@@ -32,9 +35,17 @@
 
     # TODO: this should adapt to different monitor configurations
     # specifically 1, 3, and 4 monitor(s)
-    services.xserver.displayManager.setupCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr --output DP-0 --mode 1920x1080 --rate 144 --pos 0x0 --brightness 0.5 --output DP-2 --primary --mode 1920x1080 --rate 144 --right-of DP-0 --brightness 0.5 --output DP-4 --mode 1920x1080 --rate 144 --right-of DP-2 --brightness 0.5 --output HDMI-0 --mode 1920x1080 --rate 60 --right-of DP-4 --brightness 1
-    '';
+    services.xserver.displayManager.setupCommands =
+      let
+        brightness = "1";
+      in
+      ''
+        ${pkgs.xorg.xrandr}/bin/xrandr \
+        --output DP-0 --mode 1920x1080 --rate 144 --pos 0x0 --brightness ${brightness} \
+        --output DP-2 --primary --mode 1920x1080 --rate 144 --right-of DP-0 --brightness ${brightness} \
+        --output DP-4 --mode 1920x1080 --rate 144 --right-of DP-2 --brightness ${brightness} \
+        --output HDMI-0 --mode 1920x1080 --rate 60 --right-of DP-4 --brightness 1
+      '';
 
     base.nvidia = {
       enable = true;
@@ -44,5 +55,28 @@
 
     hardware.bluetooth.enable = true;
     nix.settings.trusted-users = [ "jeff" ];
+
+    base.syncthing = {
+      enable = true;
+      networks = inputs.homelab.syncthingNetworks;
+    };
+
+    age.secrets = {
+      syncthing-quantum-cert = {
+        file = ../../../secrets/syncthing-quantum-cert.age;
+        path = "/var/lib/syncthing/.config/syncthing/cert.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+
+      syncthing-quantum-key = {
+        file = ../../../secrets/syncthing-quantum-key.age;
+        path = "/var/lib/syncthing/.config/syncthing/key.pem";
+        mode = "0400";
+        owner = "syncthing";
+        group = "syncthing";
+      };
+    };
   };
 }

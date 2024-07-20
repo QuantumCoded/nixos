@@ -30,6 +30,7 @@
   systemd.services.attic-store-watcher = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
     serviceConfig = {
       User = "root";
       Group = "root";

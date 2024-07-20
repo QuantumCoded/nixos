@@ -16,11 +16,24 @@ in
 {
   "attic-credentials.age".publicKeys = everywhere;
   "attic-local-token.age".publicKeys = everywhere;
+
   "luninet-hydrogen.age".publicKeys = everywhere;
   "luninet-quantum.age".publicKeys = everywhere;
+
   "pgadmin.age".publicKeys = everywhere;
+
+  "syncthing-avalon-cert.age".publicKeys = everywhere;
+  "syncthing-avalon-key.age".publicKeys = everywhere;
+  "syncthing-hydrogen-cert.age".publicKeys = everywhere;
+  "syncthing-hydrogen-key.age".publicKeys = everywhere;
+  "syncthing-odyssey-cert.age".publicKeys = everywhere;
+  "syncthing-odyssey-key.age".publicKeys = everywhere;
+  "syncthing-quantum-cert.age".publicKeys = everywhere;
+  "syncthing-quantum-key.age".publicKeys = everywhere;
+
   "wifi_5g.age".publicKeys = everywhere;
   "wifi.age".publicKeys = everywhere;
+
   "woodpecker-agent-env.age".publicKeys = everywhere;
   "woodpecker-server-env.age".publicKeys = everywhere;
 }  
