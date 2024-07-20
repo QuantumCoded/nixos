@@ -16,7 +16,6 @@ buildGoModule {
   patches = [ ./rm-google-test.patch ];
   vendorHash = "sha256-q7UGtYj0oLKK9UcjfUFqMLE/ZrJ8aruRtUnVmnJZMM0=";
   buildInputs = [ stdenv go antlr ];
-  CGO_ENABLED = 0;
 
   postInstall = ''
     mv $out/bin/e2e $out/bin/ferret
