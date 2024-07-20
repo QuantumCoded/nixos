@@ -14,12 +14,10 @@ in
   };
 
   config = {
-    secrets = {
-    };
+    secrets = { };
 
     flake.nixosModules.secrets = {
-      example = {
-      };
+      example = { };
     };
   };
 }
