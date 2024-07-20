@@ -18,7 +18,10 @@ in
       enable = true;
 
       plugins = mkIf cfg.tide.enable [
-        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+        {
+          name = "tide";
+          inherit (pkgs.fishPlugins.tide) src;
+        }
       ];
     };
   };

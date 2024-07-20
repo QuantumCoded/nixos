@@ -13,8 +13,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    nix.package = pkgs.unstable.nixVersions.nix_2_21;
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.registry = builtins.mapAttrs (_: flake: { inherit flake; }) inputs;
+    nix = {
+      package = pkgs.unstable.nixVersions.nix_2_21;
+      settings.experimental-features = [ "nix-command" "flakes" ];
+      registry = builtins.mapAttrs (_: flake: { inherit flake; }) inputs;
+    };
   };
 }

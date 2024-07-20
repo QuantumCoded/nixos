@@ -83,12 +83,12 @@
         cfg = config.virtualisation.podman;
 
         # taken from https://github.com/NixOS/nixpkgs/blob/0b8e7a1ae5a94da2e1ee3f3030a32020f6254105/nixos/modules/virtualisation/podman/default.nix#L8-L13
-        package = (pkgs.unstable.podman.override {
+        package = pkgs.unstable.podman.override {
           extraPackages = cfg.extraPackages
             # setuid shadow
             ++ [ "/run/wrappers" ]
             ++ lib.optional (config.boot.supportedFilesystems.zfs or false) config.boot.zfs.package;
-        });
+        };
       in
       {
         # TODO: switch to podman

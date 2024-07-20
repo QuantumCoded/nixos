@@ -33,40 +33,43 @@ args @ { pkgs, ... }:
     source = "${pkgs.noisetorch}/bin/noisetorch";
   };
 
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-  };
+  services = {
+    flatpak.enable = true;
+    pcscd.enable = true;
+    openssh.enable = true;
 
-  services.xserver.windowManager.bspwm.enable = true;
+    xserver = {
+      enable = true;
+      xkb.layout = "us";
 
-  services.pcscd.enable = true;
+      windowManager.bspwm.enable = true;
+    };
 
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [
-      hplip
-    ];
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        hplip
+      ];
+    };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = false;
+    };
   };
 
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = false;
-  };
 
   fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
     self.nimbus-roman-ttf
   ];
-
-  services.openssh.enable = true;
 
   environment.shells = with pkgs; [ fish ];
   programs.fish.enable = true;
@@ -121,16 +124,15 @@ args @ { pkgs, ... }:
     ];
   };
 
-  programs.direnv.enable = true;
+  programs = {
+    direnv.enable = true;
+    steam.enable = true;
 
-  programs.steam.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
-
-  services.flatpak.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -153,6 +155,7 @@ args @ { pkgs, ... }:
     wget
     xclip
   ];
+
 
   time.timeZone = "America/Chicago";
 

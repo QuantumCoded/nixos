@@ -13,9 +13,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    boot.loader.systemd-boot.enable = true;
+    boot.loader = {
+      systemd-boot.enable = true;
 
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.efi.efiSysMountPoint = "/boot/efi";
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+    };
   };
 }

@@ -1,6 +1,9 @@
 {
   perSystem = { inputs', pkgs, ... }: {
     packages = {
+      # Re-export correct version of disko
+      inherit (inputs'.disko.packages) disko;
+
       ferret = pkgs.callPackage ./ferret { };
       gdlauncher = pkgs.callPackage ./gdlauncher.nix { };
       imhex = pkgs.callPackage ./imhex.nix { };
@@ -8,9 +11,6 @@
       nomos-rebuild = pkgs.callPackage ./nomos-rebuild { };
       tetrust = pkgs.callPackage ./tetrust.nix { };
       xwinwrap = pkgs.callPackage ./xwinwrap.nix { };
-
-      # Re-export correct version of disko
-      disko = inputs'.disko.packages.disko;
     };
   };
 }

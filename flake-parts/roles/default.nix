@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   config.flake.roleModules = {
     desktop = import ./modules/desktop.nix;

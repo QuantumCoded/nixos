@@ -2,7 +2,7 @@
 let
   overlaysModule = { inputs, pkgs, ... }:
     let
-      system = pkgs.system;
+      inherit (pkgs) system;
 
       overlay-tapir = _: _: {
         tapir = import inputs.nixpkgs-tapir {

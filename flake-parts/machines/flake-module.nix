@@ -139,7 +139,8 @@ in
                       home = rec {
                         username = uname;
                         homeDirectory = lib.mkDefault "/home/${username}";
-                        stateVersion = machine.stateVersion;
+
+                        inherit (machine) stateVersion;
                       };
                     }
                   ]

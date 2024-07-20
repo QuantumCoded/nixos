@@ -12,7 +12,7 @@ mkTransposedPerSystemModule {
   file = ./machines.nix;
   name = "machines";
   option = mkOption {
-    type = options.machines.type;
+    inherit (options.machines) type;
     default = { };
   };
 }
