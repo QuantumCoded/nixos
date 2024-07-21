@@ -26,13 +26,6 @@ args @ { pkgs, ... }:
     driSupport32Bit = true;
   };
 
-  security.wrappers.noisetorch = {
-    owner = "root";
-    group = "root";
-    capabilities = "cap_sys_resource+ep";
-    source = "${pkgs.noisetorch}/bin/noisetorch";
-  };
-
   services = {
     flatpak.enable = true;
     pcscd.enable = true;
@@ -96,7 +89,6 @@ args @ { pkgs, ... }:
       man-pages-posix
       neofetch
       nix-index # TODO: see if nix-index can be ran automatically
-      noisetorch
       sonixd
       wireguard-tools
       keepassxc
@@ -165,6 +157,7 @@ args @ { pkgs, ... }:
     boot.enable = true;
     flakes.enable = true;
     input.enable = true;
+    denoising.enable = true;
 
     networkmanager = {
       enable = true;
