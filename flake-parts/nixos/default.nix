@@ -11,7 +11,7 @@ in
     flakes = import ./modules/flakes.nix;
     masterpdfeditor = import ./modules/masterpdfeditor.nix;
     networkmanager = import ./modules/networkmanager.nix;
-    denoising = import ./modules/denoising.nix;
+    pipewire = import ./modules/pipewire.nix;
     syncthing = import ./modules/syncthing.nix;
     virtualization = import ./modules/virtualization.nix;
     default.imports = combineModules config.flake.nixosModules;

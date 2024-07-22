@@ -44,14 +44,6 @@ args @ { pkgs, ... }:
         hplip
       ];
     };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = false;
-    };
   };
 
   sound.enable = true;
@@ -157,7 +149,7 @@ args @ { pkgs, ... }:
     boot.enable = true;
     flakes.enable = true;
     input.enable = true;
-    denoising.enable = true;
+    pipewire.enable = true;
 
     networkmanager = {
       enable = true;
