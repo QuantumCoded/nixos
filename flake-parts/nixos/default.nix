@@ -9,6 +9,7 @@ in
     input = import ./modules/input;
     boot = import ./modules/boot.nix;
     flakes = import ./modules/flakes.nix;
+    masterpdfeditor = import ./modules/masterpdfeditor.nix;
     networkmanager = import ./modules/networkmanager.nix;
     denoising = import ./modules/denoising.nix;
     syncthing = import ./modules/syncthing.nix;
