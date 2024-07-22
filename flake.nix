@@ -65,12 +65,12 @@
             ankisyncd = import ./flake-parts/ankisyncd;
             deemix = import ./flake-parts/deemix;
             firefox = import ./flake-parts/firefox;
-            hardware = import ./flake-parts/hardware;
+            hardware = import ./flake-parts/systems/hardware;
             home-manager = import ./flake-parts/home-manager;
-            hosts = import ./flake-parts/hosts;
+            hosts = import ./flake-parts/systems/hosts;
             kiwix = import ./flake-parts/kiwix;
             libraries = import ./flake-parts/libraries;
-            machines = import ./flake-parts/machines;
+            machines = import ./flake-parts/systems/machines;
             minecraft = import ./flake-parts/minecraft;
             nixos = import ./flake-parts/nixos;
             nvidia = import ./flake-parts/nvidia;
@@ -79,7 +79,7 @@
             roles = import ./flake-parts/roles;
             services = import ./flake-parts/services;
             transpose = import ./flake-parts/transpose;
-            users = import ./flake-parts/users;
+            users = import ./flake-parts/systems/users;
             wireguard = import ./flake-parts/wireguard;
           };
         in

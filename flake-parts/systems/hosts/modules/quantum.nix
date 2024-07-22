@@ -12,7 +12,7 @@
         ${pkgs.procps}/bin/pidof xwinwrap \
         || ${pkgs.self.xwinwrap}/bin/xwinwrap -fs -fdt -ni -b -nf -un -o 1.0 \
         -- ${pkgs.mpv}/bin/mpv -wid WID --loop --no-audio --no-terminal \
-        ${../../../wallpapers/animated.mkv}
+        ${../../../../wallpapers/animated.mkv}
       '';
     };
 
@@ -63,7 +63,7 @@
 
     age.secrets = {
       syncthing-quantum-cert = {
-        file = ../../../secrets/syncthing-quantum-cert.age;
+        file = ../../../../secrets/syncthing-quantum-cert.age;
         path = "/var/lib/syncthing/.config/syncthing/cert.pem";
         mode = "0400";
         owner = "syncthing";
@@ -71,7 +71,7 @@
       };
 
       syncthing-quantum-key = {
-        file = ../../../secrets/syncthing-quantum-key.age;
+        file = ../../../../secrets/syncthing-quantum-key.age;
         path = "/var/lib/syncthing/.config/syncthing/key.pem";
         mode = "0400";
         owner = "syncthing";

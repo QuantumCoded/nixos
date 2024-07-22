@@ -19,7 +19,7 @@ in
       {
         base.wireguard.enable = true;
         age.secrets.luninet-quantum = {
-          file = ../../../secrets/luninet-quantum.age;
+          file = ../../../../secrets/luninet-quantum.age;
           mode = "0400";
         };
       }

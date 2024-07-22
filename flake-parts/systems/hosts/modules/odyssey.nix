@@ -17,7 +17,7 @@
           fi
         fi
 
-        ${pkgs.feh}/bin/feh --bg-max ${../../../wallpapers/wallpaper.jpg}
+        ${pkgs.feh}/bin/feh --bg-max ${../../../../wallpapers/wallpaper.jpg}
       '';
     };
 
@@ -32,7 +32,7 @@
 
     age.secrets = {
       syncthing-odyssey-cert = {
-        file = ../../../secrets/syncthing-odyssey-cert.age;
+        file = ../../../../secrets/syncthing-odyssey-cert.age;
         path = "/var/lib/syncthing/.config/syncthing/cert.pem";
         mode = "0400";
         owner = "syncthing";
@@ -40,7 +40,7 @@
       };
 
       syncthing-odyssey-key = {
-        file = ../../../secrets/syncthing-odyssey-key.age;
+        file = ../../../../secrets/syncthing-odyssey-key.age;
         path = "/var/lib/syncthing/.config/syncthing/key.pem";
         mode = "0400";
         owner = "syncthing";
