@@ -20,12 +20,6 @@ args @ { pkgs, ... }:
     ];
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   services = {
     flatpak.enable = true;
     pcscd.enable = true;
