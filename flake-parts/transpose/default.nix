@@ -7,8 +7,6 @@ let
   modules = {
     builders = import ./builders.nix;
     home-config = import ./home-config.nix;
-    machines = import ./machines.nix;
-    nixos-config = import ./nixos-config.nix;
   };
 in
 {

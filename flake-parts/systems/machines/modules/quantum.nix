@@ -11,7 +11,7 @@ in
   machines.quantum = {
     hardware = hardwareModules.quantum;
     host = hostModules.quantum;
-    users.jeff = with userModules; [ jeff ];
+    users.jeff = userModules.jeff;
     roles = with roleModules; [ desktop workstation ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default

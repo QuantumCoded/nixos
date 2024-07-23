@@ -11,7 +11,7 @@ in
   machines.avalon = {
     hardware = hardwareModules.avalon;
     host = hostModules.avalon;
-    users.jeff = with userModules; [ jeff ];
+    users.jeff = userModules.jeff;
     roles = with roleModules; [ laptop workstation ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default

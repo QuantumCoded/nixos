@@ -10,7 +10,7 @@ in
   machines.hydrogen = {
     hardware = hardwareModules.hydrogen;
     host = hostModules.hydrogen;
-    users.jeff = [ ];
+    users.jeff = { };
     roles = with roleModules; [ server ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default
