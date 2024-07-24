@@ -23,6 +23,7 @@ in
     kitty = import ./modules/kitty.nix;
     rofi = import ./modules/rofi.nix;
     sxhkd = import ./modules/sxhkd.nix;
+    zoxide = import ./modules/zoxide.nix;
     default.imports = combineModules config.flake.homeModules;
   };
 }

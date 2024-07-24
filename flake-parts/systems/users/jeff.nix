@@ -23,6 +23,7 @@
       neofetch.enable = true;
       rofi.enable = true;
       sxhkd.enable = true;
+      zoxide.enable = true;
     };
   };
 
