@@ -25,4 +25,8 @@
       sxhkd.enable = true;
     };
   };
+
+  nixos = {
+    base.pipewire.denoising = true;
+  };
 }
