@@ -33,6 +33,8 @@
       interfaces.wlp3s0.wakeOnLan.enable = true;
     };
 
+    time.timeZone = "America/Chicago";
+
     # TODO: this should adapt to different monitor configurations
     # specifically 1, 3, and 4 monitor(s)
     services.xserver.displayManager.setupCommands =

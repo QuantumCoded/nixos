@@ -10,6 +10,7 @@
   nixos = { inputs, pkgs, ... }: {
     networking.hostName = "avalon";
     hardware.bluetooth.enable = true;
+    time.timeZone = "America/Chicago";
 
     services.xserver.displayManager.setupCommands = ''
       ${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1 --mode 1920x1080

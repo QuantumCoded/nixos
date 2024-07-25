@@ -33,6 +33,8 @@
       networks = inputs.homelab.syncthingNetworks;
     };
 
+    time.timeZone = "America/Chicago";
+
     age.secrets = {
       syncthing-hydrogen-cert = {
         file = ../../../../secrets/syncthing-hydrogen-cert.age;
