@@ -11,7 +11,13 @@ in
     hardware = hardwareModules.quantum;
     host = hostModules.quantum;
     users.jeff = userModules.jeff;
-    roles = [ "desktop" "workstation" ];
+    roles = [
+      "desktop"
+      "podman"
+      "syncthing-peer"
+      "virtualization"
+      "workstation"
+    ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default
       inputs.disko.nixosModules.default

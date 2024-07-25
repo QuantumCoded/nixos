@@ -10,7 +10,7 @@ in
     hardware = hardwareModules.hydrogen;
     host = hostModules.hydrogen;
     users.jeff = { };
-    roles = [ "server" ];
+    roles = [ "server" "syncthing-peer" ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default
       inputs.attic.nixosModules.atticd
