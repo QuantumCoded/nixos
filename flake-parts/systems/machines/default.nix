@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   inherit (config.flake.lib) combineModules;
 
@@ -12,7 +12,7 @@ in
 {
   imports =
     [ ./flake-module.nix ]
-    ++ builtins.attrValues modules;
+    ++ lib.attrValues modules;
 
   flake.machineModules = modules // {
     default.imports = combineModules config.flake.machineModules;

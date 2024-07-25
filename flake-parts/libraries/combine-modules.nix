@@ -1,10 +1,7 @@
 { lib, ... }:
 let
-  inherit (builtins)
-    attrValues
-    ;
-
   inherit (lib)
+    attrValues
     filterAttrs
     ;
 in

@@ -1,10 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins)
-    concatStringsSep
-    ;
-
   inherit (lib)
+    concatStringsSep
     mkEnableOption
     mkIf
     mkOption

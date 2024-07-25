@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins) replaceStrings;
   inherit (lib)
     concatStringsSep
     foldlAttrs
     mkEnableOption
     mkIf
     mkOption
+    replaceStrings
     types
     ;
 

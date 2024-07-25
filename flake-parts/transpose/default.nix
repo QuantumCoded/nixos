@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   inherit (config.flake.lib)
     combineModules
@@ -10,7 +10,7 @@ let
   };
 in
 {
-  imports = builtins.attrValues modules;
+  imports = lib.attrValues modules;
 
   flake.transpose = modules // {
     default.imports = combineModules config.flake.transpose;

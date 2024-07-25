@@ -1,6 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 let
   inherit (lib)
+    mapAttrs
     mkEnableOption
     mkIf
     ;
@@ -16,7 +17,7 @@ in
     nix = {
       package = pkgs.unstable.nixVersions.nix_2_21;
       settings.experimental-features = [ "nix-command" "flakes" ];
-      registry = builtins.mapAttrs (_: flake: { inherit flake; }) inputs;
+      registry = mapAttrs (_: flake: { inherit flake; }) inputs;
     };
   };
 }
