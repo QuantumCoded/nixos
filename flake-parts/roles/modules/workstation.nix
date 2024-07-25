@@ -21,7 +21,6 @@ args @ { pkgs, ... }:
   };
 
   services = {
-    flatpak.enable = true;
     pcscd.enable = true;
     openssh.enable = true;
 
