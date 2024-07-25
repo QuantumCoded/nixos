@@ -133,7 +133,11 @@ in
         else
           inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-            extraSpecialArgs = { inherit inputs self; };
+            extraSpecialArgs = {
+              inherit inputs self;
+              flakeConfig = config;
+              nixosConfig = null;
+            };
 
             modules = [ (nullableAttrs (mkHomeManagerConfigModule machine userName)) ];
           };
@@ -148,14 +152,18 @@ in
       # returns an empty attrs if the machine does not use hm
       mkHomeManagerNixosModule = machine: optionalAttrs
         (nixosNeedsHomeManager machine)
-        {
+        (nixosArgs: {
           imports = [ inputs.home-manager.nixosModules.home-manager ];
 
           # configure home-manager in nixos scope
           home-manager = {
-            extraSpecialArgs = { inherit inputs self; };
             useGlobalPkgs = true;
             useUserPackages = true;
+            extraSpecialArgs = {
+              inherit inputs self;
+              flakeConfig = config;
+              nixosConfig = nixosArgs.config;
+            };
 
             # make the home manage config for the machine user pairs
             # also removes users that don't use home manager
@@ -170,12 +178,15 @@ in
                   else userConfig)
                 machine.users);
           };
-        };
+        });
 
       # makes a nixos system for a given machine
       mkNixosSystem = machine:
         inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs self; };
+          specialArgs = {
+            inherit inputs self;
+            flakeConfig = config;
+          };
 
           modules = concatLists [
             machine.nixosModules
