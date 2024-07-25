@@ -58,7 +58,7 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      ({ config, ... }:
+      ({ config, options, ... }:
         let
           flakeModules = {
             airsonic = import ./flake-parts/airsonic;
@@ -148,6 +148,9 @@
           };
 
           flake = {
+            _config = config;
+            _options = options;
+
             inherit flakeModules;
 
             deploy.nodes = {
