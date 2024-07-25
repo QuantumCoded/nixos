@@ -297,11 +297,11 @@
     },
     "homelab": {
       "locked": {
-        "lastModified": 1721386517,
-        "narHash": "sha256-5p6C+QfSO8TYUYfUcIA3BP3cjC+o52kip8GZ7A2K3PI=",
+        "lastModified": 1721878672,
+        "narHash": "sha256-cp6+QP9U3bm+fXDTKp/nrK0K3mbnl1cvC5/adY7J2Lk=",
         "ref": "refs/heads/master",
-        "rev": "f5965b1eecc6822cf1340f83f61027c8385d2aa0",
-        "revCount": 2,
+        "rev": "3c1ae4578eac941e00b6003f36bdf08faaa226cb",
+        "revCount": 3,
         "type": "git",
         "url": "http://git.hydrogen.lan/quantumcoded/homelab.git"
       },
