@@ -88,7 +88,7 @@
             nixpkgs-fmt
           ]
 
-          (optionals config.roles.workstation [ 
+          (optionals config.roles.workstation [
             flameshot
             sonixd
 

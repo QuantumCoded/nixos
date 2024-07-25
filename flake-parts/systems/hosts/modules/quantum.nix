@@ -26,7 +26,7 @@
     };
   };
 
-  nixos = { inputs, pkgs, ... }: {
+  nixos = { pkgs, ... }: {
     networking = {
       hostName = "quantum";
       # FIXME: change this to eth intherface
