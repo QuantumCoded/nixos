@@ -3,6 +3,7 @@ let
   inherit (lib)
     any
     concatLists
+    elem
     filterAttrs
     id
     mapAttrs
@@ -56,7 +57,7 @@ in
           };
 
           roles = mkOption {
-            type = listOf deferredModule;
+            type = listOf str;
             default = [ ];
           };
 
@@ -190,7 +191,8 @@ in
 
           modules = concatLists [
             machine.nixosModules
-            machine.roles
+
+            (map (role: config.roles.${role}) machine.roles)
 
             (mapAttrsToList
               (_: userModule: nullableAttrs userModule.nixos)
@@ -203,7 +205,14 @@ in
 
               (mkHomeManagerNixosModule machine)
 
-              { system.stateVersion = machine.stateVersion; }
+              {
+                # set used roles to true on nixos side
+                roles = mapAttrs
+                  (roleName: _: elem roleName machine.roles)
+                  config.roles;
+
+                system.stateVersion = machine.stateVersion;
+              }
             ]
           ];
         };

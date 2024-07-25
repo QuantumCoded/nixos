@@ -4,7 +4,6 @@ let
     hardwareModules
     hostModules
     userModules
-    roleModules
     ;
 in
 {
@@ -12,7 +11,7 @@ in
     hardware = hardwareModules.quantum;
     host = hostModules.quantum;
     users.jeff = userModules.jeff;
-    roles = with roleModules; [ desktop workstation ];
+    roles = [ "desktop" "workstation" ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default
       inputs.disko.nixosModules.default

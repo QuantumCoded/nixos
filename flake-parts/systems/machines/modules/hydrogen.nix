@@ -3,7 +3,6 @@ let
   inherit (config.flake)
     hardwareModules
     hostModules
-    roleModules
     ;
 in
 {
@@ -11,7 +10,7 @@ in
     hardware = hardwareModules.hydrogen;
     host = hostModules.hydrogen;
     users.jeff = { };
-    roles = with roleModules; [ server ];
+    roles = [ "server" ];
     extraNixos.imports = [
       inputs.agenix.nixosModules.default
       inputs.attic.nixosModules.atticd
