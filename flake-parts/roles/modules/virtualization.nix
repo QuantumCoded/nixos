@@ -1,0 +1,3 @@
+{
+  base.virtualization.enable = true;
+}

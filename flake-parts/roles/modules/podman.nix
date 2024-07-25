@@ -1,0 +1,3 @@
+{
+  virtualization.podman.enable = true;
+}
