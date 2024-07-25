@@ -21,14 +21,11 @@ args @ { pkgs, ... }:
   };
 
   services = {
-    pcscd.enable = true;
     openssh.enable = true;
 
     xserver = {
       enable = true;
       xkb.layout = "us";
-
-      windowManager.bspwm.enable = true;
     };
 
     printing = {
@@ -39,76 +36,11 @@ args @ { pkgs, ... }:
     };
   };
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  fonts.packages = with pkgs; [
-    liberation_ttf
-    nerdfonts
-    self.nimbus-roman-ttf
-  ];
-
-  environment.shells = with pkgs; [ fish ];
-  programs.fish.enable = true;
-
-  virtualisation.docker.enable = true;
-
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  users.users.jeff = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "syncthing" ];
-    shell = pkgs.fish;
-
-    # TODO: packages could be split into different roles, not sure to get the username
-    # to carry across roles though, perhaps that should be defined in the system somehow?
-    packages = with pkgs; [
-      comma
-      distrobox
-      emacs
-      feh
-      file
-      flameshot
-      man-pages
-      man-pages-posix
-      neofetch
-      nix-index # TODO: see if nix-index can be ran automatically
-      sonixd
-      wireguard-tools
-      keepassxc
-
-      # gaming
-      dwarf-fortress
-      steam
-      prismlauncher
-      unstable.minetest
-
-      # development
-      nil
-      nixpkgs-fmt
-      self.imhex
-
-      # productivity
-      anki
-      libreoffice
-      obsidian
-      thunderbird
-
-      # social
-      element-desktop
-      unstable.vesktop
-    ];
-  };
-
-  programs = {
-    direnv.enable = true;
-    steam.enable = true;
-
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
   xdg.portal = {
@@ -118,6 +50,8 @@ args @ { pkgs, ... }:
     ];
     config.common.default = "*";
   };
+
+  virtualisation.podman.enable = true;
 
   environment.systemPackages = with pkgs; [
     btop
@@ -132,9 +66,6 @@ args @ { pkgs, ... }:
     wget
     xclip
   ];
-
-
-  time.timeZone = "America/Chicago";
 
   nixpkgs.config.allowUnfree = true;
 
