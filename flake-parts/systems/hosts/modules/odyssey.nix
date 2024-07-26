@@ -24,6 +24,7 @@
   nixos = { inputs, ... }: {
     networking.hostName = "odyssey";
     hardware.bluetooth.enable = true;
+    time.timeZone = "America/Chicago";
 
     base.syncthing = {
       # enable = true;
