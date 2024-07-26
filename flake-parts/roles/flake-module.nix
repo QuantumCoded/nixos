@@ -20,5 +20,12 @@ in
         readOnly = true;
       };
     };
+
+    homeModules.roles = {
+      options.roles = mkOption {
+        type = with types; attrsOf bool;
+        readOnly = true;
+      };
+    };
   };
 }

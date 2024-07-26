@@ -103,24 +103,24 @@ in
         then null
         else {
           imports = [
-            # shared modules
             (nullableAttrs machine.host.homeManager)
             (nullableAttrs machine.extraHomeManager)
-
-            {
-              imports = machine.homeModules;
-              home.stateVersion = machine.stateVersion;
-            }
-
-            # # user modules
             (nullableAttrs machine.users.${userName}.homeManager)
 
             {
+              imports = machine.homeModules;
+
+              # set used roles to true on home manager side
+              roles = mapAttrs
+                (roleName: _: elem roleName machine.roles)
+                config.roles;
+
               programs.home-manager.enable = true;
 
               home = {
                 username = mkDefault userName;
                 homeDirectory = mkDefault "/home/${userName}";
+                stateVersion = machine.stateVersion;
               };
             }
           ];
