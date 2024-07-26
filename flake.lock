@@ -312,11 +312,11 @@
     },
     "lynx": {
       "locked": {
-        "lastModified": 1717250171,
-        "narHash": "sha256-TJ3MWZ1R5YuAhvBvpJAdAvTIVAymn40SVLgGS+p8KEA=",
+        "lastModified": 1720636833,
+        "narHash": "sha256-HJukbM/6AXDHXxISre64WX+asU41d7i27jUaL+tXXSI=",
         "owner": "the-computer-club",
         "repo": "lynx",
-        "rev": "3a5acf87b3fefa904bd3b40a9b1033e0c2ce9848",
+        "rev": "ee0bd5fde93e68ffdde4ce2a76a722029b3af675",
         "type": "github"
       },
       "original": {

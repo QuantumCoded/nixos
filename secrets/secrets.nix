@@ -17,6 +17,7 @@ in
   "attic-credentials.age".publicKeys = everywhere;
   "attic-local-token.age".publicKeys = everywhere;
 
+  "luninet-dad.age".publicKeys = everywhere;
   "luninet-hydrogen.age".publicKeys = everywhere;
   "luninet-quantum.age".publicKeys = everywhere;
 

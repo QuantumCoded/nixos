@@ -4,6 +4,7 @@ let
 
   modules = {
     avalon = ./modules/avalon.nix;
+    dad = ./modules/dad.nix;
     hydrogen = ./modules/hydrogen.nix;
     odyssey = ./modules/odyssey.nix;
     quantum = ./modules/quantum.nix;

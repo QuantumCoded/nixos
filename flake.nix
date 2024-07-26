@@ -108,6 +108,7 @@
 
             inputs.devshell.flakeModule
 
+            inputs.lynx.flakeModules.builtins
             inputs.lynx.flakeModules.flake-guard
             inputs.auto-zones.flakeModules.asluni
           ];

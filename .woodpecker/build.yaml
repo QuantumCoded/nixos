@@ -1,12 +1,24 @@
 matrix:
-  ARCH:
-    - x86_64-linux
+  include:
+    - ARCH: x86_64-linux
+      NIXOS_USER: jeff
+      NIXOS_HOST: avalon
 
-  NIXOS_HOST:
-    - avalon
-    - hydrogen
-    - odyssey
-    - quantum
+    - ARCH: x86_64-linux
+      NIXOS_USER: jeff
+      NIXOS_HOST: hydrogen
+
+    - ARCH: x86_64-linux
+      NIXOS_USER: jeff
+      NIXOS_HOST: odyssey
+
+    - ARCH: x86_64-linux
+      NIXOS_USER: jeff
+      NIXOS_HOST: quantum
+
+    - ARCH: x86_64-linux
+      NIXOS_USER: dad
+      NIXOS_HOST: dad
 
 # TODO: move experimental-features to custom docker container
 steps:
@@ -26,7 +38,7 @@ steps:
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
       NIX_REMOTE=daemon nix build -j 8 --cores 12 --store unix:///host/nix/var/nix/daemon-socket/socket?root=/host .#nixosConfigurations.${NIXOS_HOST}.config.system.build.toplevel
 
-  - name: home-manager jeff@${NIXOS_HOST} build check
+  - name: home-manager ${NIXOS_USER}@${NIXOS_HOST} build check
     when:
       - event: push
       - event: manual
@@ -38,4 +50,4 @@ steps:
     image: nixos/nix
     commands: |
       echo 'experimental-features = nix-command flakes' > /etc/nix/nix.conf
-      nix build .#homeConfiguration.${ARCH}.${NIXOS_HOST}.jeff.activationPackage --dry-run
+      nix build .#homeConfiguration.${ARCH}.${NIXOS_HOST}.${NIXOS_USER}.activationPackage --dry-run

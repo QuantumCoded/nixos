@@ -7,7 +7,9 @@ let
     filterAttrs
     id
     mapAttrs
+    mapAttrs'
     mapAttrsToList
+    nameValuePair
     mkDefault
     mkOption
     optionalAttrs
@@ -56,6 +58,11 @@ in
             default = { };
           };
 
+          userNames = mkOption {
+            type = attrsOf str;
+            default = { };
+          };
+
           roles = mkOption {
             type = listOf str;
             default = [ ];
@@ -96,6 +103,10 @@ in
       filterHomeManagerConfigs = filterAttrs
         (_: homeConfig: homeConfig != null);
 
+      # computes the final username for a machine username pair
+      finalUserName = machine: userName:
+        machine.userNames.${userName} or userName;
+
       # makes a home manager module for a machine username pair's config
       # returns a home manager module or null if not needed
       mkHomeManagerConfigModule = machine: userName:
@@ -118,9 +129,10 @@ in
               programs.home-manager.enable = true;
 
               home = {
+                inherit (machine) stateVersion;
+
                 username = mkDefault userName;
                 homeDirectory = mkDefault "/home/${userName}";
-                stateVersion = machine.stateVersion;
               };
             }
           ];
@@ -140,7 +152,9 @@ in
               nixosConfig = null;
             };
 
-            modules = [ (nullableAttrs (mkHomeManagerConfigModule machine userName)) ];
+            modules = [
+              (nullableAttrs (mkHomeManagerConfigModule machine userName))
+            ];
           };
 
 
@@ -167,16 +181,23 @@ in
             };
 
             # make the home manage config for the machine user pairs
+            # rename users that are present in the userNames attrs
             # also removes users that don't use home manager
             users = filterHomeManagerConfigs
-              (mapAttrs
+              (mapAttrs'
                 (userName: _:
                   let
                     userConfig = mkHomeManagerConfigModule machine userName;
                   in
                   if userConfig == null
-                  then null
-                  else userConfig)
+                  then
+                    nameValuePair
+                      (finalUserName machine userName)
+                      null
+                  else
+                    nameValuePair
+                      (finalUserName machine userName)
+                      userConfig)
                 machine.users);
           };
         });
@@ -192,6 +213,7 @@ in
           modules = concatLists [
             machine.nixosModules
 
+            # load role modules out of flake scope
             (map (role: config.roles.${role}) machine.roles)
 
             (mapAttrsToList
