@@ -4,6 +4,7 @@
       # Re-export correct version of disko
       inherit (inputs'.disko.packages) disko;
 
+      breeze-custom = pkgs.callPackage ./breeze-custom { };
       ferret = pkgs.callPackage ./ferret { };
       gdlauncher = pkgs.callPackage ./gdlauncher.nix { };
       imhex = pkgs.callPackage ./imhex.nix { };
