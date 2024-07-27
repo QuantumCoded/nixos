@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, flakeRoot, lib, pkgs, ... }:
 
 {
   age.secrets = {
-    woodpecker-agent-env.file = ../../../secrets/woodpecker-agent-env.age;
-    woodpecker-server-env.file = ../../../secrets/woodpecker-server-env.age;
+    woodpecker-agent-env.file = flakeRoot + "/secrets/woodpecker-agent-env.age";
+    woodpecker-server-env.file = flakeRoot + "/secrets/woodpecker-server-env.age";
   };
 
   services = {

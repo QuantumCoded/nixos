@@ -1,4 +1,4 @@
-{ config, inputs, lib, self, ... }:
+{ config, flakeRoot, inputs, lib, self, ... }:
 let
   inherit (lib)
     any
@@ -147,7 +147,7 @@ in
           inputs.home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
-              inherit inputs self;
+              inherit flakeRoot inputs self;
               flakeConfig = config;
               nixosConfig = null;
             };
@@ -175,7 +175,7 @@ in
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit inputs self;
+              inherit flakeRoot inputs self;
               flakeConfig = config;
               nixosConfig = nixosArgs.config;
             };
@@ -206,7 +206,7 @@ in
       mkNixosSystem = machine:
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs self;
+            inherit flakeRoot inputs self;
             flakeConfig = config;
           };
 

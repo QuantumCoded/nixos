@@ -57,8 +57,12 @@
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      ({ config, options, ... }:
+    inputs.flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+        specialArgs.flakeRoot = ./.;
+      }
+      ({ config, lib, options, ... }:
         let
           flakeModules = {
             airsonic = import ./flake-parts/airsonic;

@@ -1,4 +1,4 @@
-args @ { pkgs, ... }:
+args @ { flakeRoot, pkgs, ... }:
 
 {
   imports = [
@@ -93,8 +93,8 @@ args @ { pkgs, ... }:
     networkmanager = {
       enable = true;
       connections = {
-        wifi_5g = ../../../secrets/wifi_5g.age;
-        wifi = ../../../secrets/wifi.age;
+        wifi_5g = flakeRoot + "/secrets/wifi_5g.age";
+        wifi = flakeRoot + "/secrets/wifi.age";
       };
     };
   };

@@ -1,5 +1,5 @@
 {
-  homeManager = { pkgs, ... }:
+  homeManager = { flakeRoot, pkgs, ... }:
     let
       internalMonitor = "eDP-1";
       externalMonitor = "HDMI-1";
@@ -17,11 +17,11 @@
           fi
         fi
 
-        ${pkgs.feh}/bin/feh --bg-max ${../../../../wallpapers/wallpaper.jpg}
+        ${pkgs.feh}/bin/feh --bg-max ${flakeRoot + "/wallpapers/wallpaper.jpg"}
       '';
     };
 
-  nixos = { inputs, ... }: {
+  nixos = { flakeRoot, inputs, ... }: {
     networking.hostName = "odyssey";
     hardware.bluetooth.enable = true;
     time.timeZone = "America/Chicago";
@@ -33,7 +33,7 @@
 
     age.secrets = {
       syncthing-odyssey-cert = {
-        file = ../../../../secrets/syncthing-odyssey-cert.age;
+        file = flakeRoot + "/secrets/syncthing-odyssey-cert.age";
         path = "/var/lib/syncthing/.config/syncthing/cert.pem";
         mode = "0400";
         owner = "syncthing";
@@ -41,7 +41,7 @@
       };
 
       syncthing-odyssey-key = {
-        file = ../../../../secrets/syncthing-odyssey-key.age;
+        file = flakeRoot + "/secrets/syncthing-odyssey-key.age";
         path = "/var/lib/syncthing/.config/syncthing/key.pem";
         mode = "0400";
         owner = "syncthing";

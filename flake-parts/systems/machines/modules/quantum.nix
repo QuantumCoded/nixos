@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, flakeRoot, inputs, ... }:
 let
   inherit (config.flake)
     hardwareModules
@@ -24,7 +24,7 @@ in
       {
         base.wireguard.enable = true;
         age.secrets.luninet-quantum = {
-          file = ../../../../secrets/luninet-quantum.age;
+          file = flakeRoot + "/secrets/luninet-quantum.age";
           mode = "0400";
         };
       }

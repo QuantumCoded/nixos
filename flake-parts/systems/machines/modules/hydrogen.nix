@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, flakeRoot, inputs, ... }:
 let
   inherit (config.flake)
     hardwareModules
@@ -17,7 +17,7 @@ in
       {
         base.wireguard.enable = true;
         age.secrets.luninet-hydrogen = {
-          file = ../../../../secrets/luninet-hydrogen.age;
+          file = flakeRoot + "/secrets/luninet-hydrogen.age";
           mode = "0400";
         };
       }
