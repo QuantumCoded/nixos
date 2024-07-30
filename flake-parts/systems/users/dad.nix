@@ -68,6 +68,7 @@
             ark
             discord
             firefox
+            flameshot
             gwenview
             handbrake
             inkscape
@@ -90,7 +91,6 @@
 
           [
             distrobox
-            flameshot
             hunspell
             hunspellDicts.en_US
             keepassxc
