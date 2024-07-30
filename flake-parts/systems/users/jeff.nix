@@ -1,7 +1,7 @@
 {
-  homeManager = { pkgs, ... }: {
+  homeManager = { config, flakeConfig, pkgs, ... }: {
     xsession.windowManager.bspwm = {
-      enable = true;
+      enable = config.roles.workstation;
 
       extraConfig = ''
         ${pkgs.procps}/bin/pkill sxhkd && sxhkd &
@@ -11,18 +11,32 @@
 
     base = {
       dunst.enable = true;
-      firefox.enable = true;
+
+      firefox = {
+        enable = config.roles.workstation;
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          darkreader
+          keepassxc-browser
+          return-youtube-dislikes
+          sponsorblock
+          tree-style-tab
+          ublock-origin
+          web-scrobbler
+
+          flakeConfig.flake.firefoxAddons.${pkgs.system}.yomitan
+        ];
+      };
 
       fish = {
         enable = true;
-        tide.enable = true;
+        tide.enable = config.roles.workstation;
       };
 
       git.enable = true;
-      kitty.enable = true;
-      neofetch.enable = true;
-      rofi.enable = true;
-      sxhkd.enable = true;
+      kitty.enable = config.roles.workstation;
+      neofetch.enable = config.roles.workstation;
+      rofi.enable = config.roles.workstation;
+      sxhkd.enable = config.roles.workstation;
       zoxide.enable = true;
     };
   };

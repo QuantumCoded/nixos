@@ -1,8 +1,15 @@
-{ config, ... }:
-
+let
+  transposeModule = import ./transpose.nix;
+in
 {
+  imports = [
+    ./addons
+    transposeModule
+  ];
+
   flake = {
-    homeModules.firefox = import ./home-module.nix { inherit config; };
+    homeModules.firefox = import ./home-module.nix;
+    transposeModules.firefoxAddons = transposeModule;
   };
 
   perSystem = { pkgs, ... }: {

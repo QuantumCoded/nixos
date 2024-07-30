@@ -1,5 +1,10 @@
 { config, lib, ... }:
 let
+  inherit (lib)
+    mkOption
+    types
+    ;
+
   inherit (config.flake.lib)
     combineModules
     ;
@@ -12,7 +17,12 @@ in
 {
   imports = lib.attrValues modules;
 
-  flake.transpose = modules // {
-    default.imports = combineModules config.flake.transpose;
+  options.flake.transposeModules = mkOption {
+    type = with types; attrsOf deferredModule;
+    default = { };
+  };
+
+  config.flake.transposeModules = modules // {
+    default.imports = combineModules config.flake.transposeModules;
   };
 }

@@ -1,7 +1,15 @@
 {
-  homeManager = { config, ... }: {
+  homeManager = { config, pkgs, ... }: {
     base = {
-      firefox.enable = config.roles.workstation;
+      firefox = {
+        enable = config.roles.workstation;
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          darkreader
+          keepassxc-browser
+          ublock-origin
+        ];
+      };
+
       git.enable = true;
     };
   };
