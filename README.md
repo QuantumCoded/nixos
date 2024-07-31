@@ -6,4 +6,9 @@
 
 <h1 align="center">QuantumCoded's NixOS Configs Repository</h1>
 
+> [!IMPORTANT]
+> This repository depends on locally hosted tooling to deploy correctly; things
+> may need to be adjusted. Additionally, there may be broken or incorrect links
+> on GitHub due to the mirroring process.
+
 Welcome, and thank you for checking out my NixOS configs, hope you find something you like!
