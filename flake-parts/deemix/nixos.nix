@@ -40,7 +40,6 @@ in
         ExecStart = ''
           ${pkgs.self.deemix-server}/bin/deemix-server --port ${toString cfg.port}
         '';
-        PrivateTmp = false;
         Restart = "always";
         User = "deemix";
         WorkingDirectory = "/var/lib/deemix";
