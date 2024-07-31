@@ -50,7 +50,10 @@
         ;
     in
     {
-      base.pipewire.denoising = config.roles.workstation;
+      base = mkIf config.roles.workstation {
+        input.enable = true;
+        pipewire.denoising = true;
+      };
 
       services = {
         pcscd.enable = true;

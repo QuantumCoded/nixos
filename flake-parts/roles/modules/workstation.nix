@@ -87,7 +87,6 @@ args @ { flakeRoot, pkgs, ... }:
   base = {
     boot.enable = true;
     flakes.enable = true;
-    input.enable = true;
     pipewire.enable = true;
 
     networkmanager = {
