@@ -92,6 +92,7 @@
             comma
             emacs
             feh
+            ffmpeg-full
             file
             man-pages
             man-pages-posix
@@ -108,6 +109,7 @@
           (optionals config.roles.workstation [
             flameshot
             sonixd
+            tor-browser
 
             # gaming
             dwarf-fortress
